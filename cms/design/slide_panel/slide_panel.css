@@ -1,0 +1,40 @@
+a.open, a.close {
+    height: 20px;
+    line-height: 5px !important;
+    padding-left: 5px !important;
+    cursor: pointer;
+    display: block;
+    width: 20px;
+    position: relative;
+    top: 0px;
+    
+}
+a.open {background: url(/cms/design/slide_panel/butt_open_slide_panel.png) no-repeat left 0;}
+a.close {background: url(/cms/design/slide_panel/butt_open_slide_panel.png) no-repeat left 0;}
+a:hover.open {background: url(/cms/design/slide_panel/butt_open_slide_panel.png) no-repeat left -19px;}
+a:hover.close {background: url(/cms/design/slide_panel/butt_open_slide_panel.png) no-repeat left -19px;}
+
+/* sliding panel */
+#toppanel {
+    position: absolute;   /*Panel will overlap  content */
+    /*position: relative;*/   /*Panel will "push" the content down */
+    top: -10px;
+    width: 100%;
+    z-index: 999999;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+#panel {
+    width: 100%;
+    height: 570px;
+    color: #ccc;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+    display: none;
+}
+
+

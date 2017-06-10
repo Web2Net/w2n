@@ -1,0 +1,6 @@
+#php_flag display_errors off
+
+RewriteEngine On
+RewriteCond %{SERVER_PORT} ^443$ [OR]
+RewriteCond %{HTTPS} =on
+RewriteRule ^(.*)$ http://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]

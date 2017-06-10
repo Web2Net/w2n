@@ -1,0 +1,33 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<div class="polosa"><a href="../<?=$all_tag_list[str_replace(";","",$tag2_data['connect'])]['seolink']?>"><?=$all_tag_list[str_replace(";","",$tag2_data['connect'])]['caption']?></a> » <?=$tag2_data['caption']?></div>
+<div class="wrap_catalog">
+<?if($item_list!=NULL){
+	foreach($item_list as $key=>$val){
+        $img1=SHOP_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+    <div class="wrap_catalog_sell view_list">
+	    	
+<?if($val['good_price']==1){?>
+            <div style="margin-bottom:-25px;position:relative;z-index:2;" align="left">
+                <span class="bestprice r5"><?=MANDATORY_NOTE_GOOD_PRICE?></a>
+            </div>
+<?}else if($val['sell_out']==1){?>
+            <div style="margin-bottom:-25px;position:relative;z-index:2;">
+                <span class="sale r5"><?=MANDATORY_NOTE_SALE?></span>
+            </div>
+<?}?>
+            <a href="/<?=$GLOBALS["mod"]?>/<?=$GLOBALS["tag1"]?>/<?=$GLOBALS["tag2"]?>/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=MANDATORY_VIEW_MORE?>">
+                <img class="width_pct_40 r30" src="<?=$img1?>" align="left" alt="<?=$val["caption"]?>" title="<?=$val["caption"]?>" />
+                <div class="caption3"><?=$val["caption"]?></div>
+                <div class="desc3"><?=$val["meta_d"]?></div>
+            </a>
+            <div class="br_10"></div>
+            
+<?include SITE_PATH."/site/shop/tpl/mobi/price_and_buttonBuy_list.php";?>
+    </div>
+<?}}?>
+</div>
+
+<div class="both br_5"></div>
+<h1 style="font-size:24px;text-align:justify;padding:25px;"><?=$tag2_data['desc_full']?></h1>

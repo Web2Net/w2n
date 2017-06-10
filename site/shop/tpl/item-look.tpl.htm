@@ -1,0 +1,295 @@
+<script type="text/javascript" src="/site/shop/design/js/shop_item_look.js"></script>
+<style>
+.tooltip {
+    position: relative;
+/*    background: #fff;
+    cursor: help; 
+    display: inline-block;*/
+    text-decoration: none;
+    color: #000;
+    outline: none;
+    text-indent: 0;
+    padding: 0px;
+}
+.tooltip:hover:before {
+    content: attr(data-title);
+    white-space: pre-line;
+    position: absolute;
+    bottom: 15px;
+    left: 0%;
+    z-index: 9999;
+    margin-left: -10px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    opacity: .9;
+    background-color: #ddd;
+    background-image: -webkit-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    background-image: -moz-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    background-image: -ms-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    background-image: -o-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+    text-shadow: 0 1px 0 rgba(255,255,255,.4);
+}
+.tooltip:hover:after {
+/*
+    content: "";
+    position: absolute;
+    z-index: 10000;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -8px;
+    border-top: 80px solid #ddd;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 0;
+*/    
+}
+/* Yellow */
+.yellow-tooltip:hover:before {
+    border-color: #684302;
+    background-color: #627e5f;
+}
+.yellow-tooltip:hover:after {
+    border-top-color: #ffeaa6;
+}
+</style>
+<script type='text/javascript'> 
+$(document).ready(function() {
+var linka=window.location.href.split("/");
+if(window.location.hash!=""){
+var seo=linka[6].replace(window.location.hash,"");
+var id=linka[6].split("-");
+seo=seo.replace(id[0],"");
+window.location.href = "http://"+linka[2]+"/"+linka[3]+"/"+linka[4]+"/"+linka[5]+"/"+window.location.hash.replace("#","")+""+seo+"";
+}
+//alert(linka[6]);
+    });
+</script>
+<?
+
+SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<?$item_conn = explode(";",$item_data['connect']);?>
+<div class="polosa">
+<a href="/shop" title="Магазин"><img src="/design/icon/Shop_32x32.png" width="32" border="0" style="margin-bottom:-4px;" /></a> » <a href="../<?=$GLOBALS["tag2"]?>"><?=$all_tag_list[$item_conn['1']]['caption']?></a> » <?=$item_data['caption']?>
+</div>
+
+
+
+<style>
+.desc li{margin-left:20px;margin-bottom:7px;}
+#itemprice font{font: 27px Arial;color:black;}
+.foto{
+    width:500px;
+	
+}
+.minifoto{
+	cursor:pointer;
+    width:120px;
+}
+</style>
+<div style="width:50%;display:table-cell;vertical-align:top;">
+<?
+$img1=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/1m.png";
+$img2=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/2s.png";
+$img3=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/3s.png";
+$img4=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/4s.png";
+$img5=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/5s.png";
+
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img2))$img2="/design/img/spacer.gif";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img3))$img3="/design/img/spacer.gif";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img4))$img4="/design/img/spacer.gif";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img5))$img5="/design/img/spacer.gif";
+?>
+
+<div class="image">
+    <a class="fbox" id="aprodimg1" href="<?=str_replace("m.png",".png",$img1)?>" title="<?=$item_data['caption']?>" rel="fbox-gallery-<?=$item_data['id']?>">
+        <img class="foto r20" id="prodimg1" alt="" src="<?=$img1?>?<?=time()?>" />
+    </a>
+    <img src="<?=SITE_URL?>/design/img/logo-mark.png" width="100" border="0" style="display:absolute;z-index:2;margin:-100px 0px 0px 375px;" />
+</div>
+<div class="br_10"></div>
+<div style="display:inline;margin:7px 0px;width:50%;">
+<?if($img2!=""){?><a class="fbox" id="aprodimg2" href="<?=str_replace("s.png",".png",$img2)?>" title="<?=$item_data['caption']?>" rel="fbox-gallery-<?=$item_data['id']?>"><img onmouseover="seeFoto(2,'<?=str_replace("s.png",".png",$img2)?>')" onmouseout="seeFoto(1,'<?=str_replace("m.png",".png",$img1)?>')" id="prodimg2" src="<?=$img2?>?<?=time()?>" style="padding-right:7px;" class="minifoto r20" /></a><?}?>
+<?if($img3!=""){?><a class="fbox" id="aprodimg3" href="<?=str_replace("s.png",".png",$img3)?>" title="<?=$item_data['caption']?>" rel="fbox-gallery-<?=$item_data['id']?>"><img onmouseover="seeFoto(3,'<?=str_replace("s.png",".png",$img3)?>')" onmouseout="seeFoto(1,'<?=str_replace("m.png",".png",$img1)?>')" id="prodimg3" src="<?=$img3?>?<?=time()?>" style="padding-right:7px;" class="minifoto r20" /></a><?}?>
+<?if($img4!=""){?><a class="fbox" id="aprodimg4" href="<?=str_replace("s.png",".png",$img4)?>" title="<?=$item_data['caption']?>" rel="fbox-gallery-<?=$item_data['id']?>"><img onmouseover="seeFoto(4,'<?=str_replace("s.png",".png",$img4)?>')" onmouseout="seeFoto(1,'<?=str_replace("m.png",".png",$img1)?>')" id="prodimg4" src="<?=$img4?>?<?=time()?>" style="padding-right:7px;" class="minifoto r20" /></a><?}?>
+<?if($img5!=""){?><a class="fbox" id="aprodimg5" href="<?=str_replace("s.png",".png",$img5)?>" title="<?=$item_data['caption']?>" rel="fbox-gallery-<?=$item_data['id']?>"><img onmouseover="seeFoto(5,'<?=str_replace("s.png",".png",$img5)?>')" onmouseout="seeFoto(1,'<?=str_replace("m.png",".png",$img1)?>')" id="prodimg5" src="<?=$img5?>?<?=time()?>" class="minifoto r20" /></a><?}?>
+</div>
+
+<?if($item_data["desc_short"] !== ""){?>
+    <div class="br_10"></div>
+	<h2>Характеристики и комплектация</h2>
+    <div class="desc3" id="itemdescshort" style="color:black;margin-bottom:12px;padding:20px;text-align:left;"><?=$item_data['desc_short']?></div>
+	<script>itemDescShort['default']="<?=trim(str_replace('"',"'",str_replace(array("\r\n", "\r", "\n"),'',$item_data['desc_short'])))?>"</script>
+<?}?>
+</div>
+
+<div style="width:50%;display:table-cell;vertical-align:top;padding:5px 20px 5px 20px;">
+    <h1 class="item_caption" id="itemcaption"><?=$item_data['caption']?></h1>
+    <div id="debug" style="display:none;"></div>
+<?include SITE_PATH."/site/shop/tpl/item-look_block-param.php"?>
+    <hr />
+<?include SITE_PATH."/site/shop/tpl/item-look_block-price.php"?>
+<?if($item_data["desc_full"] !== ""){?>
+    <h2>Описание</h2>
+	<?$item_data["desc_full"] = strip_tags($item_data["desc_full"],"<div>,<p>,<a>,<img>,<iframe>");?>
+    <div class="desc_special"><?=$item_data["desc_full"]?></div>
+	<script>itemDesc['default']="<?=trim(str_replace('"',"'",str_replace(array("\r\n", "\r", "\n"),'',$item_data['desc_full'])))?>"</script>
+<?}?>
+
+</div>
+
+
+
+<div class="both br_10"></div>
+<!-- 
+<style>
+#tab2, #tab3 {position: fixed; }
+
+.menu1 > a,
+.menu1 #tab2:target ~ a:nth-of-type(1),
+.menu1 #tab3:target ~ a:nth-of-type(1),
+.menu1 > div { padding: 5px; border: 1px solid #aaa;  margin-right:2px;}
+
+.menu1 > a { line-height: 28px; background: #fff; text-decoration: none; }
+
+#tab2,
+#tab3,
+.menu1 > div,
+.menu1 #tab2:target ~ div:nth-of-type(1),
+.menu1 #tab3:target ~ div:nth-of-type(1) {display: none; }
+
+.menu1 > div:nth-of-type(1),
+.menu1 #tab2:target ~ div:nth-of-type(2),
+.menu1 #tab3:target ~ div:nth-of-type(3) { display: block; }
+
+.menu1 > a:nth-of-type(1),
+.menu1 #tab2:target ~ a:nth-of-type(2),
+.menu1 #tab3:target ~ a:nth-of-type(3) { border-bottom: 2px solid #fff;}
+</style>
+<div class="menu1" style="text-align:left;">
+  <br id="tab2"/><br id="tab3"/>
+  
+<?if($item_data["desc_short"] !== ""){?><a href="#tab1"><?=SHOP_SITE_CHARACTER?></a><?}?>
+<?if($item_data["desc_full"] !== ""){?><a href="#tab2"><?=SHOP_SITE_DESCRIPTION?></a><?}?>
+<?if($item_data["p6"] !== ""){?><a style="color:#b77dd4;font-weight:900;" href="#tab3"><?=SHOP_SITE_PRESENT?></a><?}?>
+
+<?if($item_data["desc_short"] !== ""){?><div id="itemdescshort" style="color:black;margin-bottom:12px;padding:10px;"><?=$item_data['desc_short']?></div><script>itemDescShort['default']="<?=trim(str_replace('"',"'",str_replace(array("\r\n", "\r", "\n"),'',$item_data['desc_short'])))?>"</script><?}?>
+<?if($item_data["desc_full"] !== ""){?><div id="itemdesc" class="item_desc_full" style="color:black;margin-bottom:12px;padding:10px;"><?=$item_data["desc_full"]?></div><script>itemDesc['default']="<?=trim(str_replace('"',"'",str_replace(array("\r\n", "\r", "\n"),'',$item_data['desc_full'])))?>"</script><?}?>
+<?if($item_data["p6"] !== ""){?><div style="margin-bottom:12px;padding:10px;"><?=$item_data["p6"]?></div><?}?>
+
+</div>
+<br /><br /><br />
+-->
+
+<!-- ************************************************ -->
+<?if($item_data['branch_connect']!=""){?>
+
+
+<div class="polosa">
+	<a href="/gallery/varianty-primeneniya"><?=SHOP_SITE_NOTE_APPLICATION?></a>
+</div>
+<?
+$gallery_tag_list1=Gallery::tagListShowConnect(1);
+$branch_c=explode(";",substr($item_data['branch_connect'],1,-1));
+?>
+<div align="left" style="padding:0px 12px;display:table;">
+<?if($branch_c){foreach($branch_c as $key=>$valb){?>
+    <a href="/gallery/varianty-primeneniya/<?=$gallery_tag_list1[$valb]['seolink']?>" id="branch_<?=$gallery_tag_list1[$valb]['seolink']?>" style="text-decoration:none;">
+        <span style="line-height: 55px;padding-left: 50px;display: inline-block;"><?=$gallery_tag_list1[$valb]['caption']?></span>
+    </a> 
+<?}}?>
+</div>
+<?}?>
+<!-- ************************************************ -->
+<?if($item_data['gallery_connect']!=""){?>
+<div class="polosa"><a href="/gallery/varianty-primeneniya/all"><?=SHOP_SITE_NOTE_GALLERY?></a></div>
+<div align="center" style="padding-bottom:7px;display:table;">
+<?
+$gallery_con=explode(";",substr($item_data['gallery_connect'],1,-1));
+if($gallery_con){foreach($gallery_con as $key=>$valg){
+$gal_item_data=Gallery::itemDataId($valg);
+
+?>
+    <table cellpadding="0" cellspacing="0" style="float:left;margin:7px;" id="gallery_item_<?=$valg?>"><tr><td valign="top">
+        <a class="fbox" href="/image/gallery/item/<?=$valg?>/1.png" title="<?=$gal_item_data['caption']?>" rel="fbox-gallery-main">
+            <img src="/image/gallery/item/<?=$valg?>/1m.png" width="240" border="0" align="left" />
+        </a>
+</td></tr></table>
+<?}}?>
+</div>
+<?}?>
+<!-- ************************************************ -->
+<?if($item_data['companion_connect']!=""){?>
+<div class="polosa"><?=SHOP_SITE_NOTE_RELATED_ITEMS?></div>
+<div align="center">
+
+<?if($item_data['companion_connect']!=""){
+$companion_con=explode(";",substr($item_data['companion_connect'],1,-1));}
+if($companion_con){foreach($companion_con as $key=>$valg){?>
+<?
+$img1=SHOP_ITEM_IMG_PATH."/".$valg."/1m.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+$companion_data=Shop::itemDataId($valg);
+$companion_list[$companion_data['id']]=$companion_data;
+}}?>
+
+  <div class="wrap_catalog" style="min-height:300px;display:table;">
+<?
+$item_list=$companion_list;
+if($item_list!=NULL){?>
+<?foreach($item_list as $key=>$val){?>
+<?
+$img1=SHOP_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+$tag1_list=Shop::tagListShowLevel(1);
+$tag2_list=Shop::tagListShowLevel(2);
+SYS::varDump($tag1_list,__FILE__,__LINE__,"SHOP::tag1_list");
+?>
+
+    <div class="wrap_catalog_sell view_grid" align="center">
+      <div style="margin-bottom:12px;height:200px;overflow:hidden;">
+<?if($val['good_price']==1){?>
+        <div style="margin-bottom:-25px;position:relative;z-index:2;" align="center"><span class="bestprice r5"><?=SHOP_SITE_NOTE_GOOD_PRICE?></a></div>
+<?}else if($val['sell_out']==1){?>
+        <div style="margin-bottom:-25px;position:relative;z-index:2;"><span class="sale r5"><?=SHOP_SITE_NOTE_SALE?></span></div>
+<?}?>
+        <a href="/shop/<?=$tag1_list[str_replace(";","",$tag2_list[str_replace(";","",$val['connect'])]['connect'])]['seolink']?>/<?=$tag2_list[str_replace(";","",$val['connect'])]['seolink']?>/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=MANDATORY_NOTE_VIEW_MORE?>">
+          <img src="<?=$img1?>" width="240" style="margin-bottom:7px;" />
+        </a>
+        <div style="padding:0px 10px;">
+          <a href="/shop/<?=$tag1_list[str_replace(";","",$tag2_list[str_replace(";","",$val['connect'])]['connect'])]['seolink']?>/<?=$tag2_list[str_replace(";","",$val['connect'])]['seolink']?>/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=MANDATORY_NOTE_VIEW_MORE?>">
+            <?=$val["caption"]?>
+          </a>
+        </div>
+      </div>
+<?
+$price_roznica = Price::getPrice($val['postavschik'],$val['price_roznica'],$val['price_diler'],$val['ddp']);
+$dp=explode(".",$price_roznica);?>
+<table width="90%" class="price"><tr><td style="height:70px;margin-bottom:12px;" valign="bottom" align="center">
+<div style="margin-bottom:12px;"><?=SHOP_SITE_NOTE_PRICE?>: 
+<?if($price_roznica!=0){?>
+<span><?=$dp[0]?>.<font><?=$dp[1]?></font></span> <?=CURRENCY?>
+<?}else{?>
+<span style="font-size:17px;line-height:25px;padding:7px;"><?=SHOP_SITE_NOTE_ON_REQUEST?></span> 
+<?}?>
+</div><div class="buy" id="cartButton_<?=$val["id"]?>">
+<input name="incart" type="submit" value="<?=SHOP_SITE_NOTE_IN_CART?>" style="text-align:center;padding-left:0;" onClick="inCart2(<?=$val["id"]?>,1)">
+<div style="display:none;width:135px;"><a href="/cart/buy" style="font-size:13px;"><nobr><img src="/design/icon/Ok_32x32.png" width="28" align="left" style="margin:-4px 4px 0px 0px;" /><?=SHOP_SITE_NOTE_ITEM_IN_CART?></nobr></a></div>
+</div>
+</td></tr></table></div>
+
+<?}}?>
+
+</div>
+<?}?>
+<div class="br_20"></div>
+<div class="attention" style="margin:20px;">
+    <?=SHOP_SITE_ATTENTION_COLOR?><br /><br />
+	Изготовитель оставляет за собой право на внесение в продукт изменений, направленных на улучшение его потребительских качеств.
+</div>

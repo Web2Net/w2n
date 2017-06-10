@@ -1,0 +1,48 @@
+[2017-06-09 18:12:50] Текст ошибки: Undefined offset: 464 | Файл: /opt/lampp/htdocs/berloga/site/main/tpl/best-prop.tpl.htm | Строка: 106
+============
+[2017-06-09 18:21:22] Текст ошибки: Class 'mysql' not found | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 39
+============
+[2017-06-09 18:57:11] Текст ошибки: Undefined variable: id | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 52
+============
+[2017-06-09 18:58:00] Текст ошибки: Use of undefined constant DB_CHAR - assumed 'DB_CHAR' | Файл: /opt/lampp/htdocs/berloga/kernel/db.class.php | Строка: 19
+============
+[2017-06-09 18:59:22] Текст ошибки: SQLSTATE[HY000] [2019] Unknown character set | Файл: /opt/lampp/htdocs/berloga/kernel/db.class.php | Строка: 20
+============
+[2017-06-09 18:59:44] Текст ошибки: Undefined variable: lang_default | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 54
+============
+[2017-06-09 19:00:13] Текст ошибки: Constants may only evaluate to scalar values | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 11
+============
+[2017-06-09 19:00:59] Текст ошибки: Class 'mysql' not found | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 59
+============
+[2017-06-09 19:03:48] Текст ошибки: Class 'mysql' not found | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 60
+============
+[2017-06-09 19:05:00] Текст ошибки: Illegal string offset 'lang' | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 26
+============
+[2017-06-09 19:06:24] Текст ошибки: Illegal string offset 'lang' | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 27
+============
+[2017-06-09 19:07:12] Текст ошибки: Illegal string offset 'lang' | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 27
+============
+[2017-06-09 19:07:14] Текст ошибки: Illegal string offset 'lang' | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 27
+============
+[2017-06-09 19:07:21] Текст ошибки: Illegal string offset 'lang' | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 27
+============
+[2017-06-09 19:08:52] Текст ошибки: SQLSTATE[HY000]: General error: PDO::FETCH_KEY_PAIR fetch mode requires the result set to contain extactly 2 columns. | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 74
+============
+[2017-06-09 19:08:52] Текст ошибки: http_response_code() expects parameter 1 to be long, string given | Файл: /opt/lampp/htdocs/berloga/kernel/error.class.php | Строка: 48
+============
+[2017-06-09 19:09:17] Текст ошибки: SQLSTATE[HY000]: General error: PDO::FETCH_KEY_PAIR fetch mode requires the result set to contain extactly 2 columns. | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 74
+============
+[2017-06-09 19:09:17] Текст ошибки: http_response_code() expects parameter 1 to be long, string given | Файл: /opt/lampp/htdocs/berloga/kernel/error.class.php | Строка: 48
+============
+[2017-06-09 19:09:58] Текст ошибки: Undefined class constant 'FETCH_KEY_PAIR' | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 74
+============
+[2017-06-09 19:11:02] Текст ошибки: SQLSTATE[HY000]: General error: PDO::FETCH_KEY_PAIR fetch mode requires the result set to contain extactly 2 columns. | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 74
+============
+[2017-06-09 19:11:02] Текст ошибки: http_response_code() expects parameter 1 to be long, string given | Файл: /opt/lampp/htdocs/berloga/kernel/error.class.php | Строка: 48
+============
+[2017-06-09 19:12:13] Текст ошибки: Class 'DB' not found | Файл: /opt/lampp/htdocs/berloga/site/lang/lang.class.php | Строка: 51
+============
+[2017-06-09 19:12:24] Текст ошибки: Undefined offset: 1 | Файл: /opt/lampp/htdocs/berloga/site/shop/tpl/price_and_buttonBuy_list.php | Строка: 11
+============
+[2017-06-10 07:31:03] Текст ошибки: Undefined offset: 1 | Файл: /opt/lampp/htdocs/berloga/site/shop/tpl/price_and_buttonBuy_list.php | Строка: 11
+============

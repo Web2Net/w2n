@@ -1,0 +1,48 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<div class="polosa"><a href="/<?=$GLOBALS["mod"]?>"><?=NOTE_SHOP?></a> » <?=$tag1_data['caption']?></div>
+
+<div class="wrap_catalog">
+<?if($tag2_list!=NULL){
+    foreach($tag2_list as $key=>$val){
+        $img1=SHOP_TAG_IMG_PATH."/".$val["id"]."/1.png";
+		$a_href = "/".$GLOBALS["mod"]."/".$GLOBALS["tag1"]."/".$val["seolink"];
+		$fancy =  "";
+		$caption = $val["caption"];
+		$description = $val["meta_d"];
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+		
+?>
+    <?include SITE_PATH."/site/inc/tag-list.tpl.htm";?>
+<?}}?>
+
+<div class="both br_5"></div>
+<h1 style="font-size:18px;text-align:justify;padding:25px;"><?=$tag1_data['desc_full']?></h1>
+
+
+</div>
+<div class="both br_20"></div>
+
+
+<?
+$spec_where="hit!=0 AND `show`='1'";
+$gallery_top=Gallery::itemListSpecial($spec_where);
+?>
+<div class="polosa"><a href="/gallery/otraslevye-tegi/all"><?=NOTE_APPLICATION?></a></div>
+<div class="wrap_catalog">
+<?if($tag2_list!=NULL){
+    foreach($gallery_top as $key=>$val){
+        $img1=GALLERY_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+		$a_href = "/image/gallery/item/".$val['id']."/1.png";
+		$fancy =  'class="fbox" rel="fbox-gallery-main"';
+		$caption = $val["caption"];
+		$description = $val["meta_d"];
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+		
+?>
+    <?include SITE_PATH."/site/inc/tag-list.tpl.htm";?>
+<?}}?>
+</div>
+
+
+
+

@@ -1,0 +1,93 @@
+<div class="feedback_popup form_feedback">
+	<a class="feedback_close" href="#">Close</a>
+	<h1><?=MESSAGE_SITE_FORM_CAPTION?></h1>
+	<form method="post" action="/message/feedback" id="feedback_form">
+		<input type="text" name="feedback_name" id="feedback_name" placeholder="<?=MESSAGE_SITE_FORM_NAME?>" />
+        <input type="text" name="feedback_phone" id="feedback_phone" placeholder="<?=MESSAGE_SITE_FORM_PHONE?>" />
+        <input type="text" name="feedback_email" id="feedback_email" placeholder="<?=MESSAGE_SITE_FORM_EMAIL?>" />
+        <textarea placeholder="<?=MESSAGE_SITE_FORM_BODY?>" name="feedback_mess" id="feedback_mess"></textarea>
+        <div class="both br_10"></div><div align="center">
+		<input type="submit" value="<?=MESSAGE_SITE_FORM_SEND?>" name="feedback_online"  class="btns" />	</div>
+</form>
+<script>
+$(function () {
+	//script for feedback_popups
+	$('a#link_feedback').click(function () {
+		$('div.form_feedback').fadeIn(500);
+		$("body").append("<div id='overlay'></div>");
+		$('#overlay').show().css({'filter' : 'alpha(opacity=80)'});
+		return false;				
+	});	
+	$('a.feedback_close').click(function () {
+		$(this).parent().fadeOut(100);
+		$('#overlay').remove('#overlay');
+		return false;
+	});
+
+
+$("#feedback_form").submit(function(event) {
+
+/* отключение стандартной отправки формы */
+  event.preventDefault();
+if(Validator()==1){
+  /* собираем данные с элементов страницы: */
+  var $form = $( this ),
+      feedback_name = $form.find( 'input[name="feedback_name"]' ).val(),
+      feedback_phone = $form.find( 'input[name="feedback_phone"]' ).val(),
+      feedback_email = $form.find( 'input[name="feedback_email"]' ).val(),
+      feedback_mess = $form.find( '#feedback_mess' ).val(),
+          
+      url = $form.attr( 'action' )+'?display=ajax';
+  
+  /* отправляем данные методом POST */
+  var posting = $.post( url, { fn: feedback_name, fp: feedback_phone, fe:  feedback_email, fm: feedback_mess} );
+
+  /* результат помещаем в div */
+  posting.done(function( data ) {
+    $( "#feedback_form" ).html(data);
+  });
+}
+});
+
+});
+function Validator(){
+var validate = 0;
+
+if($("#feedback_name").val()==""){
+$("#feedback_name").focus();
+$("#feedback_name").attr("placeholder","<?=MESSAGE_SITE_FORM_FILL?> <?=MESSAGE_SITE_FORM_NAME?>");
+validate = 0;
+}
+else if($("#feedback_phone").val().length < 7){
+//alert($("#feedback_phone").val().length);
+$("#feedback_phone").focus();
+$("#feedback_phone").attr("placeholder","<?=MESSAGE_SITE_FORM_FILL?> <?=MESSAGE_SITE_FORM_PHONE?>");
+validate = 0;
+}
+else if($("#feedback_mess").val()==""){
+$("#feedback_mess").focus();
+$("#feedback_mess").attr("placeholder","<?=MESSAGE_SITE_FORM_FILL?> <?=MESSAGE_SITE_FORM_BODY?>");
+validate = 0;
+}
+else if($("#feedback_email").val()==""){
+$("#feedback_email").focus();
+$("#feedback_email").attr("placeholder","<?=MESSAGE_SITE_FORM_FILL?> <?=MESSAGE_SITE_FORM_EMAIL?>");
+validate = 0;
+}
+else if($("#feedback_email").val()!=""){
+var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+if(pattern.test($("#feedback_email").val())){
+validate = 1;
+} else {      
+$("#feedback_email").focus();
+$("#feedback_email").attr("placeholder","<?=MESSAGE_SITE_FORM_FILL?> <?=MESSAGE_SITE_FORM_EMAIL?>");
+validate = 0;}
+}
+else{validate = 1;}
+//alert(validate);
+return validate;
+
+}
+</script>
+</div>
+

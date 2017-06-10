@@ -1,0 +1,69 @@
+<?
+//SYS::varDump($block_branch,__FILE__,__LINE__);
+if($block_object!=NULL)
+{
+?>
+<div class="title">Отрасль применения</div>
+
+    <div>
+<div class="container">
+	<div class="body-content">
+		<div id="block_branch" class="scroll-img">
+			<ul>
+
+<?
+	foreach($block_branch as $key=>$val)
+	{
+?>
+<?
+$price_roznica = Price::getPrice($val['postavschik'],$val['price_roznica'],$val['price_diler'],$val['ddp']);
+$image = (file_exists(PATH_IMG_ITEMS."/{$val['1Cid']}.jpg"))?PATH_IMG_ITEMS."/{$val['1Cid']}.jpg":PATH_IMG."/noimage.png";
+$free_dostavka = ($price_roznica>MIN_SUMMA_DOSTAVKI)?"<div class='free-dostavka'>Бесплатная доставка</div>":"";
+$link_item_page = SITE_URL."/shop/catalog/product/".$val['1Cid']."/".Text::cirilToLatin($val['brand'])."-".Text::cirilToLatin($val['caption_full']).".html";
+$price_arr = explode(".",$price_roznica);
+$price_grn = $price_arr[0];
+$price_kop = (!isset($price_arr[1]) || $price_arr[1] == "")?"00" : $price_arr[1];
+?>
+
+			     <li>
+					 <table class="list-product">
+    <tr>
+        <td align="center">
+            <table>
+                <tr>
+                    <td valign="middle">
+                        <a href="<?=$link_item_page?>">
+                            <img src="<?=$image?>" alt="<?=$val['caption_full']?>" class="catalog-list-image" width="150">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <div><?//=$val['1Cid']?></div>
+            <div class="both br_10"></div>
+            <div><a href="<?=$link_item_page?>"><?=$val['caption_full']?></a></div>
+            <div class="both br_10"></div>
+            <div style="float:left;margin:10px;">Цена:</div>
+            <div style="float:left;background-color:#eee;border-left:2px solid #ccc;padding:5px;width:auto">
+				<div style="float:left;font-size:22px;font-weight:900;color:#7b7b7b"><?=$price_grn?>.</div>
+				<div style="float:left;font-size:12px;font-weight:900;color:#7b7b7b"><?=$price_kop?></div>
+			</div>
+            <div style="float:left;margin:10px;"> грн.</div>
+            <div class="both br_10"></div>
+            <?=$free_dostavka?>
+        </td>
+    </tr>
+</table>
+				 </li>
+				 
+<?}?>
+
+    </ul>
+		</div>
+	</div>
+	<div id="block_branch-btn" class="text-center">
+	    <button class="btn" id="block_branch-backward"><i class="icon-chevron-left"></i> << </button>
+	    <button class="btn" id="block_branch-forward"> >> <i class="icon-chevron-right"></i></button>
+    </div>
+</div>
+</div>
+<?}?>

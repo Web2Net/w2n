@@ -1,0 +1,93 @@
+<?
+$sp=explode(".",$stoit);
+$sp[1]=substr($sp[1]."00",0,2);
+$stoit ="<strong>".$sp[0].".<font style='font-size:85%'>".$sp[1]."</font></strong>";
+$ost = MIN_SUMMA_DOSTAVKI-$sp[0];
+if($sp[0] >= MIN_SUMMA_DOSTAVKI){
+  $dostav = NOTE_BEZPLATNAYA_DOSTAVKA;
+  $ostalos = "";
+}else{
+  $dostav = "";
+  $ostalos = "До бесплатной доставки осталось ".$ost." ".CURRENCY;
+}
+
+$ver = "3"; // Имя папки с версией, где лежат изо корзины
+
+if($sp[0] == 0){$cart_img = "cart_0.png";}
+elseif($sp[0] <= MIN_SUMMA_DOSTAVKI/100*30){$cart_img = "cart_30.png";}
+elseif($sp[0] <= MIN_SUMMA_DOSTAVKI/100*60){$cart_img = "cart_60.png";}
+elseif($sp[0] <= MIN_SUMMA_DOSTAVKI/100*90){$cart_img = "cart_90.png";}
+elseif($sp[0] >= MIN_SUMMA_DOSTAVKI){$cart_img = "cart_100.png";}
+else{$cart_img = "cart_99.png";}
+?>
+<style>
+.wrap_cart_widgit{
+	float:right;
+	width:250px;height:120px;
+	background:url('/design/img/cart/<?=$ver?>/<?=$cart_img?>');background-repeat: no-repeat;background-position:right bottom;
+	}	
+.cart_widget_note{
+	color:#d91219;font-size:14px;font-weight:900;padding-right:55px
+	}
+
+/* ************** MEDIA ************** */
+/*
+@media (min-width: 768px) and (max-width: 979px) {
+    .wrap_cart_widgit{
+		float:right;
+	    width:350px;height:75px;
+	    background:url('');
+	    
+	}
+    .cart_widget_note{color:#d91219;font-size:14px;font-weight:700;padding:5px}    
+}
+
+@media (max-width: 767px) {
+    .wrap_cart_widgit{
+		float:right;
+	    width:300px;height:55px;
+	    background:url('');
+	    border:0px solid #000;
+	}
+    .cart_widget_note{color:#d91219;font-size:10px;font-weight:100;padding:0px}
+}
+
+@media (max-width: 480px) {
+
+}
+
+
+@media (max-width: 320px) {
+}
+*/
+</style>
+<?
+if($count_item==0){?>
+<div class="wrap_cart_widgit" style=" text-align:right;padding-right:10px;">
+    <a class="cart" href="#/cart/buy" title="<?=NOTE_CART_IS_EMPTY?>"><?=NOTE_CART?></a>
+</div>
+<?}else{?>
+<div class="wrap_cart_widgit" style=" text-align:center;">
+    <a class="cart" href="/cart/buy" title="<?=$count_item?> <?=NOTE_ITEMS_NA_SYMMY?> <?=strip_tags($stoit)?> <?=CURRENCY?>">
+        <?=NOTE_CART?> (<?=$count_item?>)<br /><?=$stoit?> <?=CURRENCY?>
+    </a><br /><br />
+    <div class="cart_widget_note"><?=$dostav?><?=$ostalos?></div> 
+</div>
+<?//if($count_shop_item>0){;}?>
+<div style="display:none;">
+<input id="shoppingcount" type="hidden" value="<?=$count_shop_item?>">
+<input id="cartcount" type="hidden" value="<?=$count_item?>">
+<input id="paymoney" type="hidden" value="<?=$stoit?>">
+<script>
+var pm=$("#paymoney").val();
+var cc=$("#cartcount").val();
+$("#moneypay").html(pm);
+$("#countcart").html(cc);
+</script>
+<?if($_SESSION["shop_item"]!=NULL){foreach($_SESSION["shop_item"] as $key=>$val){?>
+<input id="vhm_<?=$key?>" type="hidden" value="<?=$val["hm"]?>">
+<?}}?>
+</div>
+
+<?//var_dump($shop_item['id'])?>
+<?}?>

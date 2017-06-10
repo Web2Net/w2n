@@ -1,0 +1,32 @@
+<?if($hitbox2!=NULL){?>
+<?
+$price_roznica = Price::getPrice($hitbox2['postavschik'],$hitbox2['price_roznica'],$hitbox2['price_diler'],$hitbox2['ddp']);
+$image = (file_exists(SITE_PATH."/product-image/{$hitbox2['1Cid']}.jpg"))?"/product-image/{$hitbox2['1Cid']}.jpg":"/index_files/noimage.jpg";
+$free_dostavka = ($price_roznica>MIN_SUMMA_DOSTAVKI)?"<div class='free-dostavka'>Бесплатная доставка</div>":"";
+$link_item_page = SITE_URL."/shop/catalog/product/".$hitbox2['1Cid']."/".Text::cirilToLatin($hitbox2['brand'])."-".Text::cirilToLatin($hitbox2['caption_full']).".html";
+?>
+<table class="list-product">
+    <tr>
+        <td align="center">
+            <table>
+                <tr>
+                    <td valign="middle">
+                        <a href="<?=$link_item_page?>">
+                            <img src="<?=$image?>" alt="<?=$hitbox2['caption_full']?>" class="catalog-list-image" width="65">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <div><?//=$hitbox2['1Cid']?></div>
+            <div class="both br_10"></div>
+            <div><a href="<?=$link_item_page?>"><?=$hitbox2['caption_full']?></a></div>
+            <div class="both br_10"></div>
+            <div style="float:left">Цена:</div>
+            <div style="float:left;background-color:#eee;border-left:2px solid #ccc;padding:3px;font-size:22px;font-weight:900;width:auto"><?=$price_roznica?></div>
+            <div style="float:left"> грн.</div>
+            <div class="both br_10"></div>
+            <?=$free_dostavka?>
+        </td>
+    </tr>
+</table>
+<?}?>

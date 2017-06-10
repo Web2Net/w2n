@@ -1,0 +1,23 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<div class="corn polosa4"><a href="../<?=$all_tag_list[str_replace(";","",$tag2_data['connect'])]['seolink']?>"><?=$all_tag_list[str_replace(";","",$tag2_data['connect'])]['caption']?></a> » <?=$tag2_data['caption']?></div>
+<div class="wrap_catalog">
+<?if($item_list!=NULL){
+	foreach($item_list as $key=>$val){
+		$img1=ART_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+<div class="wrap_catalog_sell view_grid" align="center">
+	<div style="margin-bottom:12px;height:295px;overflow:hidden;">
+        <a href="/<?=$GLOBALS["mod"]?>/<?=$GLOBALS["tag1"]?>/<?=$GLOBALS["tag2"]?>/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=NOTE_READ_MORE?>">
+            <img src="<?=$img1?>" width="240" style="margin-bottom:7px;" />
+        </a>
+        <a href="/<?=$GLOBALS["mod"]?>/<?=$GLOBALS["tag1"]?>/<?=$GLOBALS["tag2"]?>/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=NOTE_READ_MORE?>">
+            <div><?=$val["caption"]?></div>
+            <div style="padding:5px;font-size:10pt;color:#948b8b;"><?=$val["meta_d"]?></div>
+        </a>
+    </div>
+</div>
+<?}}?>
+</div>
+
+<br><br><br><br>

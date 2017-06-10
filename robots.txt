@@ -1,0 +1,8 @@
+
+User-agent: *
+Disallow: 
+Disallow: /cms/
+Disallow: /lib/
+Disallow: /kernel/
+Disallow: /magic/
+Disallow: /userfiles/

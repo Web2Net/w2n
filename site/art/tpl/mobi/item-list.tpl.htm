@@ -1,0 +1,20 @@
+<div class="polosa">
+	<a href="../<?=$all_tag_list[str_replace(";","",$tag2_data['connect'])]['seolink']?>"><?=$all_tag_list[str_replace(";","",$tag2_data['connect'])]['caption']?></a> » <?=$tag2_data['caption']?>
+</div>
+<div class="wrap_catalog">
+<?if($item_list!=NULL){
+	foreach($item_list as $key=>$val){
+		$img1=ART_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+    <div class="wrap_catalog_sell view_list">
+	   <a class="catalog_a" href="/<?=$GLOBALS["mod"]?>/<?=$GLOBALS["tag1"]?>/<?=$GLOBALS["tag2"]?>/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=MANDATORY_VIEW_MORE?>">
+            <img class="width_pct_40 r20" src="<?=$img1?>" align="left" alt="<?=$val["caption"]?>" title="<?=$val["caption"]?>" />
+            <div class="caption2"><?=$val["caption"]?></div>
+            <div class="desc2"><?=$val["meta_d"]?></div>
+       </a>
+    
+    </div>
+    <div class="both"></div>
+<?}}?>
+</div>

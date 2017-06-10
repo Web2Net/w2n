@@ -1,0 +1,29 @@
+<style>
+.form_search_wrap{
+    padding: 0px; margin: 0px;
+    height: 100%;
+display:inline;
+}
+.form_search_input{
+    border: 1px solid #6493AC; 
+    width: 120px; height: 17px;
+    background-color: #fafaeb; 
+    font-family: verdana; font-size: 14px; color: #6493AC; 
+    line-height: 18px; 
+    padding-left: 3px; 
+}
+</style>
+
+<form method="post" action="/search/" class="form_search_wrap"">
+    <div class="left">
+        <input value="<?=$_SESSION['search_input']?>" onblur="if(this.value==''){this.value='Поиск';}" onfocus="if(this.value=='Поиск'){this.value='';}" type="text" name="search_input" maxlength="200" id="search_input"  class="form_search_input" />
+    </div> 
+     <div class="left" style="padding-left: 0px;padding-right:5px;">
+         <input type="image" src="<?=PATH_IMG?>/butt_search.png" onmouseover="this.src='<?=PATH_IMG?>/butt_search_hover.png'" onmouseout="this.src='<?=PATH_IMG?>/butt_search.png'" style="width:20px" />
+     </div>
+     <div class="left">
+         <!-- Place this code where you want the badge to render. -->
+<!--         <a href="//plus.google.com/113889311433984099899?prsrc=3" rel="publisher" style="text-decoration:none;">
+         <img src="//ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+" style="border:0;width:30px;height:30px;"/></a>-->
+     </div>
+</form>

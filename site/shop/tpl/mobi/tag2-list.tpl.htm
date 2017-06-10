@@ -1,0 +1,50 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<div class="polosa"><a href="/<?=$GLOBALS["mod"]?>"><?=NOTE_SHOP?></a> » <?=$tag1_data['caption']?></div>
+<div class="wrap_catalog">
+<?if($tag2_list!=NULL){
+    foreach($tag2_list as $key=>$val){
+        $img1=SHOP_TAG_IMG_PATH."/".$val["id"]."/1.png";
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+    <div class="wrap_catalog_sell view_list">
+        
+            <a class="catalog_a" href="/<?=$GLOBALS["mod"]?>/<?=$GLOBALS["tag1"]?>/<?=$val["seolink"]?>" title="<?=NOTE_READ_MORE?>">
+                <img class="width_pct_40 r30" src="<?=$img1?>"  align="left" alt="<?=$val["caption"]?>" title="<?=$val["caption"]?>" />
+                <div class="caption3"><?=$val["caption"]?></div>
+                <div class="desc3"><?=$val["desc_short"]?></div>
+            </a>
+            
+            
+        
+    </div>
+    <div class="both"></div>
+<?}}?>
+</div>
+
+<div class="both br_5"></div>
+<h1 style="font-size:24px;text-align:justify;padding:25px;"><?=$tag1_data['desc_full']?></h1>
+<!--
+<?
+$spec_where="hit!=0 AND `show`='1'";
+$gallery_top=Gallery::itemListSpecial($spec_where);
+SYS::varDump($gallery_top,__FILE__,__LINE__,"gallery_top");
+?>
+
+<?if($gallery_top){?>
+<div class="corn polosa4" style="padding:7px 7px 7px 21px;">
+	<a href="/gallery/otraslevye-tegi/all"><?=NOTE_APPLICATION?></a>
+</div>
+<div align="center" style="padding-bottom:10px;display:table;">
+<?foreach($gallery_top as $key=>$valg){?>
+    <table cellpadding="0" cellspacing="0" style="float:left;margin:7px;" id="gallery_item_<?=$valg['id']?>">
+        <tr>
+			<td valign="top">
+                <a class="fbox" href="/image/gallery/item/<?=$valg['id']?>/1.png" title="<?=$valg['caption']?>" rel="fbox-gallery-main">
+                    <img src="/image/gallery/item/<?=$valg['id']?>/1m.png" width="240" border="0" align="left" />
+                </a>
+            </td>
+        </tr>
+    </table>
+<?}}?>
+</div>
+-->

@@ -1,0 +1,65 @@
+﻿<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<?$item_conn = explode(";",$item_data['connect']);?>
+<div class="corn polosa4">
+  <a href="../<?=$all_tag_list[str_replace(";","",$item_data['connect'])]['seolink']?>"><?=$all_tag_list[str_replace(";","",$item_data['connect'])]['caption']?></a> » <?=$item_data['caption']?>
+</div>
+
+<div class="art">
+
+<?if($item_data['caption'] == "Контакты"){?>
+    <h1 style="font: 18px Arial;color: #ff0000;margin:15px 0px;"><?//=$item_data['caption']?></h1>
+    <div class="desc" style="color: black;margin-bottom:25px;">
+        <div style="color: black;margin-bottom:15px;"><?=$item_data["desc_full"]?></div>
+    </div>
+<?}else{?>
+
+<?
+$img1=ART_ITEM_IMG_PATH."/".$item_data['id']."/1m.png";
+$img2=ART_ITEM_IMG_PATH."/".$item_data['id']."/2s.png";
+$img3=ART_ITEM_IMG_PATH."/".$item_data['id']."/3s.png";
+$img4=ART_ITEM_IMG_PATH."/".$item_data['id']."/4s.png";
+$img5=ART_ITEM_IMG_PATH."/".$item_data['id']."/5s.png";
+
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img2))$img2="";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img3))$img3="";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img4))$img4="";
+?>
+    <table style="float:left;width:356px;margin-right:12px;" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <div class="image">
+                    <a id="aprodimg1" href="<?=str_replace("m.png",".png",$img1)?>" title="<?=NOTE_CLICK_TO_ENLARGE?>" rel="lightbox[yoo-gallery-<?=$item_data['id']?>]">
+                        <img id="prodimg1" alt="" src="<?=$img1?>" width="350" height="" border="1" />
+                    </a>
+                </div>
+                <div class="image" style="margin:7px 0px;width:350px;text-align:center;">
+<?if($img2!=""){?><a id="aprodimg2" href="<?=str_replace("s.png",".png",$img2)?>" title="<?=NOTE_CLICK_TO_ENLARGE?>" rel="lightbox[yoo-gallery-<?=$item_data['id']?>]"><img onmouseover="seeFoto(2,'<?=str_replace("s.png",".png",$img2)?>')" onmouseout="seeFoto(1,'<?=str_replace("m.png",".png",$img1)?>')" id="prodimg2" src="<?=$img2?>?<?=time()?>" width="100" height="65" border="1" style="padding-right:7px;" class="minifoto" /></a><?}?>
+<?if($img3!=""){?><a id="aprodimg3" href="<?=str_replace("s.png",".png",$img3)?>" title="<?=NOTE_CLICK_TO_ENLARGE?>" rel="lightbox[yoo-gallery-<?=$item_data['id']?>]"><img onmouseover="seeFoto(3,'<?=str_replace("s.png",".png",$img3)?>')" onmouseout="seeFoto(1,'<?=str_replace("m.png",".png",$img1)?>')" id="prodimg3" src="<?=$img3?>?<?=time()?>" width="100" height="65" border="1" style="padding-right:7px;" class="minifoto" /></a><?}?>
+<?if($img4!=""){?><a id="aprodimg4" href="<?=str_replace("s.png",".png",$img4)?>" title="<?=NOTE_CLICK_TO_ENLARGE?>" rel="lightbox[yoo-gallery-<?=$item_data['id']?>]"><img onmouseover="seeFoto(4,'<?=str_replace("s.png",".png",$img4)?>')" onmouseout="seeFoto(1,'<?=str_replace("m.png",".png",$img1)?>')" id="prodimg4" src="<?=$img4?>?<?=time()?>" width="100" height="65" border="1" style="padding-right:7px;" class="minifoto" /></a><?}?>
+                </div>
+<script>
+function seeFoto(num,fotourl){
+var sf=$("#prodimg"+num).attr("src");
+if(num==1){
+fotourlm = sf.replace(/\/[0-9]m.png/,"/1m.png");
+//alert(fotourlm);
+}else{
+fotourlm = sf.replace("s.png","m.png");
+}
+$("#prodimg1").attr("src",fotourlm);
+
+}
+</script>
+
+            </td>
+        </tr>
+    </table>
+
+    <h1 style="font: 18px Arial;color: #684302;margin:15px 0px;"><?=$item_data['caption']?></h1>
+    <div class="desc" style="color: black;margin-bottom:25px;padding-right:15px;">
+        <div style="color: black;margin-bottom:15px;"><?=$item_data["desc_full"]?></div>
+    </div>
+<?}?>
+</div>
+<br /><br /><br /><br />

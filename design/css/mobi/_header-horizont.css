@@ -1,0 +1,90 @@
+/* ************ header Horizont***************** */
+#wrap_bar_top{
+    width:100%;
+    height:100px; 
+    position:fixed;
+    z-index:999;
+    white-space: nowrap;
+}
+
+.inline{
+	display: inline-block;
+}
+.top_bar_menu{
+    width:100px; height:100px;
+    cursor: pointer;
+}
+.top_bar_menu a{
+    display: block;
+    height: 100%;
+}
+
+.top_bar_logo{
+    background: url('/design/img/mobi/logo_top_h100.png') no-repeat center center;
+    width:100%; min-width:300px;
+    height: 100px; 
+    cursor: pointer;	
+}
+.top_bar_logo a{
+    display: block;
+    width:100%;height: 100%;
+}
+.top_bar_logo_hidden{
+	display:none;
+	width:100%;min-width:300px;
+	height:100px;
+}
+.top_bar_logo_hidden input{
+  height: 50px;
+  border: 2px solid #FFC90E;
+  margin-bottom: 2px;
+  width:90%;
+  background: #ffffff !important;
+  font-size: 36px;
+  border:1px solid #000;
+}
+
+.top_bar_search{
+    cursor: pointer;	
+}
+.top_bar_search a{
+    display: block;
+    height: 100%;	
+}
+.top_bar_search_hidden{
+	display:none;
+}
+.top_bar_search_hidden a{
+    display: block;
+    height: 100%;	
+}	
+
+.top_bar_cart{
+    width:100px; height:100px;	
+}
+.top_bar_cart a{
+    display: block;
+    height: 100%;	
+}
+
+.img_ico{
+	width:100px;
+	height:100px;
+	padding:0px;margin:0;
+}
+/* ************ /header ***************** */
+/* ************** CART ********** */
+.cart_count{
+    width:15%; 
+    position:absolute; 
+    bottom:50px; left: 60%;
+    transform: translateX(-55%);
+    background-color:#f86a0b;
+    padding:0.5em; 
+/*    opacity:0.9;   */
+    font-size:70%;
+    font-weight:900;
+    text-align:center;
+    color:#fff; 
+}
+/* ************** CART ********** */

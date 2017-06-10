@@ -1,0 +1,62 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<?if($list_item!=NULL){?>
+<div class="polosa"><?=SEARCH_SITE_NOTE_SEARCH_RESULT?> <?=RAZDELYALKA?> Товары</div>
+
+<div class="wrap_catalog">
+
+<?foreach($list_item as $key=>$val){?>
+<?
+$img1=SHOP_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+<div class="wrap_catalog_sell view_list">
+<?if($val['good_price']==1){?>
+            <div style="margin-bottom:-25px;position:relative;z-index:2;" align="left">
+                <span class="bestprice r5"><?=MANDATORY_NOTE_GOOD_PRICE?></a>
+            </div>
+<?}else if($val['sell_out']==1){?>
+            <div style="margin-bottom:-25px;position:relative;z-index:2;">
+                <span class="sale r5"><?=MANDATORY_NOTE_SALE?></span>
+            </div>
+<?}?>
+            <a class="catalog_a" href="/shop/xxx/xxx/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=MANDATORY_VIEW_MORE?>" target="_blank">
+                <img class="width_pct_40 r30" src="<?=$img1?>" align="left" alt="<?=$val["caption"]?>" title="<?=$val["caption"]?>" />
+                <div class="caption2"><?=$val["caption"]?></div>
+                <div class="desc2"><?=$val["meta_d"]?></div>
+            </a>
+            <div class="br_10"></div>
+
+<?include SITE_PATH."/site/shop/tpl/mobi/price_and_buttonBuy_list.php";?>
+    </div>
+<?}}?>
+
+<div class="both br_10"></div>
+
+<?if($list_art!=NULL){?>
+<div class="polosa"><?=SEARCH_SITE_NOTE_SEARCH_RESULT?> <?=RAZDELYALKA?> Статьи</div>
+    <div class="wrap_catalog">
+
+<?foreach($list_art as $key=>$val){?>
+<?
+$img1=ART_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+        <div class="wrap_catalog_sell view_list">
+<?if($val['good_price']==1){?>
+            <div style="margin-bottom:-25px;position:relative;z-index:2;" align="left">
+                <span class="bestprice r5"><?=MANDATORY_NOTE_GOOD_PRICE?></a>
+            </div>
+<?}else if($val['sell_out']==1){?>
+            <div style="margin-bottom:-25px;position:relative;z-index:2;">
+                <span class="sale r5"><?=MANDATORY_NOTE_SALE?></span>
+            </div>
+<?}?>
+            <a class="catalog_a" href="/art/xxx/xxx/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=MANDATORY_VIEW_MORE?>" target="_blank">
+                <img class="width_pct_40 r30" src="<?=$img1?>" align="left" alt="<?=$val["caption"]?>" title="<?=$val["caption"]?>" />
+                <div class="caption2"><?=$val["caption"]?></div>
+                <div class="desc2"><?=$val["meta_d"]?></div>
+            </a>
+            <div class="br_10"></div>
+        </div>
+    
+<?}}?>

@@ -1,0 +1,144 @@
+<style>
+
+#wrap_nav{
+  display:block;
+  list-style-type:none;
+  line-height:50px;
+  background:#50552f;
+  position:relative;
+  z-index:200;
+  
+}
+#wrap_nav .wrap_nav_block{
+  background:#50552f;
+  text-align:center;
+  z-index:inherit;
+}
+
+.wrap_sub-nav{
+  top:58px;
+  top:-9999px;
+  width:0;
+  height:0;
+  z-index:-1;
+  font-size:0;
+
+}
+.wrap_nav_block .wrap_sub-nav{
+  top:58px;
+  left:0;
+  width:100%;
+  height:auto;
+  font-size:75%;
+  color:#000;
+  
+}
+
+#wrap_nav .wrap_nav_block > a{
+  color:#fafafa;
+  text-decoration:none;
+  font-size:100%;
+}  
+
+.block_subnav{
+    padding:0px 10px;
+}
+.tag0{
+  padding:4px 25px;
+}
+.menu_link:hover{
+  padding:0px 25px;
+  background-color:#555a32;
+}
+.tag1{
+    color:#fff;
+    border-bottom:1px solid #000;
+}
+.tag2{
+    text-align:left;
+	border-left:0px solid #fff;
+	padding-left:50px;
+	background-color:#cbdbb4;
+	
+} 
+.tag2:hover{
+    background-color:#909663;
+	border-left:0px solid #50552f;
+	
+}
+</style>
+<?SYS::varDump($tag0_list,__FILE__,__LINE__,"Tag 0");?>
+<div align="center">
+
+<div id="wrap_nav"> 
+
+	    <ul>
+            <li class="submenu">
+                <a id="shop_menu" href="#shop_menu"><h2 class="font_white" style="font-size:150%;">Каталог товаров</h2></a>   
+                
+                <ul class="shop_submenu">
+
+
+<?if($tag0_list!=NULL){
+foreach($tag0_list as $key0=>$val0){?>
+
+    <div class="wrap_nav_block">
+     <div class="menu_link"><a id="shop_menu_<?=$val0['id']?>" href="javascript:$('#shop_submenu_<?=$val0['id']?>').toggle()"><div class="tag0"><?=$val0['caption']?></div></a></div>
+        <div id="shop_submenu_<?=$val0['id']?>" class="wrap_sub-nav r20b" style="display:none;"> 
+            <table width="100%">
+<?if($tag1_list!=NULL){
+foreach($tag1_list as $key1=>$val1){if($val1["hit"]==$key0){?>
+               <tr valign="top"> <td width="" class="block_subnav" style="min-width:180px;"> 
+                    <h4 class="tag1"><?=$val1["caption"]?></h4>
+<?
+$connect_tag=explode(";",substr($val1['connect'], 1, -1));$i2=1;
+if($connect_tag[0]!=''){foreach($connect_tag as $key2=>$child_id){
+$val2=$tag2_list[$child_id];
+?>
+<?if($val2["show"] == "1"){?>
+<div class="tag2">
+    <a style="color:#3e3918;line-height:30px;<?=$GLOBALS['tag2']==$val2["seolink"]?'font-weight:bold;':''?>" href="/shop/<?=$val1["seolink"]?>/<?=$val2["seolink"]?>">
+        <?=$val2["caption"]?>
+	</a>
+</div>
+<?}?>
+<?}}?>
+ </td></tr>
+<?}}}?>
+
+            </table>
+        </div>
+    </div>
+<?}}?>   
+
+
+                </ul>
+            </li>
+            <div class="br_10"></div>
+            <hr />
+            <div class="br_10"></div>
+            <li class="menu_link"><a href="/art/article/aktsii">Нежданчик</a></li>
+<!--            
+			<li class="menu_link">
+			    <a class="bumer" rel="form_feedback" href="#feedback" id="link_feedback">
+                    <span>Бумеранг</span>
+                </a>
+			</li>
+-->
+            <li class="menu_link"><a href="/art/article/pohodi">Походы</a></li>
+            <div class="br_10"></div>
+            <hr />
+            <div class="br_10"></div>
+            <li class="menu_link"><a href="/art/page/info/2-o-kompanii">О нас</a></li>
+            <li class="menu_link"><a href="/art/page/info/5-oplata_i_dostavka">Оплата и доставка</a></li>
+            <li class="menu_link"><a href="/art/page/info/3-contacts">Контакты</a></li>
+			<div class="br_10"></div>
+            <hr />
+            <div class="br_10"></div>
+			<li class="menu_link"><a href="<?=PAGE_URL?>?display=full">Полная версия</a></li>
+        </ul>
+        
+        
+
+     
+        </div>

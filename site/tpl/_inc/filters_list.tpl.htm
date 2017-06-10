@@ -1,0 +1,128 @@
+		<div style="margin:3px 3px 7px 1px;" class="filterlist">
+<?if(isset($nowfilter)){?><div style="font-family:Verdana;border-bottom:dashed 1px #D7DDFE;">
+		<b>Выбраны фильтры:</b></div><?}?>		
+<?if($nowfilter['other']!=NULL){?>
+<div><b>Подкатегория</b></div>
+<?foreach($nowfilter['other'] as $key=>$val){?>
+<div><a href="<?=str_replace($val["CATID"]."_","",PAGE_URL)?>" title="Убрать фильтр"><img src="/index_files/delete.png" width="17" align="left">&nbsp;<?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>		
+<?if($nowfilter['comp_notebook']!=NULL){?>
+<div><b>Ноутбуки, планшеты...</b></div>
+<?foreach($nowfilter['comp_notebook'] as $key=>$val){?>
+<div><a href="<?=str_replace($val["CATID"]."_","",PAGE_URL)?>" title="Убрать фильтр"><img src="/index_files/delete.png" width="17" align="left">&nbsp;<?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($nowfilter['comp_tablets']!=NULL){?>
+<div><b>Ноутбуки, планшеты...</b></div>
+<?foreach($nowfilter['comp_tablets'] as $key=>$val){?>
+<div><a href="<?=str_replace($val["CATID"]."_","",PAGE_URL)?>" title="Убрать фильтр"><img src="/index_files/delete.png" width="17" align="left">&nbsp;<?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($nowfilter['comp_perif']!=NULL){?>
+<div><b>Компьютеры и периферия</b></div>
+<?foreach($nowfilter['comp_perif'] as $key=>$val){?>
+<div><a href="<?=str_replace($val["CATID"]."_","",PAGE_URL)?>" title="Убрать фильтр"><img src="/index_files/delete.png" width="17" align="left">&nbsp;<?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($nowfilter['copier_mfy']!=NULL){?>
+<div><b>Оргтехника</b></div>
+<?foreach($nowfilter['copier_mfy'] as $key=>$val){?>
+<div><a href="<?=str_replace($val["CATID"]."_","",PAGE_URL)?>" title="Убрать фильтр"><img src="/index_files/delete.png" width="17" align="left">&nbsp;<?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($nowfilter['f_diag']!=NULL){?>
+<div><b>Диагональ экрана</b></div>
+<?foreach($nowfilter['f_diag'] as $key=>$val){?>
+<div><a href="<?=str_replace($val["CATID"]."_","",PAGE_URL)?>" title="Убрать фильтр"><img src="/index_files/delete.png" width="17" align="left">&nbsp;<?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($nowfilter['f_size']!=NULL){?>
+<div><b>Объём памяти</b></div>
+<?foreach($nowfilter['f_size'] as $key=>$val){?>
+<div><a href="<?=str_replace($val["CATID"]."_","",PAGE_URL)?>" title="Убрать фильтр"><img src="/index_files/delete.png" width="17" align="left">&nbsp;<?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+
+
+<?
+if($nowfilter['brand']!=NULL)
+{
+?>
+    <div><b>Бренд</b></div>
+<?
+    foreach($nowfilter['brand'] as $key=>$val)
+    {
+?>
+    <div>
+		<a href="<?=str_replace($val["CATID"]."_","",PAGE_URL)?>" title="Убрать фильтр">
+           <img src="/index_files/delete.png" width="17" align="left">&nbsp;<?=$val?> <?//=$val["ISFOLDER"]?>
+        </a>
+    </div>
+<?  }
+}
+?>
+
+<?if($nowfilter['cena']!=NULL){?>
+<div><b>Цена</b></div>
+<?foreach($nowfilter['cena'] as $key=>$val){?>
+<div><a href="<?=str_replace($val["CATID"]."_","",PAGE_URL)?>" title="Убрать фильтр"><img src="/index_files/delete.png" width="17" align="left">&nbsp;<?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+	</div>			
+<!-- ********************************************************** --> 
+ 
+    <div style="margin:3px 3px 7px 3px;" class="filterlist">
+        <div style="font-family:Verdana;border-bottom:dashed 1px #D7DDFE;">
+            <b style="">Доступные фильтры:</b></div>				
+<?if($filterlist['other']!=NULL){?>
+            <div><b>Подкатегория</b></div>
+<?foreach($filterlist['other'] as $key=>$val){?>
+            <div><a href="<?=SITE_URL?>/shop/catalog/<?=$param[0]?>/<?=$prm[0]?>-<?=$prm[1]?>-1-<?=$prm[3]?>-<?=$prm[4]?><?=$val["CATID"]?>_/<?=$param[2]?>.html"><?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($filterlist['comp_notebook']!=NULL){?>
+            <div><b>Ноутбуки, планшеты...</b></div>
+<?foreach($filterlist['comp_notebook'] as $key=>$val){?>
+            <div><a href="<?=SITE_URL?>/shop/catalog/<?=$param[0]?>/<?=$prm[0]?>-<?=$prm[1]?>-1-<?=$prm[3]?>-<?=$prm[4]?><?=$val["CATID"]?>_/<?=$param[2]?>.html"><?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($filterlist['comp_tablets']!=NULL){?>
+            <div><b>Ноутбуки, планшеты...</b></div> 
+<?foreach($filterlist['comp_tablets'] as $key=>$val){?>
+            <div><a href="<?=SITE_URL?>/shop/catalog/<?=$param[0]?>/<?=$prm[0]?>-<?=$prm[1]?>-1-<?=$prm[3]?>-<?=$prm[4]?><?=$val["CATID"]?>_/<?=$param[2]?>.html"><?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($filterlist['comp_perif']!=NULL){?>
+            <div><b>Компьютеры и периферия</b></div> 
+<?foreach($filterlist['comp_perif'] as $key=>$val){?>
+            <div><a href="<?=SITE_URL?>/shop/catalog/<?=$param[0]?>/<?=$prm[0]?>-<?=$prm[1]?>-1-<?=$prm[3]?>-<?=$prm[4]?><?=$val["CATID"]?>_/<?=$param[2]?>.html"><?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($filterlist['copier_mfy']!=NULL){?>
+            <div><b>Оргтехника</b></div> 
+<?foreach($filterlist['copier_mfy'] as $key=>$val){?>
+            <div><a href="<?=SITE_URL?>/shop/catalog/<?=$param[0]?>/<?=$prm[0]?>-<?=$prm[1]?>-1-<?=$prm[3]?>-<?=$prm[4]?><?=$val["CATID"]?>_/<?=$param[2]?>.html"><?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($filterlist['f_diag']!=NULL){?>
+            <div><b>Диагональ экрана</b></div> 
+<?foreach($filterlist['f_diag'] as $key=>$val){?>
+            <div><a href="<?=SITE_URL?>/shop/catalog/<?=$param[0]?>/<?=$prm[0]?>-<?=$prm[1]?>-1-<?=$prm[3]?>-<?=$prm[4]?><?=$val["CATID"]?>_/<?=$param[2]?>.html"><?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?if($filterlist['f_size']!=NULL){?>
+            <div><b>Объём памяти</b></div> 
+<?foreach($filterlist['f_size'] as $key=>$val){?>
+            <div><a href="<?=SITE_URL?>/shop/catalog/<?=$param[0]?>/<?=$prm[0]?>-<?=$prm[1]?>-1-<?=$prm[3]?>-<?=$prm[4]?><?=$val["CATID"]?>_/<?=$param[2]?>.html"><?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>
+<?
+if($filterlist['brand']!=NULL)
+{
+?>
+<?//SYS::varDump($filterlist['brand'])?>
+            <div><b>Бренд</b></div>
+<?  
+    foreach($filterlist['brand'] as $key=>$val)
+    {
+?>
+            <div>
+				<a href="<?=SITE_URL?>/shop/catalog/<?=$param[0]?>/<?=$prm[0]?>-<?=$prm[1]?>-1-<?=$prm[3]?>-<?=$prm[4]?><?=$val?>_/<?=$param[2]?>.html">
+				    <?=$val?> <?//=$val["ISFOLDER"]?>
+				</a>
+	        </div>
+<?
+    }
+}
+?>
+<?if($filterlist['cena']!=NULL){?>
+            <div><b>Цена</b></div>
+<?foreach($filterlist['cena'] as $key=>$val){?>
+            <div><a href="<?=SITE_URL?>/shop/catalog/<?=$param[0]?>/<?=$prm[0]?>-<?=$prm[1]?>-1-<?=$prm[3]?>-<?=$prm[4]?><?=$val["CATID"]?>_/<?=$param[2]?>.html"><?=$val["DESCR"]?> <?//=$val["ISFOLDER"]?></a></div>
+<?}}?>

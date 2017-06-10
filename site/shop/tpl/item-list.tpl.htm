@@ -1,0 +1,26 @@
+<?
+$t1=explode(";",substr($tag2_data['connect'],1,-1));
+
+$t1c=$tag1_sdata['caption'];
+?>
+
+<div class="polosa"><a href="/shop" title="Магазин"><img src="/design/icon/Shop_32x32.png" width="32" border="0" style="margin-bottom:-4px;" /></a> » <a href="../<?=$GLOBALS["tag1"]?>"><?=$t1c?></a> » <?=$tag2_data['caption']?></div>
+
+<div class="wrap_catalog">
+<?if($item_list!=NULL){
+	foreach($item_list as $key=>$val){
+        	
+		$img1=SHOP_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+		$a_href = "/".$GLOBALS["mod"]."/".$GLOBALS["tag1"]."/".$GLOBALS["tag2"]."/".$val["id"]."-".$val["seolink"];
+		$fancy =  "";
+		$caption = $val["caption"];
+		$description = "";
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+		
+        include SITE_PATH."/site/inc/item-list-price.tpl.htm";
+    }
+}?>
+</div>
+
+<div class="both br_5"></div>
+<h1 style="font-size:18px;text-align:justify;padding:25px;"><?=$tag2_data['desc_full']?></h1>

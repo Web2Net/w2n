@@ -1,0 +1,28 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<!--
+<div class="polosa"><a class="polosa_a" href="../<?=$all_tag_list[str_replace(";","",$tag2_data['connect'])]['seolink']?>"><?=$all_tag_list[str_replace(";","",$tag2_data['connect'])]['caption']?></a> » <?=$tag2_data['caption']?></div>
+-->
+<div class="polosa"><?=$tag2_data['caption']?></div>
+
+<div class="both br_10"></div>
+<div class="wrap_hor_scroll_img">
+<?if ($item_list!=''){?>
+<?$i=1;?>
+<?foreach($item_list as $key=>$val){?>
+<?
+$img1="/image/gallery/item/".$val['id']."/1.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+    <div class="wrap_item_look" style="position:relative;width:95%;">		
+<!--		<a class="fbox" href="<?=str_replace("m.png",".png",$img1)?>" title="<?=$val['meta_d']?>" rel="fbox-gallery-<?=$tag2_data['seolink']?>">  -->
+		    <img class="width_pct_100 r30 gall" src="<?=$img1?>?<?=time()?>" title="<?=$val['meta_d']?>" alt="<?=$val['meta_d']?>" />       
+<?if($val['meta_d'] !== ""){?>
+    	    <div class="main_gallery_description r30">
+			    <span class="font_white"><?=$val['meta_d']?></span>
+		    </div>
+<?}?>
+             </a>       
+      
+    </div>   
+<?}}?>
+</div>

@@ -1,0 +1,15 @@
+
+<div class="polosa"><a href="/gallery/otraslevye-tegi/all"><?=GALLERY_SITE_MOD_NAME?></a></div>
+<div class="both br_10"></div>
+<div class="wrap_hor_scroll_img">
+<?if($gallery_top){foreach($gallery_top as $key=>$valg){?>
+    <div class="wrap_item_look" style="position:relative;width:95%;">		
+		<img class="width_pct_95 r30" src="/image/gallery/item/<?=$valg['id']?>/1.png" title="<?=$valg['meta_d']?>" alt="<?=$valg['meta_d']?>" />
+<?if($valg['meta_d'] !== ""){?>
+    	<div class="main_gallery_description r30">
+		    <span class="desc3 font_white"><?=$valg['meta_d']?></span>
+		</div>
+<?}?>	
+    </div>
+<?}}?>
+</div>

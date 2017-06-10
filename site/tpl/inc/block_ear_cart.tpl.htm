@@ -1,0 +1,70 @@
+<style>
+@media (max-width: 2000px) and (min-width: 1280px) { 
+  .wrap_cart{
+      vertical-align: middle;float:left
+  }
+  .cart_block{
+      padding:7px 2px 2px 2px;width:110px;
+      text-align:center;
+  }
+.ear_cart{
+    padding: 0px;                                               
+    padding-bottom: 0px;
+    width: 170px; height: 50px;
+    font-family: Arial; font-size: 16px;
+    line-height: 1; 
+    top: 10px; right: 10px; 
+    text-align: left;
+    position: fixed; 
+    text-align:center;
+}
+.cart_img{
+    margin-top:-15px;position:relative;z-index:7;
+}
+
+}
+@media (max-width: 1280px) and (min-width: 800px) { 
+  .wrap_cart{
+      vertical-align: middle;
+  }
+  .cart_block{
+      padding:7px 2px 2px 2px;width:50px;
+      text-align:center;
+  }
+.ear_cart{
+    padding: 0px;                                               
+    padding-bottom: 0px;
+    width: 65px; height: 150px;
+    font-family: Arial; font-size: 16px;
+    line-height: 1; 
+    top: 10px; right: 10px; 
+    text-align: left;
+    position: fixed; 
+    text-align:center;    
+}
+.cart_img{
+    margin-top:-5px;position:relative;z-index:3;
+}
+
+}
+
+</style>
+    <div class="both"></div>
+<div class="ear_cart red_string_1" style="background-color:#fafaeb"> 
+            <div class="wrap_cart"> 
+                <div id="shopping" class="navilink cart_block">
+                    <?=$shopcounttext?>
+                </div>
+            </div>
+            <div class="wrap_cart">
+<?if($shopcounttext == "Ваша корзина пуста"){?>
+                <a href="<?=SITE_URL?>/shop/shopping/index.html" title="Перейти в корзину">
+                    <img id="rukzak" alt="" src="/index_files/rukzak.gif" class="cart_img" />
+                </a>
+<?}else{?>
+                <a href="<?=SITE_URL?>/shop/shopping/index.html" title="Перейти в корзину">
+                    <img  id="rukzak" alt="" src="/index_files/rukzak2.gif" class="cart_img" />
+                </a>
+<?}?>                                        
+            </div>
+</div>

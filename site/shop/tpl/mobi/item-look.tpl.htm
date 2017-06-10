@@ -1,0 +1,199 @@
+<style>
+.tooltip {
+    position: relative;
+/*    background: #fff;
+    cursor: help; 
+    display: inline-block;*/
+    text-decoration: none;
+    color: #000;
+    outline: none;
+    text-indent: 0;
+    padding: 0px;
+    font-size:42px;
+}
+.tooltip:hover:before {
+    content: attr(data-title);
+    white-space: pre-line;
+    position: absolute;
+    bottom: 15px;
+    left: 0%;
+    z-index: 9999;
+    margin-left: -10px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    opacity: .9;
+    background-color: #ddd;
+    background-image: -webkit-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    background-image: -moz-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    background-image: -ms-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    background-image: -o-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+    text-shadow: 0 1px 0 rgba(255,255,255,.4);
+}
+.tooltip:hover:after {
+/*
+    content: "";
+    position: absolute;
+    z-index: 10000;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -8px;
+    border-top: 80px solid #ddd;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 0;
+*/    
+}
+/* Yellow */
+.yellow-tooltip:hover:before {
+    border-color: #684302;
+    background-color: #627e5f;
+}
+.yellow-tooltip:hover:after {
+    border-top-color: #ffeaa6;
+}
+
+.desc li{margin-left:20px;margin-bottom:7px;}
+#itemprice font{font: 27px Arial;color:black;}
+.minifoto{cursor:pointer;}
+</style>
+<style>
+.param img {
+border:2px solid #fff;
+padding:0px;
+outline: 0;
+
+}
+.param input:checked + img {
+
+padding:-3px;
+border:10px solid #d91219;
+  outline: 0;
+
+}
+</style>
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<?$item_conn = explode(";",$item_data['connect']);?>
+
+<div class="polosa"><a  href="../<?=$all_tag_list[str_replace(";","",$item_data['connect'])]['seolink']?>"><?=$all_tag_list[$item_conn['1']]['caption']?></a> » <?=$item_data['caption']?></div>
+<div class="br_10"></div>
+
+<?
+$img1=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/1.png";
+$img2=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/2.png";
+$img3=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/3.png";
+$img4=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/4.png";
+$img5=SHOP_ITEM_IMG_PATH."/".$item_data['id']."/5.png";
+
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img2))$img2="/design/img/spacer.gif";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img3))$img3="/design/img/spacer.gif";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img4))$img4="/design/img/spacer.gif";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img5))$img5="/design/img/spacer.gif";
+?>
+
+
+<div class="wrap_hor_scroll_img">
+	
+<?if($img1!=""){?>
+    <div class="wrap_item_look item_look prodimg1" style="position:relative;width:95%;">		
+		<img class="width_pct_100 r30 item_look" id="prodimg1" src="<?=$img1?>?<?=time()?>" />
+	</div>
+<?}?>
+<?if($img2!=""){?>
+    <div class="wrap_item_look item_look prodimg2" style="position:relative;width:95%;">		
+		<img class="width_pct_100 r30 item_look" id="prodimg2" src="<?=$img2?>?<?=time()?>" />
+	</div>
+<?}?>
+<?if($img3!=""){?>
+   <div class="wrap_item_look item_look prodimg3" style="position:relative;width:95%;">		
+		<img class="width_pct_100 r30 item_look" id="prodimg3" src="<?=$img3?>?<?=time()?>" />
+	</div>
+<?}?>
+<?if($img4!=""){?>
+    <div class="wrap_item_look item_look prodimg4" style="position:relative;width:95%;">		
+		<img class="width_pct_100 r30 item_look" id="prodimg4" src="<?=$img4?>?<?=time()?>" />
+	</div>
+<?}?>
+<?if($img5!=""){?>
+    <div class="wrap_item_look item_look prodimg5">		
+		<img class="width_pct_100 r30 item_look" id="prodimg5" src="<?=$img5?>?<?=time()?>" />
+	</div>
+<?}?>	
+
+</div>
+<!-- ************************************************************** -->
+<?include SITE_PATH."/site/shop/tpl/mobi/block_params.php";?>
+<hr />
+<?include SITE_PATH."/site/shop/tpl/mobi/price_and_buttonBuy_look.php";?>
+
+<div class="br_20"></div>
+<div class="br_20"></div>
+<hr />
+<div class="br_20"></div>
+<div class="br_20"></div>
+
+<style>
+#tab2, #tab3 {position: fixed; font-size:48px;}
+
+.menu1 > a,
+.menu1 #tab2:target ~ a:nth-of-type(1),
+.menu1 #tab3:target ~ a:nth-of-type(1),
+.menu1 > div { padding: 5px; border: 2px solid #aaa;  margin-right:2px;text-align:left;}
+
+.menu1 > a { line-height: 28px; background: #fff; text-decoration: none; }
+
+#tab2,
+#tab3,
+.menu1 > div,
+.menu1 #tab2:target ~ div:nth-of-type(1),
+.menu1 #tab3:target ~ div:nth-of-type(1) {display: none; }
+
+.menu1 > div:nth-of-type(1),
+.menu1 #tab2:target ~ div:nth-of-type(2),
+.menu1 #tab3:target ~ div:nth-of-type(3) { display: block; }
+
+.menu1 > a:nth-of-type(1),
+.menu1 #tab2:target ~ a:nth-of-type(2),
+.menu1 #tab3:target ~ a:nth-of-type(3) { border-bottom: 2px solid #fff;}
+</style>
+<div class="menu1">
+  <br id="tab2"/><br id="tab3"/>
+  
+<?if($item_data["desc_short"] !== ""){?><a class="caption3" href="#tab1"><?=SHOP_SITE_CHARACTER?></a><?}?>
+<?if($item_data["desc_full"] !== ""){?><a class="caption3" href="#tab2"><?=SHOP_SITE_DESCRIPTION?></a><?}?>
+<?if($item_data["p6"] !== ""){?><a class="caption3" href="#tab3"><?=SHOP_SITE_PRESENT?></a><?}?>
+
+<?if($item_data["desc_short"] !== ""){?><div class="desc_special"><?=$item_data['desc_short']?></div><script>itemDescShort['default']="<?=trim(str_replace('"',"'",str_replace(array("\r\n", "\r", "\n"),'',$item_data['desc_short'])))?>"</script><?}?>
+<?if($item_data["desc_full"] !== ""){?><div class="desc_special"><?=$item_data["desc_full"]?></div><script>itemDesc['default']="<?=trim(str_replace('"',"'",str_replace(array("\r\n", "\r", "\n"),'',$item_data['desc_full'])))?>"</script><?}?>
+<?if($item_data["p6"] !== ""){?><div class="desc_special"><?=$item_data["p6"]?></div><?}?>
+
+</div>
+<div class="br_10"></div>
+<div class="br_10"></div>
+<div class="br_10"></div>
+<div class="br_10"></div>
+<div class="br_10"></div>
+
+
+<? //********************** Варианты применения ************************** ?>
+<?//include SITE_PATH."/site/shop/tpl/mobi/block_aplication.php";?>
+<? //********************** /Варианты применения ************************** ?>
+<div class="br_10"></div>
+<? //****************** Сопутствующие товары ****************************** ?>
+<?include SITE_PATH."/site/shop/tpl/mobi/block_related_item.php";?>
+<? //****************** /Сопутствующие товары ****************************** ?>
+<div class="br_10"></div>
+<? //********************* Галерея *************************** ?>
+<?include SITE_PATH."/site/shop/tpl/mobi/block_gallery.php";?>
+<? //********************* /Галерея *************************** ?>
+<div class="attention3">
+    <?=SHOP_SITE_ATTENTION_COLOR?><br /><br />
+	Изготовитель оставляет за собой право на внесение в продукт изменений, направленных на улучшение его потребительских качеств.
+</div>
+<div class="br_20"></div>

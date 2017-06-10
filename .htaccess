@@ -1,0 +1,25 @@
+php_value error_reporting 0
+
+
+#CharsetDisable On
+AddDefaultCharset utf-8 
+
+RewriteEngine on
+
+# RewriteCond %{SERVER_PORT} !^443$
+# RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_URI} ^(.+)/$ 
+RewriteRule ^(.+)/$ http://SERVER_NAME/$1 [R=301,L]
+
+RewriteBase / 
+
+RewriteCond %{REQUEST_URI}  !^/cms/
+RewriteCond %{REQUEST_URI}  !^/lib/
+RewriteCond %{REQUEST_URI}  !^/magic/
+RewriteCond %{REQUEST_URI}  !^/userfiles/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L,QSA]

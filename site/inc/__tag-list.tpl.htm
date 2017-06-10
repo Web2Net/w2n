@@ -1,0 +1,20 @@
+<script>
+$(document).ready(function() { 
+    $("#<?=$val["id"]?>").mouseover(function(){ 
+        $('.<?=$val["id"]?>_1').css({'opacity':'0.2'});
+		$('.<?=$val["id"]?>').show();
+	});
+	$("#<?=$val["id"]?>").mouseout(function(){
+        $('.<?=$val["id"]?>_1').css({'opacity':'1'});	
+        $('.<?=$val["id"]?>').hide();
+	});
+});
+</script>
+    <div id="<?=$val["id"]?>" class="wrap_catalog_sell view_grid r20" style="position:relative;border:0px solid #000;">
+        <a href="<?=$a_href?>" title="<?=NOTE_READ_MORE?>..">
+            <div  class="desc3 <?=$val["id"]?>" style="position:absolute;display:none;padding:5px;"><?=$description?></div>
+			<img class="img_prew r20 <?=$val["id"]?>_1" src="<?=$img1?>" style="margin-bottom:7px;" alt="<?=$caption?>" title="<?=$caption?>"  />
+            <div class="caption6"><?=$val["caption"]?></div>
+            
+        </a>
+    </div>

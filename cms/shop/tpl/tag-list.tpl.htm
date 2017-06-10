@@ -1,0 +1,153 @@
+<?SYS::varDump($tag1_list,__FILE__,__LINE__,'tag1_list');?>
+<?SYS::varDump($tag2_list,__FILE__,__LINE__,'tag2_list');?>
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<span style="font-size:1px">&nbsp;</span>
+<table style="width: 98%;margin:7px 0px;" cellpadding="0" cellspacing="0"><tr><td align="left" style="padding-left:15px;">
+<a href="javascript:onSlimbox('?mod=<?=$mod?>&type=tag&com=add&level=1&id=new<?if($display!=""){?>&display=<?=$display?><?}?>')"><img src="design/ico_add_fold.gif" style="border: 0px solid rgb(90, 126, 220); cursor: pointer;" title="<?=SHOP_ADMIN_BUTTON_ADD_NEW?>" onmouseover="this.style.background='#DBFFC1';" onmouseout="this.style.background=''" class="r10" /></a>
+</td><td align="center" style="padding-left:7px;">
+<a href="<?=SITE_URL."/shop"?>" title="<?=SHOP_ADMIN_BUTTON_VIEW_ONLINE?>" target="_blank"><img src="design/internet.gif" style="border: 0px solid rgb(90, 126, 220); cursor: pointer;width:48px;" title="<?=SHOP_ADMIN_BUTTON_VIEW_ONLINE?>" onmouseover="this.style.background='#DBFFC1';" onmouseout="this.style.background=''" class="r10" /></a>
+</td><td align="center" width="95%" style="padding-left:7px;">
+
+</td><td class="heading1" align="right" valign="bottom">
+<nobr><span style="color:#e7e7e7;font-size:24px;"><?=SHOP_NAME?></span></nobr><br>
+<nobr><?=SHOP_ADMIN_NOTE_MENU_CATEGORY?></nobr>
+</tr>
+</table>
+
+<script>
+function Toggle(id){
+console.log(id);
+
+if ($(".sub-"+id+"").is(':hidden')) {
+$(".sub-"+id+"").show();
+localStorage["sub-"+id+""]=1;
+}
+else if ($(".sub-"+id+"").is(':visible')) {
+$(".sub-"+id+"").hide();
+localStorage["sub-"+id+""]=0;
+}
+}
+</script>
+<div align="center">
+<div style="padding:0px 12px 0px 12px;width:763px;min-height:500px;">
+<table class="list-table r5" width="100%" cellpadding="0" cellspacing="0" style="color: white;font: bold 11px verdana;background-color: #587AAE;border:0px solid #EEEFFF;margin-bottom:12px;">
+<tr>
+<td style="padding:7px 15px;"><?=SHOP_ADMIN_NOTE_TAG_SECTION?></td>
+<td align="center" width="150" style="padding:7px 15px;"><?=SHOP_ADMIN_NOTE_OPTIONS?></td>
+</tr></table>
+
+<style>
+.tag0{
+    background-image:url("/design/icon/Folder1_32x32.png");
+	background-repeat: no-repeat;
+	height:40px;
+	padding-left:40px;
+	text-align:left;
+	line-height:40px;
+	font-size:125%;
+}
+</style>
+
+<?if($tag0_list!=NULL){
+foreach($tag0_list as $key0=>$val0){?>
+    <div class="tag0">
+	    <span style="color:<?=$val0['show']!=1?'orangered':'#365C90'?>;cursor:pointer;" onclick="Toggle(<?=$val0['id']?>)"><?=$val0['caption']?></span>
+
+<span style="float:right;padding-right:10px;">    
+		<nobr>
+		<a href="javascript:onSlimbox('?mod=<?=$mod?>&type=<?=$type?>&com=add&level=1&parent_tag=<?=$val0['id']?>&id=new')" title="<?=SHOP_ADMIN_BUTTON_ADD_NEW?>">
+<img src="/design/icon/Add_32x32.png" alt="<?=SHOP_ADMIN_BUTTON_ADD_NEW?>" border="0" width="20" ></a>
+<a href="javascript:onSlimbox('?mod=<?=$mod?>&type=<?=$type?>&com=edit&level=0&id=<?=$val0['id']?>')" title="<?=SHOP_ADMIN_NOTE_EDIT?>">
+<img src="design/ico_edit_sm.gif" alt="<?=SHOP_ADMIN_NOTE_EDIT?>" vspace="1" border="0" hspace="1"></a>&nbsp;
+<a title="<?=SHOP_ADMIN_BUTTON_DELETE?>" href="?mod=<?=$mod?>&type=<?=$type?>&com=delete&id=<?=$val0['id']?>" onclick="if (confirm('<?=SHOP_ADMIN_NOTE_ATTANTION_DELETE?> ?')) location=this.href; return false;">
+<img src="design/ico_delete_sm.gif" alt="Удалить" vspace="1" border="0" hspace="1"></a></nobr>
+</span>
+	</div>
+
+	
+	
+<?if($tag1_list!=NULL){$id=$_GET['id'];?>
+<?$i=1;?>
+<?foreach($tag1_list as $key=>$val){if($val["hit"]==$key0){?>
+
+<table  style="display:none;" class="sub-<?=$val0['id']?> list-table r5" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EEEFFF;border:1px solid #EEEFFF;margin-bottom:12px;">
+
+<tr id="th-<?=$val['id']?>" class="row1<?if ($id==$val['id']){?> sel<?}else{?><?if($i==1){$i=0;?> bg_sky<?}else{?> bg_sky<?}}?>" valign="center" onmouseover="this.style.background='<?if ($id!=$val['id']){?>#FFFFCC<?}?>';" onmouseout="this.style.background=''">
+<td width="95%" class="title" style="padding:7px 7px 7px 25px;"><img src="/design/icon/Folder1_32x32.png" alt="<?=SHOP_ADMIN_NOTE_SHOW_ALL?>" width="20" vspace="0" border="0" hspace="5" align="left" style="margin-right:6px;">
+
+
+<b style="font-size:13px;line-height: 19px;color:<?=$val['show']!=1?'orangered':'#365C90'?>;cursor:pointer;" onclick="Toggle(<?=$val['id']?>)">
+    <?=$val['caption']?>
+</b>
+
+</td>
+<td style="padding-right:25px;">
+<a href="javascript:onSlimbox('?mod=<?=$mod?>&type=<?=$type?>&com=add&level=2&parent_tag=<?=$val['id']?>&id=new')" title="<?=SHOP_ADMIN_BUTTON_ADD_NEW?>">
+<img src="/design/icon/Add_32x32.png" alt="<?=SHOP_ADMIN_BUTTON_ADD_NEW?>" border="0" width="20" ></a>
+</td>
+<td class="options" style="width:40px;">
+<nobr>
+<a href="?mod=<?=$mod?>&type=<?=$type?>&com=list&id=<?=$val['id']?>&event=moveDown" title="<?=SHOP_ADMIN_BUTTON_DOWN?>">
+<img src="design/backward.gif" alt="<?=SHOP_ADMIN_BUTTON_DOWN?>" border="0" height="17" width="17"></a>
+<a href="?mod=<?=$mod?>&type=<?=$type?>&com=list&id=<?=$val['id']?>&event=moveUp" title="<?=SHOP_ADMIN_BUTTON_UP?>">
+<img src="design/forward.gif" alt="<?=SHOP_ADMIN_BUTTON_UP?>" border="0" height="17" width="17"></a>
+</nobr>
+</td>
+<td class="options" align="center" style="width:40px;">
+<nobr>
+<a href="javascript:onSlimbox('?mod=<?=$mod?>&type=<?=$type?>&com=edit&level=1&id=<?=$val['id']?>')" title="<?=SHOP_ADMIN_NOTE_EDIT?>">
+<img src="design/ico_edit_sm.gif" alt="<?=SHOP_ADMIN_NOTE_EDIT?>" vspace="1" border="0" hspace="1"></a>&nbsp;
+<a title="<?=SHOP_ADMIN_BUTTON_DELETE?>" href="?mod=<?=$mod?>&type=<?=$type?>&com=delete&id=<?=$val['id']?>" onclick="if (confirm('<?=SHOP_ADMIN_NOTE_ATTANTION_DELETE?> ?')) location=this.href; return false;">
+<img src="design/ico_delete_sm.gif" alt="Удалить" vspace="1" border="0" hspace="1"></a></nobr>
+</td>
+</tr>
+
+<?
+$connect_tag=explode(";",substr($val['connect'], 1, -1));$i2=1;
+if($connect_tag[0]!=''){foreach($connect_tag as $key2=>$child_id){
+$val2=$tag2_list[$child_id];
+$id=$_GET['id'];
+?>
+
+<tr id="tr-<?=$val2['id']?>" class="sub-<?=$val['id']?> row1<?if ($id==$val2['id']){?> sel<?}else{?><?if($i2==2){?> bg_grey<?}else{?> bg_white<?}}?>" valign="center" onmouseover="this.style.background='<?if ($id!=$val2['id']){?>#FFFFCC<?}?>';" onmouseout="this.style.background=''" style="display:none;">
+<td class="title" style="padding:7px 7px 7px 50px;"><img src="/design/icon/Folder2_32x32.png" alt="<?=SHOP_ADMIN_NOTE_SHOW_ALL?>" width="20" vspace="0" border="0" hspace="5" align="left" style="margin-right:6px;">
+<a href="?mod=<?=$mod?>&type=item&com=list&tag=<?=$val2['id']?><?if($display!=""){?>&display=<?=$display?><?}?>" title="<?=SHOP_ADMIN_NOTE_OPEN?>">
+    <b style="font-size:12px;line-height: 20px;"<?if ($val2['show']!=1){?> class="orangered"<?}?>>
+    <span class="r10" style="padding:2px 4px;border:1px solid #ccc;background-color:#00ffff;"><?=$val2['id']?></span>
+	&nbsp;<?=$val2['caption']?>&nbsp;<?//=$val2['connect']?></b>
+</a>  <?$countitem=ShopItem::itemCountTag($val2['id']);if($countitem>0){?>(<?=$countitem?>)<?}?>
+</td>
+
+<td style=""><nobr<?if ($val2['show']!=1){?> class="orangered"<?}?>>&nbsp;</nobr></td>
+<td class="options">
+<nobr>
+<a href="?mod=<?=$mod?>&type=<?=$type?>&com=list&id=<?=$val2['id']?>&pid=<?=$val['id']?>&event=moveDown" title="<?=SHOP_ADMIN_BUTTON_DOWN?>">
+<img src="design/backward.gif" alt="<?=SHOP_ADMIN_BUTTON_DOWN?>" border="0" height="17" width="17"></a>
+<a href="?mod=<?=$mod?>&type=<?=$type?>&com=list&id=<?=$val2['id']?>&pid=<?=$val['id']?>&event=moveUp" title="<?=SHOP_ADMIN_BUTTON_UP?>">
+<img src="design/forward.gif" alt="<?=SHOP_ADMIN_BUTTON_UP?>" border="0" height="17" width="17"></a>
+</nobr>
+</td>
+<td class="options" align="center">
+<nobr>
+<a href="javascript:onSlimbox('?mod=<?=$mod?>&type=<?=$type?>&com=edit&id=<?=$val2['id']?>')" title="<?=SHOP_ADMIN_NOTE_EDIT?>">
+<img src="design/ico_edit_sm.gif" alt="<?=SHOP_ADMIN_NOTE_EDIT?>" vspace="1" border="0" hspace="1"></a>&nbsp;
+<a title="<?=SHOP_ADMIN_BUTTON_DELETE?>" href="?mod=<?=$mod?>&type=<?=$type?>&com=delete&id=<?=$val2['id']?>" onclick="if (confirm('<?=SHOP_ADMIN_NOTE_ATTANTION_DELETE?> ?')) location=this.href; return false;">
+<img src="design/ico_delete_sm.gif" alt="<?=SHOP_ADMIN_BUTTON_DELETE?>" vspace="1" border="0" hspace="1"></a></nobr>
+</td>
+</tr>
+<script>
+if(localStorage["sub-<?=$val['id']?>"]=='1'){$(".sub-<?=$val['id']?>").show();};
+if(localStorage["sub-<?=$val0['id']?>"]=='1'){$(".sub-<?=$val0['id']?>").show();};
+</script>
+<?if($i2==2){$i2=0;}?>
+<?$i2++;?>
+<?}}?>
+</table>
+<?$i++;?>
+<?}}?>
+
+<?}}}?>
+
+</div></div>
+
+<br><br><br><br><br><br><br>

@@ -1,0 +1,18 @@
+			<div class="orangeblock" style="height: 327px; margin-right: 3px; margin-left: 3px;">
+<h3 style="margin: 7px 0px 7px 0px; text-align: center; font-family: arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; text-transform: uppercase; color: #000;">
+<a href="http://mkr.com.ua/Новости/" style="color:#000;" title="Все новости" class="unno">Новости</a></h3>
+<div style="padding:0px 7px 3px 10px;font-family:verdana;height: 327px;overflow: auto">
+<?if($newslist!=NULL){foreach ($newslist as $key=>$val){
+$val['short_text']=str_replace('" ','» ',$val['short_text']);
+$val['short_text']=str_replace('",','»,',$val['short_text']);
+$val['short_text']=str_replace('"','«',$val['short_text']);
+?>
+    <div style="margin-bottom:10px;" class="inblock">
+
+        <div style="font-size:10px;color: #7c7c7b;"><?=Time::formatMonth($val["date_create"])?></div>
+        <h3 style="font-size:13px;margin:0px;color: #7c7c7b;">
+        <a href="http://mkr.com.ua/Новости/<?=$val["id"]?>-<?=$val["web_link"]?>/" style="color:#000;" title="<?=$val['caption']?>" class="noun"><?=$val["caption"]?></a></h3>
+        </div>
+    <?}}?>
+    </div>
+</div>

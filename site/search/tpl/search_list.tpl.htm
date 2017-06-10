@@ -1,0 +1,39 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<?if($list_item!=NULL){?>
+<div class="polosa"><?=SEARCH_SITE_NOTE_SEARCH_RESULT?> <?=RAZDELYALKA?> Товары</div>
+<div class="wrap_catalog">
+<?foreach($list_item as $key=>$val){
+    $img1=SHOP_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+    if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+	
+	    $img1=SHOP_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+		$a_href = "/shop/xxx/xxx/".$val["id"]."-".$val["seolink"];
+		$fancy =  'target="_blank"';
+		$caption = $val["caption"];
+		$description = "";
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+	
+include SITE_PATH."/site/inc/item-list-price.tpl.htm";
+
+}}?>
+
+<div class="both br_10"></div>
+
+<?if($list_art!=NULL){?>
+<div class="polosa"><?=SEARCH_SITE_NOTE_SEARCH_RESULT?> <?=RAZDELYALKA?> Статьи</div>
+<div class="wrap_catalog">
+
+<?foreach($list_art as $key=>$val){?>
+<?
+
+
+        $img1=ART_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+		$a_href = "/art/xxx/xxx/".$val["id"]."-".$val["seolink"];
+		$fancy =  'target="_blank"';
+		$caption = $val["caption"];
+		$description = $val["meta_d"];;
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+
+?>
+<?include SITE_PATH."/site/inc/tag-list.tpl.htm";?>
+<?}}?>

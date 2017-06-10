@@ -1,0 +1,205 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<span style="font-size:1px">&nbsp;</span>
+<table style="width: 98%;margin:7px 0px;" cellpadding="0" cellspacing="0"><tr><td align="left" style="padding-left:15px;">
+<a href="?mod=<?=$mod?>&type=<?=$type?>&com=list<?if($display!=""){?>&display=<?=$display?><?}?>"><img src="design/ico_back.gif" style="border: 0px solid rgb(90, 126, 220); cursor: pointer;" title="<?=SHOP_ADMIN_BUTTON_BACK?>" onmouseover="this.style.background='#DBFFC1';" onmouseout="this.style.background=''" class="r10" /></a>
+</td><td align="center" style="padding-left:7px;">
+<a href="?mod=<?=$mod?>&type=<?=$type?>&com=add&level=<?=$level?><?if($parent_tag!=""){?>&parent_tag=<?=$parent_tag?><?}?>&id=new<?if($display!=""){?>&display=<?=$display?><?}?>"><img src="design/ico_add_artic.gif" style="border: 0px solid rgb(90, 126, 220); cursor: pointer;" title="<?=SHOP_ADMIN_BUTTON_ADD_NEW?>" onmouseover="this.style.background='#DBFFC1';" onmouseout="this.style.background=''" class="r10" /></a>
+<?$id=$_GET['id'];if($id!=""&&$id!="new"){?></td><td align="center" style="padding-left:7px;">
+<?if($level==1){$tag_site_url=SITE_URL."/shop/".$tag1_list[$tag_data['id']]['seolink']."";}else{$tag_site_url=SITE_URL."/shop/".$tag1_list[substr($tag2_list[$tag_data['id']]["connect"],1,-1)]["seolink"]."/".$tag2_list[$tag_data['id']]["seolink"]."";}?>
+<a href="<?=$tag_site_url?>" title="<?=SHOP_ADMIN_BUTTON_VIEW_ONLINE?>" target="_blank"><img src="design/internet.gif" style="border: 0px solid rgb(90, 126, 220); width:48px;" title="<?=SHOP_ADMIN_BUTTON_VIEW_ONLINE?>" onmouseover="this.style.background='#DBFFC1';" onmouseout="this.style.background=''" class="r10" /></a><?}?>
+</td><td align="center" style="padding-left:7px;">
+<a href="javascript:void(0)" onclick="addEdit.submit();"><img src="design/ico_save.gif" style="border: 0px solid rgb(90, 126, 220); cursor: pointer;" title="<?=SHOP_ADMIN_BUTTON_SAVE?>" onmouseover="this.style.background='#DBFFC1';" onmouseout="this.style.background=''" class="r10" /></a>
+</td><td align="center" width="95%" style="padding-left:7px;">
+	<div style="margin:10px;"><?include SITE_PATH."/cms/lang/tpl/lang_switch.tpl.htm";?></div>
+<?if($cmd=="update"||$_GET['save']=="ok"){?><b style="color:forestgreen;font-size:13px;"><?=SHOP_ADMIN_NOTE_SAVED?>!</b><br><?=date("H:i:s d-m-Y")?><?}?>&nbsp; 
+</td><td class="heading1" align="right" valign="bottom">
+<nobr><span style="color:#e7e7e7;font-size:24px;"><?=SHOP_NAME?></span></nobr><br>
+<nobr><span style="color:#444;"><?=SHOP_ADMIN_NOTE_EDITOR_CAT?> : </span># <?=$tag_data['id']!=''?$tag_data['id']:'NEW'?></nobr>
+</tr>
+</table>
+
+
+<div align="center">
+<div style="padding:0px 12px 12px 20px;max-width:870px;min-height:500px;" align="left">
+
+<form name="addEdit" method="post" action="<?=SITE_URL?>/cms/?<?=getenv("QUERY_STRING")?>">  	
+
+<fieldset class="pole">
+<legend>&nbsp;<?=SHOP_ADMIN_NOTE_CAPTION?> :&nbsp;</legend>
+<input type="text" name="caption" id="caption" maxlength="250" style="padding:5px 7px;width:98%;font-size: 22px;font-weight: normal;line-height: 25px;font-family:verdana" value="<?=$tag_data['caption']?>">
+</fieldset>
+
+<input type="hidden" name="cmd" value="<?=$tag_data['id']!=''?'update':'insert'?>">
+<input type="hidden" name="pos" value="<?=$tag_data['pos']?>">
+<input type="hidden" name="level" value="<?=$tag_data['level']!=""?$tag_data['level']:$level?>">
+<?if($level==1){?>
+<input type="hidden" name="connect" value="<?=$tag_data['connect']?>">
+<?}?>
+<table style="width:100%" cellpadding="0" cellspacing="0"><tr>
+<td valign="top" style="width:350px;padding-right:0px;">
+<?
+
+$img1="/image/".$mod."/".$type."/".$tag_data['id']."/1.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_450x450.png";
+$imgurl=str_replace(SITE_URL,'',$img1);
+//$imgsize=getimagesize (SITE_URL.$imgurl);
+list($width, $height)=getimagesize (SITE_URL.$imgurl);
+	?>
+<fieldset class="pole">
+<legend>&nbsp;<?=SHOP_ADMIN_NOTE_IMAGE?> :&nbsp;</legend>
+<div style="font-size:11px;margin-bottom:-15px;position:relative;" align="center"><?=$imgurl?></div>
+<table cellpadding="0" cellspacing="0" style="margin-bottom:7px;height:345px;width:100%;overflow:hidden;"><tr><td align="center">
+<a href="javascript:onWhiteSlimbox('/cms/<?=$mod?>/magic/load_tag_image.php?img=/image/<?=$mod?>/<?=$type?>/<?=$tag_data['id']?>/1.png&prodid=<?=$tag_data['id']!=''?$tag_data['id']:'new'?>&numer=1&mod=<?=$mod?>&type=<?=$type?>')">
+<img id="prodimg1" alt="" src="<?=$img1?>?<?=time()?>" width="350" style="border:0px solid #d7d7d7" /></a>
+</td></tr></table>
+<div align="right" style="font-size:11px;position:relative;margin-top:-15px;padding:0px 2px 4px 0px"><b><?=SHOP_ADMIN_NOTE_IMAGE_SIZE?>: </b><?=$width?> x <?=$height?> 
+<?if($width>740||$height>740){?>
+<b style="color:red;"><?=SHOP_ADMIN_NOTE_ATTANTION_IMAGE_SIZE?></b>
+<?}?>
+</div>
+</fieldset>
+
+<?
+$pid=explode(";",substr($tag_data["connect"],1,-1));
+if($pid[0]!=''){$parent_tag=$pid[0];}
+?>
+</td><td valign="top" style="padding-left:7px;">
+
+<fieldset class="pole">
+<legend>&nbsp;<?=SHOP_ADMIN_NOTE_SECTION?> :&nbsp;</legend>
+<?if($level==1){?>
+<div style="width:99%;padding:1px 20px;height:30px;font-weight:bold;font-size:15px;color:#5A7EDC;" align="center"><?=SHOP_ADMIN_NOTE_MAIN_SECTION?></div>
+<?}else{?>
+<select name="connect[]" style="color:#5A7EDC;width:99%;padding:2px 2px;height:25px;font-weight:bold;line-height:20px;font-size:14px;font-family:verdana;margin:3px 0px 4px 0px;">
+<option value="null" selected> --- <?=SHOP_ADMIN_NOTE_SELECT_CATEGORY?></option>
+<?foreach ($tag1_list as $key=>$val){?>
+<option value="<?=$val['id']?>"<?if ($parent_tag==$val['id']){?> selected<?}?>><?=$val['caption']?></option>
+<?}?>
+</select>
+<?}?>
+</fieldset>
+
+<? //******************************************* Временно?>
+<style>
+.select{position:relative;width:100px;height:20px;background:#fff;border:0px solid #bbb;z-index:1;}
+.select > span{display:block;width:100px;height:20px;text-align:center;vertical-align:middle;cursor:pointer;}
+.select_{display:none;position:absolute;padding-right:20px;max-height:500px;background:#fff;border:1px solid #bbb;overflow:auto;}
+.select_ > div{white-space:nowrap}
+.select:hover{z-index:100;}
+.select:hover > .select_{display:block;}
+</style>
+<?
+$pid=explode(";",substr($tag_data["connect"],1,-1));
+$count_pid = count($pid);
+$levl = $tag_data["level"] - 1;
+$tag1_select_list=ShopTag::tagListSort($levl);
+?>
+         <div class="select">
+	   <nobr><span><?=SHOP_ADMIN_NOTE_CATEGORY?> : (<?=$count_pid?>)</span></nobr>
+	   <div class="select_">
+<?
+SYS::varDump($_GET,__FILE__,__LINE__,"GET");
+foreach ($tag1_select_list as $key=>$val){
+    if($tag_data["connect"]==''){
+        $parent_tag=$_GET['id'];
+        if($parent_tag==$val['id']){
+            $check = "checked";
+        }
+        else{
+            $check = "";
+        }
+     }
+     else{
+         $con = strrpos($tag_data["connect"],";{$val['id']};");
+         if($con === false){
+             $check = "";
+         }
+         else{
+             $check = "checked";
+         }      
+     }
+?>    
+           <div><input name="connect[]"  type="checkbox"  value="<?=$val['id']?>" <?=$check?> ><?=$val['caption']?></div>
+<?}?>
+         </div>
+       </div>
+
+<?if($tag_data['level'] == 1){?>
+<fieldset class="pole">
+<legend>&nbsp;ПАПА :&nbsp;</legend>
+<input name="hit" value="<?=$tag_data['hit']?>" type="text" style="width:25%">
+</fieldset>
+<fieldset class="pole">
+<legend>&nbsp;Памятка :&nbsp;</legend>
+114 - Гамаки и тенты<br />
+115 - Туризм<br />
+116 - Комплекты<br />
+117 - Одежда<br />
+118 - Электроника<br />
+119 - Гигиена и здоровье<br />
+120 - Услуги<br />
+</fieldset>
+<?
+//******************************************* /Временно
+}?>
+
+<fieldset class="pole">
+<legend>&nbsp;<?=SHOP_ADMIN_NOTE_SHORT_DESCRIPTION?> :&nbsp;</legend>
+<textarea name="desc_short" style="padding:7px;height:150px;width:96%;"><?=$tag_data['desc_short']?></textarea>
+</fieldset>
+
+ <fieldset class="pole">
+<legend>&nbsp;<?=SHOP_ADMIN_NOTE_SHOW?> :&nbsp;</legend>
+<div style="margin-bottom:0px;"><label><input name="show" type="checkbox"<?if ($tag_data['show']==1||$com=='add'){?> checked="checked"<?}?> value="1" />&nbsp;<?=SHOP_ADMIN_NOTE_SHOW_ONLINE?>&nbsp;</label></div> 
+</fieldset>
+
+</td></tr></table>
+
+<fieldset class="pole">
+<legend>&nbsp;Seo Link :&nbsp;</legend>
+<input name="seolink" value="<?=$tag_data['seolink']?>" type="text" style="width:98%">
+</fieldset>
+
+<fieldset class="pole">
+<legend>&nbsp;&nbsp;<?=SHOP_ADMIN_NOTE_FULL_DESCRIPTION?> :&nbsp;&nbsp;</legend>
+<textarea name="desc_full" id="desc_full" cols="145" rows="135"><?=$tag_data["desc_full"];?></textarea>
+
+<script type="text/javascript">
+CKEDITOR.replace( 'desc_full',{
+//    toolbar : 'Basic'
+//    toolbar : 'Medium'
+    toolbar : 'Default'
+});
+</script>
+</fieldset>
+
+
+<fieldset class="pole">
+<legend>&nbsp;Meta Title :&nbsp;</legend>
+<input name="meta_t" value="<?=$tag_data['meta_t']?>" type="text" style="width:98%">
+</fieldset>
+
+<fieldset class="pole">
+<legend>&nbsp;Meta Keywords :&nbsp;</legend>
+<input name="meta_k" value="<?=$tag_data['meta_k']?>" type="text" style="width:98%">
+</fieldset>
+
+<fieldset class="pole">
+<legend>&nbsp;Meta Description :&nbsp;</legend>
+<textarea name="meta_d" style="padding:7px;height:40px;width:98%;"><?=$tag_data['meta_d']?></textarea>
+</fieldset>
+
+
+
+</form>	
+
+<br>
+<table style="width:98%;" cellpadding="0" cellspacing="0"><tr><td align="left" style="width:50%;padding-left:15px;">
+<a href="?mod=<?=$mod?>&type=<?=$type?>&com=delete&id=<?=$tag_data['id']?><?if($display!=""){?>&display=<?=$display?><?}?>" onclick="if (confirm('<?=SHOP_ADMIN_NOTE_ATTANTION_DELETE?>?')) location=this.href; return false;"><img src="design/icon-delete.gif" style="cursor: pointer;" title="<?=SHOP_ADMIN_BUTTON_DELETE?>" onmouseover="this.style.background='#DBFFC1';" onmouseout="this.style.background=''" class="r10" /></a>
+</td><td align="right">
+<a href="javascript:void(0)" onclick="addEdit.submit();"><img src="design/ico_save.gif" style="cursor: pointer;" title="<?=SHOP_ADMIN_BUTTON_SAVE?>" onmouseover="this.style.background='#DBFFC1';" onmouseout="this.style.background=''" class="r10" /></a>
+</td></tr></table>
+
+</div></div>
+
+<br><br>

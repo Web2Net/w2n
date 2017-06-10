@@ -1,0 +1,19 @@
+<div class="wrap_catalog_sell r20">
+	<div class="catalog_sell">
+<?if($val['good_price']==1){?>
+            <div style="margin-bottom:-25px;position:relative;z-index:2;">
+                <span class="bestprice r5"><?=NOTE_GOOD_PRICE?></a>
+            </div>
+<?}else if($val['sell_out']==1){?>
+            <div style="margin-bottom:-25px;position:relative;z-index:2;">
+                <span class="sale r5"><?=NOTE_SALE?></span>
+            </div>
+<?}?>
+        <a href="<?=$a_href?>" <?=$fancy?> title="<?=$caption?>">
+            <img  class="img_prew r20" src="<?=$img1?>" />
+            <div class="caption6" style="padding:2px;"><?=$caption?></div>
+            <div class="desc4" style="padding:5px"><?=$description?></div>
+        </a>
+		<?include SITE_PATH."/site/shop/tpl/price_and_buttonBuy_list.php";?>	
+    </div>
+</div>

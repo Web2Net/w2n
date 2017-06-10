@@ -1,0 +1,59 @@
+<?$item_list=$best_prop;?>
+
+<div class="polosa"><a href="/"><?=NOTE_MAIN?></a> » <?=NOTE_BEST_PROPOSITION?></div>
+    <div class="wrap_catalog">
+<center>
+<table cellspacing="0" cellpadding="0" style="width:1050px;">
+    <tr>
+      <td><span class="next r5"></span></td>
+      <td style="padding-left:0px;">
+        <div class="anyClass">
+        <ul>
+<?
+$item_list=$best_prop;
+if($item_list!=NULL){
+    foreach($item_list as $key=>$val){
+        $img1=SHOP_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+            if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+            $tag1_list=Shop::tagListShowLevel(1);
+            $tag2_list=Shop::tagListShowLevel(2);
+            
+			$val['connect']=substr($val['connect'],1,-1);
+            $nowvc=explode(";",$val['connect']);
+            $val['connect']=";".$nowvc[0].";";
+?>
+            <li>
+                <div class="wrap_catalog_sell view_grid r20" align="center">
+				    <div style="margin-bottom:12px;height:200px;overflow:hidden;">
+<?
+            if($val['good_price']==1){
+?>
+                        <div style="margin-bottom:-25px;position:relative;z-index:2;">
+                            <span class="bestprice r5"><?=NOTE_GOOD_PRICE?></span>
+                        </div>
+<?
+            }
+			else if($val['sell_out']==1){
+?>
+                        <div style="margin-bottom:-25px;position:relative;z-index:2;">
+                            <span class="sale r5"><?=NOTE_SALE?></span>
+                        </div>
+<?}?>
+                        <a href="/shop/<?=$tag1_list[str_replace(";","",$tag2_list[str_replace(";","",$val['connect'])]['connect'])]['seolink']?>/<?=$tag2_list[str_replace(";","",$val['connect'])]['seolink']?>/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=NOTE_READ_MORE?>">
+                            <img class="img_prew r20" src="<?=$img1?>" style="margin-bottom:5px;" />
+                            <div class="caption6"><?=$val["caption"]?></div>
+						</a>
+					</div>
+<?include SITE_PATH."/site/shop/tpl/price_and_buttonBuy_list.php";?>
+
+				</div>
+            </li>
+<?}}?>
+        </ul>
+    </div>
+</td>
+<td width="1"><span class="prev r5"></span></td>
+
+</tr></table>
+
+</div>

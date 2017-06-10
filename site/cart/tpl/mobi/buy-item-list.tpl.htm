@@ -1,0 +1,156 @@
+<style>
+.butt_more, .butt_less, .butt_del {
+background-position: 0 0;
+width: 75px;
+height: 75px;
+display: inline-block;
+margin: 0 10px;
+background-repeat: no-repeat;
+line-height: 100px;
+}
+.butt_less {
+background-image: url("/design/img/mobi/ico_minus.png");
+}
+.butt_more {
+background-image: url("/design/img/mobi/ico_plus.png");
+}
+.butt_del{
+    background-image: url('/design/img/mobi/ico_del.png');
+}
+</style>
+
+
+<div class="polosa"><a href="/cart/buy"><?=NOTE_MY_CART?></a> » <?=NOTE_SHOPPING_LIST?></div>
+
+<div id="shopping" class="wrap_catalog">
+	<div class="r10 bg_light_grey" style="padding:15px">
+        <div class="caption3"><b><?=NOTE_REVIEW_CART?></b></div>
+        <div class="desc2"><?=NOTE_COUNT_ITEMS?>: <strong id="countcart"><?=$count_item?></strong></div>
+        <div class="desc2"><?=NOTE_PRELIMINARY_COST?>:	<span id="moneypay"><?=$stoit?></span> <?=CURRENCY?></div>
+    </div>
+    <div class="br_20"></div>
+    
+<?$item_list=$_SESSION['shop_item'];
+if($item_list!=NULL){?>
+<?foreach($item_list as $key=>$val){?>
+    <div id="cartItem_<?=$val['item']['id']?>" class="wrap_catalog_sell view_list">
+        
+    
+    
+<?
+$img1=SHOP_ITEM_IMG_PATH."/".$val['item']["id"]."/1m.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+        <a class="catalog_a" href="/shop/cart/look/<?=$val['item']["id"]?>-<?=$val['item']["seolink"]?>" title="<?=NOTE_READ_MORE?>">
+            <img class="width_pct_40 r30" src="<?=$img1?>" align="left" alt="<?=$val['item']["caption"]?>" title="<?=$val['item']["caption"]?>" />
+            <div class="caption3"><?=trim($val['item']['caption'])?></div>
+        </a>
+        <div class="br_10"></div>
+        <div class="desc3">
+            <?=NOTE_REFERENCE?>:
+<?
+$param_connectus=explode(";",substr($val['item']["param_connect"],1,-1));
+$param_item_r=Shop::paramItemData($param_connectus[0]);
+$param_item_l=Shop::paramItemData($param_connectus[1]);
+?>
+            <span id="article"><?=$param_item_l['value1']!=''?$param_item_l['value1'].'-':''?><?=$val['item']["article"]?><?=$param_item_r['value1']!=''?'-'.$param_item_r['value1']:''?></span>
+        </div>
+        <div class="br_10"></div>
+        <div style="text-align:right;">
+            
+            <a href="javascript:void(0)" onClick="inCartBuy('<?=$val['item']["id"]?>',-1)"><span class="r5 butt_less">&nbsp;</span></a>
+            <input class="r10 desc3" style="width:75px;height:75px;text-align:center;" id="cart_<?=$val['item']["id"]?>" name="cart_<?=$val['item']["id"]?>" onchange="inCartBuy2('<?=$val['item']["id"]?>', this.value);" type="text" value="<?=$val["hm"]?>">
+            <a href="javascript:void(0)" onClick="inCartBuy('<?=$val['item']["id"]?>',1)"><span class="r5 butt_more">&nbsp;</span></a>
+            <div class="br_20"></div>
+
+<?$price_roznica = Price::getPrice($val['item']['postavschik'],$val['item']['price_roznica'],$val['item']['price_diler'],$val['item']['ddp']);
+$dp=explode(".",$price_roznica);
+
+$cena=Price::getPrice($val['item']['postavschik'],$val['item']['price_roznica'],$val['item']['price_diler'],$val['item']['ddp']);
+$ocena=$cena*$val['hm'];
+$stoit=$stoit+$ocena;
+$count_item=$count_item+$val['hm'];
+
+?>
+
+            <input id="buyprice_<?=$val['item']['id']?>" type="hidden" value="<?=$price_roznica?>">
+            <div class="caption3 font_brown"><?=NOTE_PRICE?>:
+<?if($price_roznica!=0){
+$itemstoit=$price_roznica*$val["hm"];
+$sp=explode(".",$itemstoit);
+$sp[1]=substr($sp[1]."00",0,2);
+$itemstoit="".$sp[0].".<font style='font-size:85%'>".$sp[1]."</font>";?>
+                <span class="font_brown cartprice" id="fullprice_<?=$val['item']['id']?>"><?=$itemstoit?></span> <?=CURRENCY?>
+<?}else{?>
+                <span class="font_brown" id="fullprice_<?=$val['item']['id']?>"><?=NOTE_NO_PRICE?></span> 
+<?}?>
+
+                <div class="br_10"></div>
+            </div>
+            <a class="del_z" href="javascript:inCartDel('<?=$val['item']['id']?>')" id="del_btn" onclick="if (confirm('<?=NOTE_ATTANTION_DELETE?>')) location=this.href; return false;">
+            <span class="caption3 font_red"><?=NOTE_DELETE?></span><span class="r5 butt_del ">&nbsp;</span></a>
+        </div>
+<!--
+<div class="buy">
+<input name="incart" type="submit" value="<?=NOTE_IN_CART?>">
+</div>
+-->
+    </div>
+
+
+
+
+<?}}?>
+
+
+<hr>
+<div>
+	<div class="caption2 font_brown"><b><?=NOTE_CHECKOUT?></b></div>
+	<form method="post" action="/cart/ok" onsubmit="return Validator(this);">
+       <div style="padding:5px;">
+		   <span style="vertical-align: top;font-weight:900;color:#d91219;font-size:200%;">*&nbsp;</span>
+           <input class="r20" type="text" id="z_name" name="z_name" placeholder="<?=NOTE_YOUR_NAME?>" value="">
+       </div>
+       <div style="padding:5px;">
+           <span style="vertical-align: top;font-weight:900;color:#d91219;font-size:200%;">*&nbsp;</span>
+           <input class="r20" type="text" id="z_mail" name="z_mail" placeholder="<?=NOTE_EMAIL?>"value="">
+       </div>
+       <div style="padding:5px;">
+           <span style="vertical-align: top;font-weight:900;color:#d91219;font-size:200%;">*&nbsp;</span>
+           <input class="r20" type="text" id="z_phone" name="z_phone" placeholder="<?=NOTE_PHONE?>" value="">
+       </div>
+       <div style="padding:5px;">
+		   <span style="vertical-align: top;font-weight:900;color:#d91219;font-size:200%;">&nbsp;&nbsp;&nbsp;</span>
+           <input class="r20" type="text" name="z_company" placeholder="<?=NOTE_COMPANY?>" value="">
+       </div>
+       <div style="padding:5px;">
+           <input class="r20" name="z_button" type="submit" value="<?=NOTE_SEND_ORDER?>">
+       </div>
+
+
+<script>
+function Validator(f){
+
+if($("#z_name").val()==""){
+$("#z_name").focus();
+$("#z_name").attr("placeholder","<?=NOTE_FILL?> <?=NOTE_YOUR_NAME?>");
+return false;
+}
+else if($("#z_mail").val()==""){
+$("#z_mail").focus();
+$("#z_mail").attr("placeholder","<?=NOTE_FILL?> <?=NOTE_EMAIL?>");
+return false;
+}
+else if($("#z_phone").val()==""){
+$("#z_phone").focus();
+$("#z_phone").attr("placeholder","<?=NOTE_FILL?> <?=NOTE_PHONE?>");
+return false;
+}
+else{return true;}
+}
+</script>
+	</form>
+</div>
+<hr />
+
+<div class="br_20"></div>

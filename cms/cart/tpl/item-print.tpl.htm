@@ -1,0 +1,144 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<div class="cartmail" style="font-family:Arial;width: 640px; margin: 0 auto;">
+    <table cellpadding="0" cellspacing="0" style="border: 0; width: 640px;">
+        <tr>
+	    <td style="padding-bottom: 10px;">
+		<table cellpadding="0" cellspacing="0" style="border: 0; width: 100%;">
+		    <tr>
+			<td style="width: 212px;">
+			    <img src="/design/img/logo_main.png" width="240" height="117" alt="berloga.in.ua" style="border: 0; line-height: 0;"></a>
+			</td>
+			<td style="height: 44px; text-align: right; vertical-align: middle; padding: 20px;">
+			    <h2 style="font-size: 26px; margin: 0; font-weight: normal;">Заказ № <?=$item_data['id']?></h2>
+			    от <?=Time::formatMonth($item_data['date'])?>
+			</td>
+		    </tr>
+		</table>
+	    </td>
+	</tr>
+	<tr>
+	    <td style="width: 640px; vertical-align: top;">
+		<table cellpadding="0" cellspacing="0" style="border: 1px solid #cccccc; width: 100%;">
+		    <tr>
+			<td style="vertical-align: top;">
+			    <table cellpadding="0" cellspacing="0" style="border-bottom: 1px solid #cccccc; width: 100%;">
+				<tr>
+				    <td style="padding: 0 30px 0 27px; vertical-align: top;">
+				        <table cellpadding="0" cellspacing="0" style="line-height: 24px; width: 580px;">
+					    <tr>
+						<td style="font-size: 13px; padding-bottom: 5px; width: 460px; vertical-align: top; color: #999999;text-align:left;">Название товара</td>
+						<td style="font-size: 13px; padding-bottom: 5px; width: 70px; vertical-align: top; color: #999999;text-align:center;">Кол-во</td>
+						<td style="font-size: 13px; padding-bottom: 5px; width: 70px; vertical-align: top; color: #999999;text-align:center;">Цена</td>
+						<td style="font-size: 13px; padding-bottom: 5px; width: 110px; vertical-align: top; color: #999999;text-align:center;">Сумма</td>
+					    </tr>
+<!--**************************ZAKAZ*********************************************-->
+<?
+unset($citem_data);
+$citem=explode(";",substr($item_data["p1"],1,-1));
+if($citem){foreach($citem as $key=>$val2){
+$ph=explode("/",$val2);
+$prod_id=$ph[0];
+$prod_hm=$ph[1];
+$citem_data[$prod_id]['item']=ShopItem::itemData($prod_id);
+$citem_data[$prod_id]['hm']=$prod_hm;
+//var_dump($citem_data);
+}}
+$count_item=0;
+$stoit=0;
+?>
+
+
+<?$item_list2=$citem_data;
+if($item_list2!=NULL){?>
+<?foreach($item_list2 as $key=>$valz){?>
+					    <tr>
+						<td  style="border-top: 1px solid #f0f0f0; vertical-align: top;">
+                                                    <div style="margin-bottom:12px;"><?=trim($valz['item']['caption'])?></div>
+                                                    <div style="color: #494949;margin-bottom:7px;">
+                                                        <span style="font-size:11px;">Артикул:</span>
+<?
+$param_connectus=explode(";",substr($valz['item']["param_connect"],1,-1));
+
+$param_item_r=ParamItem::itemData($param_connectus[0]);
+$param_item_l=ParamItem::itemData($param_connectus[1]);
+?>
+                                                        <span style="" id="article">
+                                                            <?=$param_item_l['value1']!=''?$param_item_l['value1'].'-':''?><?=$valz['item']["article"]?><?=$param_item_r['value1']!=''?'-'.$param_item_r['value1']:''?>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td style="border-top: 1px solid #f0f0f0;vertical-align: middle;text-align:center;">
+<?$price_roznica = Price::getPrice($valz['item']['postavschik'],$valz['item']['price_roznica'],$valz['item']['price_diler'],$valz['item']['ddp']);
+$dp=explode(".",$price_roznica);?>
+                                                    <b><?=$valz["hm"]?></b>
+                                                </td>
+                                                <td style="border-top: 1px solid #f0f0f0;vertical-align: middle;text-align:center;"><?=Shop::FunnyPrice($price_roznica)?></td>
+                                                <td style="border-top: 1px solid #f0f0f0;vertical-align: middle;text-align:center;">
+<?
+$cena=Price::getPrice($valz['item']['postavschik'],$valz['item']['price_roznica'],$valz['item']['price_diler'],$valz['item']['ddp']);
+$ocena=$cena*$valz['hm'];
+$stoit=$stoit+$ocena;
+$count_item=$count_item+$valz['hm'];
+?>
+                                                    <div>
+<?if($price_roznica!=0){?>
+                                                        <span style="color:#494949;font-weight:bold" id="fullprice_<?=$valz['item']['id']?>"><?=Shop::FunnyPrice($price_roznica*$valz["hm"])?></span>
+<?}else{?>
+                                                        <span style="color:#494949;font-weight:bold" id="fullprice_<?=$valz['item']['id']?>">По запросу</span> 
+<?}?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+<?}}?>
+<!--**************************/ZAKAZ*********************************************-->
+                                        <tr>
+					    <td colspan="3" style="padding-top: 17px; padding-bottom: 17px;"></td>
+					</tr>
+					<tr>
+					    <td colspan="3" style="border-top: 1px solid #f0f0f0; padding-top: 22px; padding-bottom: 22px;">
+						<table cellpadding="0" cellspacing="0" style="border: 0; width: 100%;">
+						    <tr>
+							<td style="font-size: 18px; vertical-align: baseline;">К оплате</td>
+							<td style="font-size: 26px; text-align: right; vertical-align: baseline;">
+<?
+$oplata=$stoit;
+$sp=explode(".",$oplata);
+$sp[1]=substr($sp[1]."00",0,2);
+                                                            $oplata="".$sp[0].".<font style='font-size:65%'>".$sp[1]."</font>";?>
+							    <span id="moneypay"><?=$oplata?></span> <?=CURRENCY?>
+							</td>
+						    </tr>
+						</table>
+					    </td>
+					</tr>
+				    </table>
+				</td>
+			    </tr>
+			</table>
+		    </td>
+		</tr>
+		<tr>
+		<tr>
+		    <td style="padding: 10px 0 14px;">
+			<table cellpadding="0" cellspacing="0" style="border: 0; width: 100%;">
+			    <tr>
+				<td style="vertical-align: middle; border-right: 1px solid #cccccc; width: 290px; padding-left: 20px;">
+				    <span style="color: #666666; font-size: 12px;">Интернет-магазин berloga.in.ua<br />
+				        093 876 56 01<br />050 445 15 75<br /></span>
+                </td>
+				<td style="vertical-align: middle; text-align: right; padding-right: 20px;">
+				    <span style="color: #666666; font-size: 12px;">
+				        Имя : <?=$item_data['desc_short']?><br />
+				        Телефон :<?=$item_data['caption']?><br />
+                                        e-mail : <?=$item_data['seolink']?><br />
+				    </span>
+				</td>
+		            </tr>
+			</table>
+		    </td>
+		</tr>
+	    </table>
+	</td>
+    </tr>
+</table>
+</div>

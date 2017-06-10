@@ -1,0 +1,15 @@
+<div class="polosa"><a class="caption6" href="/"><?=NOTE_MAIN?></a><span class="desc4"> » <?=NOTE_SHOP?></span></div>
+<div class="wrap_catalog">
+<?if($tag1_list!=NULL){
+    foreach($tag1_list as $key=>$val){
+        $img1=SHOP_TAG_IMG_PATH."/".$val["id"]."/1.png";
+		$a_href = "/".$GLOBALS["mod"]."/".$val["seolink"];
+		$fancy =  "";
+		$caption = $val["caption"];
+		$description = $val["meta_d"];
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+		
+		include SITE_PATH."/site/inc/tag-list.tpl.htm";
+    }
+}?>
+</div>

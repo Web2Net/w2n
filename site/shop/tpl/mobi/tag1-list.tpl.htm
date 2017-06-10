@@ -1,0 +1,19 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<div class="polosa"><a href="/"><?=MANDATORY_BREAD_CRUMBS_FIRST?></a> » <?=NOTE_SHOP?></div>
+<div class="wrap_catalog">
+<?if($tag1_list!=NULL){?>
+<?foreach($tag1_list as $key=>$val){?>
+<?
+$img1=SHOP_TAG_IMG_PATH."/".$val["id"]."/1.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+    <div class="wrap_catalog_sell view_list">
+        <a class="catalog_a" href="/<?=$GLOBALS["mod"]?>/<?=$val["seolink"]?>" title="<?=NOTE_READ_MORE?>">
+           <img class="width_pct_40  r30" src="<?=$img1?>"  align="left" alt="<?=$val["caption"]?>" title="<?=$val["caption"]?>" />
+           <div class="caption3"><?=$val["caption"]?></div>
+           <div class="desc3"><?=$val["desc_short"]?></div>
+        </a>
+    </div>
+    <div class="both"></div>
+<?}}?>
+</div>

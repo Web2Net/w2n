@@ -1,0 +1,18 @@
+<div class="polosa"><a href="/"><?=MANDATORY_BREAD_CRUMBS_FIRST?></a> » <?=ART_NAME?></div>
+<div class="wrap_catalog">
+<?
+$item_list=$tag1_list;
+if($item_list!=NULL){?>
+<?foreach($item_list as $key=>$val){?>
+<?
+    $img1=ART_TAG_IMG_PATH."/".$val["id"]."/1.png";
+	$a_href = "/".$GLOBALS["mod"]."/".$val["seolink"];
+	$fancy =  '';
+	$caption = $val["caption"];
+	$description = $val["meta_d"];
+    if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+    <?include SITE_PATH."/site/inc/tag-list.tpl.htm";?>
+	
+<?}}?>
+</div>

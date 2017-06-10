@@ -1,0 +1,30 @@
+<?SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+
+<div class="corn polosa4">
+<a href="/"><?=NOTE_MAIN?></a> » <?=ART_NAME?>
+</div>
+<div class="wrap_catalog">
+<?
+$item_list=$tag1_list;
+if($item_list!=NULL){?>
+<?foreach($item_list as $key=>$val){?>
+<?
+$img1=ART_TAG_IMG_PATH."/".$val["id"]."/1m.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+<div class="wrap_catalog_sell view_grid" align="center"><div style="margin-bottom:12px;height:200px;overflow:hidden;">
+<a href="/<?=$GLOBALS["mod"]?>/<?=$val["seolink"]?>" title="<?=NOTE_READ_MORE?>">
+<img src="<?=$img1?>" width="240" style="margin-bottom:7px;" />
+</a>
+<a href="/<?=$GLOBALS["mod"]?>/<?=$val["seolink"]?>" title="<?=NOTE_READ_MORE?>">
+<?=$val["caption"]?></a>
+</div>
+</div>
+<?}}?>
+</div>
+
+<br><br><br><br>
+
+
+
+

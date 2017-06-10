@@ -1,0 +1,10 @@
+<div class="wrap_menu_main">
+    <div class="menu_main"><a class="about" href="/art/page/info/2-o-kompanii">О нас</a></div>
+    <div class="menu_main"><a class="delivery" href="/art/page/info/5-oplata_i_dostavka">Оплата и доставка</a></div>
+    <div class="menu_main"><a class="contacts" href="/art/page/info/3-contacts">Контакты</a></div>
+    <div class="menu_main"><a class="aktsii" href="/art/article/aktsii">Нежданчик</a></div>
+    <div class="menu_main"><a class="otchety" href="/art/article/pohodi">Походы</a></div>
+<?if($_SESSION['user_level'] == 9){?>
+    <div class="menu_main"><a class="show_login_popup" rel="form_login" href="#login" id="link_login">Вход</a></div>
+<?}?>
+</div>

@@ -1,0 +1,20 @@
+<div class="polosa"><a href="/"><?=MANDATORY_BREAD_CRUMBS_FIRST?></a> » <?=ART_NAME?></div>
+<div class="wrap_catalog">
+<?
+$item_list=$tag1_list;
+if($item_list!=NULL){?>
+<?foreach($item_list as $key=>$val){?>
+<?
+$img1=ART_TAG_IMG_PATH."/".$val["id"]."/1.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+    <div class="wrap_catalog_sell view_list">
+        <a href="/<?=$GLOBALS["mod"]?>/<?=$val["seolink"]?>" title="<?=MANDATORY_VIEW_MORE?>">
+            <img class="width_pct_40 r20" src="<?=$img1?>" align="left" alt="<?=$val["caption"]?>" title="<?=$val["caption"]?>" />
+            <div class="caption2"><?=$val["caption"]?></div>
+            <div class="desc2"><?=$val["desc_short"]?></div>
+        </a>
+    </div>
+<div class="both"></div>
+<?}}?>
+</div>

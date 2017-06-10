@@ -1,0 +1,16 @@
+<div class="polosa"><a href="/gallery/otraslevye-tegi/all"><?=GALLERY_SITE_MOD_NAME?></a></div>
+<div class="wrap_catalog">
+<?if($gallery_top!=NULL){
+    foreach($gallery_top as $key=>$val){
+        $img1=GALLERY_ITEM_IMG_PATH."/".$val["id"]."/1m.png";
+		$a_href = "/image/gallery/item/".$val['id']."/1.png";
+		$fancy =  'class="fbox" rel="fbox-gallery-main"';
+		$caption = "";
+		$description = $val["meta_d"];
+		$special_style = "height:240px;";
+        if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+        
+		include SITE_PATH."/site/inc/tag-list.tpl.htm";
+    }
+}?>
+</div>

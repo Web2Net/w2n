@@ -1,0 +1,52 @@
+<?
+$sp=explode(".",$stoit);
+$sp[1]=substr($sp[1]."00",0,2);
+$stoit ="<strong>".$sp[0].".<font style='font-size:85%'>".$sp[1]."</font></strong>";
+$ost = MIN_SUMMA_DOSTAVKI-$sp[0];
+if($sp[0] >= MIN_SUMMA_DOSTAVKI){
+  $dostav = NOTE_BEZPLATNAYA_DOSTAVKA;
+  $ostalos = "";
+}else{
+  $dostav = "";
+  $ostalos = "До бесплатной доставки осталось ".$ost." ".CURRENCY;
+}
+
+$ver = "3"; // Имя папки с версией, где лежат изо корзины
+
+if($sp[0] == 0){$cart_img = "cart_0.png";}
+elseif($sp[0] <= MIN_SUMMA_DOSTAVKI/100*30){$cart_img = "cart_30.png";}
+elseif($sp[0] <= MIN_SUMMA_DOSTAVKI/100*60){$cart_img = "cart_60.png";}
+elseif($sp[0] <= MIN_SUMMA_DOSTAVKI/100*90){$cart_img = "cart_90.png";}
+elseif($sp[0] >= MIN_SUMMA_DOSTAVKI){$cart_img = "cart_100.png";}
+else{$cart_img = "cart_99.png";}
+?>
+
+<?
+if($count_item==0){?>
+<div>
+    <a class="cart" href="#/cart/buy" title="<?=NOTE_CART_IS_EMPTY?>"><?//=NOTE_CART?></a>
+</div>
+<?}else{?>
+<div style="position:relative;">
+    <a class="cart" href="/cart/buy" title="<?=$count_item?> <?=NOTE_ITEMS_NA_SYMMY?> <?=strip_tags($stoit)?> <?=CURRENCY?>">
+       <div class="cart_count r30"><?=$count_item?></div>
+    </a>
+</div>
+<?//if($count_shop_item>0){;}?>
+<div style="display:none;">
+<input id="shoppingcount" type="hidden" value="<?=$count_shop_item?>">
+<input id="cartcount" type="hidden" value="<?=$count_item?>">
+<input id="paymoney" type="hidden" value="<?=$stoit?>">
+<script>
+var pm=$("#paymoney").val();
+var cc=$("#cartcount").val();
+$("#moneypay").html(pm);
+$("#countcart").html(cc);
+</script>
+<?if($_SESSION["shop_item"]!=NULL){foreach($_SESSION["shop_item"] as $key=>$val){?>
+<input id="vhm_<?=$key?>" type="hidden" value="<?=$val["hm"]?>">
+<?}}?>
+</div>
+
+<?//var_dump($shop_item['id'])?>
+<?}?>

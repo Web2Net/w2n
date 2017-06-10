@@ -1,0 +1,193 @@
+<div class="cartmail" style="font-family:Arial;width: 640px; margin: 0 auto;">
+	<table cellpadding="0" cellspacing="0" style="border: 0; width: 640px;">
+		<tr>
+			<td style="padding-bottom: 0px;">
+			<table cellpadding="0" cellspacing="0" style="border: 0; width: 100%;">
+				<tr>
+					<td style="width: 212px;">
+					<a href="http://berloga.in.ua/" target="_blank" style="text-decoration: none;">
+					<img src="http://berloga.in.ua/design/img/logo_main.png" width="240" height="117" alt="berloga.in.ua" style="border: 0; line-height: 0;"></a>
+					</td>
+					<td style=" height: 44px; text-align: center; vertical-align: middle;">
+					<span style="font-size: 15px; color: #999999; line-height: 18px;">Поступил новый заказ № <?=$GLOBALS['z_id']?></span>
+					</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 640px; vertical-align: top;">
+			<table cellpadding="0" cellspacing="0" style="border-bottom: 1px solid #cccccc; border-left: 1px solid #cccccc; border-right: 1px solid #cccccc; border-top: 3px solid #627c5f; width: 100%;">
+				<tr>
+					<td style="padding: 25px 30px 32px 27px; vertical-align: top; border-bottom: 1px solid #cccccc;">
+					<h1 style="font-size: 28px; line-height: 32px; padding-bottom: 15px; font-weight: normal; margin: 0;">
+					Поступил новый заказ на имя <br />
+					<?=$_POST['z_name']?><br />
+					тел. <?=$_POST['z_phone']?></h1>
+					<p style="font-size: 15px; padding-bottom: 3px; line-height: 24px; margin: 0;">
+					E-mail: <?=$_POST['z_mail']?><br />
+					Компания: <?=$_POST['z_company']?></p>
+					</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top;">
+					<table cellpadding="0" cellspacing="0" style="border-bottom: 1px solid #cccccc; width: 100%;">
+						<tr>
+							<td style="padding: 0 30px 0 27px; vertical-align: top;">
+							<table cellpadding="0" cellspacing="0" style="border: 0; line-height: 24px; width: 580px;">
+								<tr>
+									<td style="vertical-align: baseline;">
+									<h2 style="font-size: 26px; margin: 0; font-weight: normal; padding: 20px 0 10px 0;">
+									Заказ № <?=$GLOBALS['z_id']?></h2>
+									</td>
+									<td colspan="2" style="vertical-align: baseline; text-align: right; font-size: 14px;">
+									<?=Time::formatMonth(date("Y-M-d H:i:s"))?> <?=date("H:i")?></td>
+								</tr>
+								<tr>
+									<td style="font-size: 13px; padding-bottom: 5px; width: 460px; vertical-align: top; color: #999999;">
+									Название товара</td>
+									<td style="font-size: 13px; padding-bottom: 5px; width: 70px; vertical-align: top; color: #999999;" align="center">
+									Кол-во</td>
+									<td style="font-size: 13px; padding-bottom: 5px; width: 110px; text-align: right; vertical-align: top; color: #999999;">
+									Сумма</td>
+								</tr>
+								<tr>
+									<td colspan="3" style="border-top: 1px solid #f0f0f0; vertical-align: top;">
+									
+									
+									
+
+<?$item_list=$_SESSION['shop_item'];
+if($item_list!=NULL){?>
+<?foreach($item_list as $key=>$val){?>
+<table style="border-bottom: 1px solid #f0f0f0;width: 100%;margin:7px 0px 7px 0px;" cellpadding="0" cellspacing="0">
+<tr id="cartItem_<?=$val['item']['id']?>" style="font-size:13px;">
+<td width="165" style="padding-bottom:7px">
+<?
+$img1="/image/shop/item/".$val['item']["id"]."/1m.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+?>
+<img src="http://berloga.in.ua<?=$img1?>" style="margin-right:7px;" width="150" align="left" />
+</td><td>
+<div style="margin-bottom:7px;line-height:15px">
+<a style="line-height:15px" href="http://berloga.in.ua/shop/cart/look/<?=$val['item']["id"]?>-<?=$val['item']["seolink"]?>" target="_blank" title="Подробнее">
+<?=trim($val['item']['caption'])?>
+</a></div>
+<div style="color: #494949;margin-bottom:7px;">
+Артикул:
+<?
+$param_connectus=explode(";",substr($val['item']["param_connect"],1,-1));
+
+$param_item_r=Shop::paramItemData($param_connectus[0]);
+$param_item_l=Shop::paramItemData($param_connectus[1]);
+?>
+<span style="" id="article"><?=$param_item_l['value1']!=''?$param_item_l['value1'].'-':''?><?=$val['item']["article"]?><?=$param_item_r['value1']!=''?'-'.$param_item_r['value1']:''?></span>
+</div>
+<!--
+<div style="color: #494949;margin-bottom:7px;">
+Упаковка:
+<span style=""><?//=$val['item']["package"]?></span>
+</div>
+-->
+</td><td width="70" align="center">
+<?=$val["hm"]?>
+</td>
+
+<td align="rigt" width="100">
+<?$price_roznica = Price::getPrice($val['item']['postavschik'],$val['item']['price_roznica'],$val['item']['price_diler'],$val['item']['ddp']);
+$dp=explode(".",$price_roznica);
+
+$cena=Price::getPrice($val['item']['postavschik'],$val['item']['price_roznica'],$val['item']['price_diler'],$val['item']['ddp']);
+$ocena=$cena*$val['hm'];
+$stoit=$stoit+$ocena;
+$count_item=$count_item+$val['hm'];
+
+?>
+
+
+<div align="right">
+<?if($price_roznica!=0){
+$itemstoit=$price_roznica*$val["hm"];
+$sp=explode(".",$itemstoit);
+$sp[1]=substr($sp[1]."00",0,2);
+$itemstoit="".$sp[0].".<font style='font-size:85%'>".$sp[1]."</font>";?>
+<span style="color:#494949;font-weight:bold;" class="cartprice" id="fullprice_<?=$val['item']['id']?>"><?=$itemstoit?></span> <?=CURRENCY?>
+<?}else{?>
+<span style="color:#494949;font-weight:bold;" id="fullprice_<?=$val['item']['id']?>">По запросу</span> 
+<?}?>
+</div>
+
+</td>
+</tr>
+</table>
+
+<?}}?>
+
+									
+									
+									
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" style="padding-top: 17px; padding-bottom: 17px;">
+									<table cellpadding="0" cellspacing="0" style="border: 0; width: 100%;">
+										<tr>
+											<td style="font-size: 15px; vertical-align: top; width: 140px;">
+											Покупатель</td>
+											<td style="font-size: 15px; vertical-align: top;">
+											<?=$_POST['z_name']?>, <?=$_POST['z_phone']?></td>
+										</tr>
+									</table>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" style="border-top: 1px solid #f0f0f0; padding-top: 22px; padding-bottom: 22px;">
+									<table cellpadding="0" cellspacing="0" style="border: 0; width: 100%;">
+										<tr>
+											<td style="font-size: 18px; vertical-align: baseline;">
+											К оплате</td>
+											<td style="font-size: 26px; text-align: right; vertical-align: baseline;">
+											<?$oplata=$stoit;
+                                              $sp=explode(".",$oplata);
+                                              $sp[1]=substr($sp[1]."00",0,2);
+                                              $oplata="".$sp[0].".<font style='font-size:85%'>".$sp[1]."</font>";?>
+											<span id="moneypay"><?=$oplata?></span> <?=CURRENCY?></td>
+										</tr>
+									</table>
+									</td>
+								</tr>
+							</table>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding: 23px 30px 23px 23px; vertical-align: top; border-bottom: 3px solid #627c5f;">
+					<p style="margin: 0; font-size: 15px; line-height: 24px;">Перейти в <a href="http://berloga.in.ua/cms/?mod=cart&type=tag&com=list" target="_blank">Управление Заказами</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding: 10px 0 14px;">
+					<table cellpadding="0" cellspacing="0" style="border: 0; width: 100%;">
+						<tr>
+							<td style="vertical-align: middle; border-right: 1px solid #cccccc; width: 290px; padding-left: 20px;">
+							<span style="color: #666666; font-size: 12px;">Интернет-магазин 
+							berloga.in.ua<br>
+							ИНДЕКС,
+							<a href="http://berloga.in.ua/art/page/info/3-kontakty" style="color: #3e77aa;" target="_blank">
+							АДРЕСС</a> </span>
+							</td>
+							<td style="vertical-align: middle; text-align: center;">
+							<span style="color: #666666; font-size: 12px;">
+							<strong>ТЕЛЕФОН</strong> </span></td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+</div>
+<br /><br />

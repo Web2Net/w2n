@@ -1,0 +1,22 @@
+<!-- ******************************************************************** -->
+<?if(isset($_GET['display']) && $_GET['display'] =="mobi"){$_SESSION['display'] = $_GET['display'];}?>
+<?if(isset($_GET['bro_width']) && $_GET['bro_width'] !==""){$_SESSION['bro_width'] = $_GET['bro_width'];}?>
+<?if(isset($_GET['bro_height']) && $_GET['bro_height'] !==""){$_SESSION['bro_height'] = $_GET['bro_height'];}?>
+
+<?//if(!isset($_SESSION['bro_width']) && !isset($_SESSION['bro_height'])){?>  
+
+<script type="text/javascript" >
+//    $(document).ready(function(){ 
+//        document.location.reload (true);
+//    });
+</script>
+
+<?
+//var_dump($_SESSION);
+//}
+if($_SESSION['bro_width'] < BRO_WIDTH){
+    include "/site/tpl/mobi/index.htm";	
+}else{
+    include "/site/tpl/index.htm";	
+}
+?>

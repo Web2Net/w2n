@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?=CHARSET?>" />
+<title><?=$meta["title"]?></title>
+
+<meta name='yandex-verification' content='44233cd67d39a9ed' />
+<meta name="yandex-verification" content="6d8f1c7420d0b43f" />
+
+<meta name="description" content="<?=$meta["description"]?>" />
+<meta name="keywords" content="<?=$meta["keywords"]?>" />
+<!-- <link media="all" href="/design/css/site-main.css" type="text/css" rel="stylesheet" /> -->
+<link media="all" href="/design/css/mobi/mobi-style.css" type="text/css" rel="stylesheet" />
+
+ <!-- search_live -->
+<link rel="stylesheet" href="/site/search/design/search_live/jquery-ui.css" />
+<script type="text/javascript" src="/site/search/design/search_live/jquery-ui.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    var availableTags = [
+<?
+$key_words = Search::getKeyWordsForLiveSearch();
+//SYS::varDump($key_words,__FILE__,__LINE__,"Live_Search");
+$count_key_words = count($key_words);
+if($key_words != NULL)
+{
+    foreach($key_words as $key=>$word)
+    {
+	echo '"'.$word['caption'].'",';	
+    }	
+}
+
+?>
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  });
+</script>
+<!-- /search_live -->
+
+
+<!-- img_fancybox -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="/lib/fancybox/jquery.easing-1.3.pack.js"></script>
+<script type="text/javascript" src="/lib/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<link rel="stylesheet" href="/lib/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("a.fbox").fancybox();
+    });
+</script>
+
+<script type='text/javascript'>  
+$(window).resize(function() {
+if($(window).width()>'<?=BRO_WIDTH_MOBI_MAX?>'){
+$.get('' + window.location.href + '?display=full');
+window.location.reload();
+}
+
+});
+
+// вызовем событие resize
+$(window).resize();	
+
+	setInterval(function() {
+$('#info').html($(window).width()+' X '+$(window).height());
+}, 500);
+
+	</script>
+<!-- /img_fancybox -->
+<!-- Left menu -->
+        <link rel="stylesheet" href="/design/css/mobi/normalize.css">
+        <link rel="stylesheet" href="/design/css/mobi/demo.css">
+        <link rel="stylesheet" href="/design/css/mobi/pushy.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!-- /Left menu -->
+
+
+       
+
+
+
+<script type="text/javascript" src="/design/js/debug.js"></script>
+
+<!-- mod_message -->
+<link rel="stylesheet" href="/site/message/design/style.css">
+<!-- /mod_message -->
+<!-- mod_user -->
+<link rel="stylesheet" href="/site/user/design/style.css">
+<script src="/site/user/design/login.js"></script>
+<!-- /mod_user -->
+
+<style>
+/* ************ header ***************** */
+#wrap_bar_top{
+    width:100%; min-width:1000px;
+    white-space: nowrap;
+    height:150px;
+    background-color:#525731;
+    position:fixed;
+    z-index:999;
+}
+.inline{
+	display: inline-block;
+}
+.top_bar_menu{
+    background: url('/design/img/mobi/ico_pop_up_menu.png') no-repeat center center;
+    width:150px; height:150px;
+    left:150px;	
+}
+.top_bar_menu a{
+    display: block;
+    height: 100%;	
+}
+
+.top_bar_logo{
+    background: url('/design/img/mobi/ico_logo_text.png') no-repeat center center;
+    width:600px; min-width:300px; height:150px;	
+}
+.top_bar_logo a{
+    display: block;
+    height: 100%;	
+}
+
+.top_bar_search{
+    background: url('/design/img/mobi/ico_search.png') no-repeat center center;
+    width:150px; height:150px;	
+}
+.top_bar_search a{
+    display: block;
+    height: 100%;	
+}
+
+.top_bar_cart{
+    background: url('/design/img/mobi/ico_cart.png') no-repeat center center;
+    width:150px; height:150px;	
+}
+.top_bar_cart a{
+    display: block;
+    height: 100%;	
+}
+
+.top_bar_logo_hidden{
+	display:none;
+	position:relative;
+}
+/* ************ /header ***************** */
+</style>
+<script>
+	$(document).ready(function() {
+		function showSearchInput(){
+		    $('.top_bar_logo').hide();
+		    $('.top_bar_logo_hidden').show();	
+		}
+		
+		$("div.top_bar_search").on("click", showSearchInput);
+	});
+</script>
+
+</head>
+
+<body>
+<div id="info" style='position:fixed;z-index:1000000;top:0;left:0;background:white;color:black;padding:3px;'>blablabla</div>
+
+<header class="site-header push">
+        <div id="wrap_bar_top">
+			<div class="inline top_bar_menu  menu-btn"><a href="#shop_menu"></a></div>
+			<div class="inline top_bar_logo"><a href="/"></a></div>
+			    <div class="inline top_bar_logo_hidden"><input type="text" /></div>
+			<div class="inline top_bar_search"></div>
+			<div class="inline top_bar_cart"><a href="#cart"></a></div>
+        </div>
+    </header>
+
+
+<div>
+<!--
+	<header class="site-header push">
+        <div id="wrap_bar_top">
+            <div class="ico_pop_up_menu menu-btn"><a href="#shop_menu"><img src="/design/img/mobi/ico_pop_up_menu.png" class="ico_img" title="Каталог товаров" alt="Каталог товаров"></a></div>
+            <div class="ico_cart"><a href="#cart"><img src="/design/img/mobi/ico_cart.png" class="ico_img" title="Корзина" alt="Корзина"></a></div>
+            <div class="ico_search"><a id="search_open_close" href="#search"><img src="/design/img/mobi/ico_search.png" class="ico_img" title="Поиск" alt="Поиск"></a></div>
+            <div id="search_wrap"><input id="search_input"  type="text" /></div>
+            <div class="ico_logo"><a href="/">BERLOGA.IN.UA</a></div>  
+        </div>
+    </header>
+-->
+
+        <!-- Pushy Menu -->
+        <nav class="pushy pushy-left">
+	    <ul>
+                <li class="pushy-submenu">
+                    <a href="#shop_menu"><span style="font-size:48px;">Каталог товаров</span></a>
+                    <ul>
+                        <li class="pushy-link"><a href="/shop/gamak">Гамаки</a></li>
+                        <li class="pushy-link"><a href="/shop/komplekty">Комплекты</a></li>
+                        <li class="pushy-link"><a href="/shop/zaschita-ot-dozhdya">Защита от дождя</a></li>
+                        <li class="pushy-link"><a href="/shop/nochleg">Ночлег</a></li>
+                        <li class="pushy-link"><a href="/shop/odezhda">Одежда</a></li>
+                        <li class="pushy-link"><a href="/shop/podsumki-chekhly">Подсумки, чехлы</a></li>
+                        <li class="pushy-link"><a href="/shop/aksessuary">Аксессуары</a></li>
+                        <li class="pushy-link"><a href="/shop/uslugi">Услуги</a></li>
+                        
+                    </ul>
+                </li>
+                <hr />
+                <li class="pushy-link"><a href="/art/article/aktsii">Нежданчик</a></li>
+                <li class="pushy-link"><a href="#">Бумеранг</a></li>
+                <li class="pushy-link"><a href="/art/article/pohodi">Походы</a></li>
+                <hr /> 
+                <li class="pushy-link"><a href="/art/page/info/2-o-kompanii">О нас</a></li>
+                <li class="pushy-link"><a href="/art/page/info/5-oplata_i_dostavka">Оплата и доставка</a></li>
+                <li class="pushy-link"><a href="/art/page/info/3-contacts">Контакты</a></li>
+                
+                
+            </ul>
+        </nav>
+<!-- Site Overlay -->
+        <div class="site-overlay"></div>
+
+
+    
+<?//=$shop_menu?>
+    
+        <div id="page_content" style="padding-top:175px;vertical-align:top;"> 
+            <div style="margin:0px;padding-left:10px;">
+	            <?=$c_cont?>
+           </div>
+        </div>
+
+</div>
+<!-- Pushy JS -->
+        <script src="/design/js/mobi/pushy.min.js"></script>
+        
+<!--    <footer class="site-footer push">This is a footer</footer>  -->   
+</body>
+
+</html>

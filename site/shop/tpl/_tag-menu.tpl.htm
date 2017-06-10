@@ -1,0 +1,48 @@
+<div class="shop_menu">
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.shop_menu > li').hover(
+        function(){
+            $('.shop_menu').find('div').hide();
+            $(this).find('div').show();
+            $(this).addClass('active');
+            $(this).find('a').first().addClass('active');
+        },
+        function(){
+            $('.shop_menu').find('div').hide();
+            $(this).removeClass('active');
+            $(this).find('a').first().removeClass('active');
+        }
+    )
+
+});
+</script>
+<?if($tag1_list!=NULL){?>
+
+<?foreach($tag1_list as $key=>$val){?>
+
+<li class="polosa3" style="_background-image:url('/design/img/logo_small.png');background-repeat:no-repeat;background-position:left center;">
+    <a id="shop_level1_<?=$val['id']?>" href="/shop/<?=$val['seolink']?>">
+        <span class="inl"></span><span class="inl-block"<?=$GLOBALS['tag1']==$val["seolink"]?' style="font-weight:bold;"':''?>>
+            <img src="/design/img/logo_small.png" style="width:20px;padding:5px 5px 0px 0px;" /><?=$val["caption"]?>
+        </span></a>
+
+<div class="shadow shop_wrap_submenu" id="shop_submenu_<?=$val['id']?>" style="background: url('/image/shop/tag/<?=$val['id']?>/1.png') no-repeat scroll right bottom #F4F4F4;text-align:left;">
+<div style="color: #684302;font-size:26px;font-weight:bold;margin-bottom:12px;"><?=$val["caption"]?></div>
+<?
+$connect_tag=explode(";",substr($val['connect'], 1, -1));$i2=1;
+if($connect_tag[0]!=''){foreach($connect_tag as $key2=>$child_id){
+$val2=$tag2_list[$child_id];
+?>
+
+<a style="line-height:30px;<?=$GLOBALS['tag2']==$val2["seolink"]?'font-weight:bold;':''?>" href="/shop/<?=$val["seolink"]?>/<?=$val2["seolink"]?>"><?=$val2["caption"]?></a><br />
+
+
+<?}}?>
+</div>
+</li>
+<?}?>
+
+<?}?>
+</div>

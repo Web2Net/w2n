@@ -1,0 +1,223 @@
+<?//SYS::varDump(PAGE_URL,__FILE__,__LINE__,'PAGE_URL');?>
+<?
+if(strlen($item_data['caption']) > 100){
+    $string = strip_tags($item_data['caption']);
+    $string = substr($string, 0, 100);
+    $string = rtrim($string, "!,.-:;+");
+    $string = substr($string, 0, strrpos($string, ' '));
+    $string = $string." ...";
+}
+else{
+    $string = $item_data['caption'];
+}
+?>
+
+
+<div class="corn" align="left">
+<a href="../<?=$all_tag_list[str_replace(";","",$item_data['connect'])]['seolink']?>"><?=stripslashes($all_tag_list[str_replace(";","",$item_data['connect'])]['caption'])?></a> » <?=$string?>
+</div>
+
+<style>
+.desc li{margin-left:20px;margin-bottom:7px;}
+.art {line-height:18px;text-align:justify;padding:10px;}
+</style>
+<div class="br_20"></div>
+<div style="padding-top:7px;">
+
+<table cellspacing="0" cellpadding="0" width="100%"><tr><td width="550" valign="top">
+
+
+<?
+$img1=ART_ITEM_IMG_PATH."/".$item_data['id']."/1o.png";
+$img2=ART_ITEM_IMG_PATH."/".$item_data['id']."/2s.png";
+$img3=ART_ITEM_IMG_PATH."/".$item_data['id']."/3s.png";
+$img4=ART_ITEM_IMG_PATH."/".$item_data['id']."/4s.png";
+$img5=ART_ITEM_IMG_PATH."/".$item_data['id']."/5s.png";
+
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img2))$img2="";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img3))$img3="";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img4))$img4="";
+?>
+<table style="float:left;width:550px;margin-right:12px;" cellpadding="0" cellspacing="0"><tr><td align="center">
+<div class="image">
+<img id="prodimg1" alt="" src="<?=$img1?>" width="250" height="" border="1" />
+</div>
+
+<div class="image" style="margin:7px 0px;width:356px;" align="center">
+<?if($img2!=""){?><a href="<?=str_replace("s.png",".png",$img2)?>" title="<?=W_CLIK_BIG?>" rel="lightbox[yoo-gallery-<?=$item_data['id']?>]"><img id="prodimg2" src="<?=$img2?>" width="100" height="65" border="1" style="margin-right:7px;" /></a><?}?>
+<?if($img3!=""){?><a href="<?=str_replace("s.png",".png",$img3)?>" title="<?=W_CLIK_BIG?>" rel="lightbox[yoo-gallery-<?=$item_data['id']?>]"><img id="prodimg3" src="<?=$img3?>" width="100" height="65" border="1" style="margin-right:7px;" /></a><?}?>
+<?if($img4!=""){?><a href="<?=str_replace("s.png",".png",$img4)?>" title="<?=W_CLIK_BIG?>" rel="lightbox[yoo-gallery-<?=$item_data['id']?>]"><img id="prodimg4" src="<?=$img4?>" width="100" height="65" border="1" style="margin-right:7px;" /></a><?}?>
+</div>
+
+</td></tr></table>
+
+<?if($item_data['companion_connect']!=""){?>
+<div align="left">
+
+<?if($item_data['companion_connect']!=""){
+$companion_con=explode(";",substr($item_data['companion_connect'],1,-1));}
+if($companion_con){foreach($companion_con as $key=>$valg){?>
+<?
+$img1=ART_ITEM_IMG_PATH."/".$valg."/1m.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+$companion_data=Art::itemDataId($valg);
+$companion_list[$companion_data['id']]=$companion_data;
+}}?>
+
+
+<div class="wrap_catalog" style="min-height:300px;display:table;width:550px;">
+
+<script type="text/javascript">// <![CDATA[
+$(function() {
+     $(".anyClass").jCarouselLite({
+         btnNext: ".next",
+         btnPrev: ".prev",
+         auto: 5000,    // время задержки прокрутки в милисекундах
+         speed: 1000   // скорость вращения (чем ниже число тем выше скорость и наоборот)  
+     }); });
+// ]]></script>
+
+<style>
+.next {
+display:block;
+position: absolute;
+z-index:3;
+width: 35px;
+height: 40px;
+cursor: pointer;
+background: transparent url(/design/img/prev-horizontal-pos.png) no-repeat -25px 8px;
+background-color:white;
+
+-webkit-border-top-right-radius: 5px;
+-moz-border-radius-topright: 5px;
+border-top-right-radius: 5px;
+
+-webkit-border-bottom-right-radius: 5px;
+-moz-border-radius-bottomright: 5px;
+border-bottom-right-radius: 5px;
+
+}
+.next:hover {
+background: transparent url(/design/img/prev-horizontal-pos.png) no-repeat 5px 8px;
+background-color:white;
+}
+.prev {
+display:block;
+z-index:3;
+position: absolute;
+width: 35px;
+height: 40px;
+cursor: pointer;
+background: transparent url(/design/img/next-horizontal-pos.png) no-repeat -27px 8px;
+background-color:white;
+margin-left:-40px;
+
+-webkit-border-top-left-radius: 5px;
+-moz-border-radius-topleft: 5px;
+border-top-left-radius: 5px;
+
+-webkit-border-bottom-left-radius: 5px;
+-moz-border-radius-bottomleft: 5px;
+border-bottom-left-radius: 5px;
+
+}
+.prev:hover {
+background: transparent url(/design/img/next-horizontal-pos.png) no-repeat 5px 8px;
+background-color:white;
+}
+</style>
+<div class="br_20"></div>
+<div class="br_20"></div>
+<table cellspacing="0" cellpadding="0" width="550"><tr>
+
+<td width="1" valign="top" style="padding-top:27px;">
+<span class="next"></span>
+</td><td style="padding-left:34px;">
+
+<div class="anyClass">
+<ul>
+<?
+$item_list=$companion_list;
+if($item_list!=NULL){?>
+<?foreach($item_list as $key=>$val){?>
+<?
+$img1=ART_ITEM_IMG_PATH."/".$val["id"]."/1s.png";
+if(!file_exists(getenv("DOCUMENT_ROOT").$img1))$img1="/design/img/noimage_740x480.png";
+$tag1_list=Art::tagListShowLevel(1);
+$tag2_list=Art::tagListShowLevel(2);
+
+?>
+
+<style>
+.clarity {
+opacity:0.5;
+filter:alpha(opacity=50);   
+}
+
+.clarity:hover {
+-moz-transition: all 0.4s; 
+-webkit-transition: all 0.4s;  
+-ms-transition: all 0.4s;  
+-o-transition: all 0.4s;  
+transition: all 0.4s; 
+opacity:1;
+filter:alpha(opacity=100);
+}
+</style>	
+
+<li>
+<div align="center" style="width:95px;float:left;overflow:hidden;">
+<a style="width:150px;white-space:pre-wrap;" href="/art/<?=$tag1_list[str_replace(";","",$tag2_list[str_replace(";","",$val['connect'])]['connect'])]['seolink']?>/<?=$tag2_list[str_replace(";","",$val['connect'])]['seolink']?>/<?=$val["id"]?>-<?=$val["seolink"]?>" title="<?=W_MORE?>">
+<img src="<?=$img1?>" width="90" style="margin-bottom:7px;" class="clarity" /><!--<br><?=$val["caption"]?>--></a><br><br>
+</div>
+
+</li>
+<?}}?>
+</ul>
+</div>
+
+</td><td width="1" valign="top" style="padding-top:27px;">
+<span class="prev"></span>
+</td>
+
+</tr></table>
+
+</div>
+
+
+<?}?>
+
+</td><td width="450" valign="top" style="">
+
+<div align="left" style="padding:0px 10px;margin-bottom:25px;margin-top:-15px;">
+<h1 style="font-size: 30px;font-weight:normal;color: #000;margin:15px 0px;">
+<?=$item_data['caption']?>
+</h1>
+</div>
+<div class="desc" style="color: black;margin-bottom:25px;height:500px;overflow:auto;">
+<div style="color: black;margin-bottom:15px;text-align:left;padding:0px 10px;font-family:CONSTANTIA;">
+<?=$item_data["desc_full"]?>
+</div></div>
+
+
+
+
+
+
+</td></tr></table>	
+</div>
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+<br><br>
+

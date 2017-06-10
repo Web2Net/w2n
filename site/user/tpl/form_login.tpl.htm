@@ -1,0 +1,119 @@
+<div class="login_popup form_login">
+	<a class="login_close" href="#">Close</a>
+	<h1>Ваша личная берлога</h1>
+    <div class="br_10"></div>
+    <table>
+		<tr>
+			<td style="width:70%; vertical-align:top;border-right:1px solid #ccc;padding:5px;">
+                <div style="float:left">
+	                
+	                <h4>Ввести свои данные:</h4>
+	                <form method="post" action="/user/login" id="login_form">
+		                <input type="text" name="login_log" id="login_log" placeholder="Логин либо e-mail" />
+                        <input type="password" name="login_pass" id="login_pass" placeholder="Пароль" />
+                        <div class="both br_10"></div>
+                        <div align="center">
+		                    <input type="submit" value="Войти" name="login_enter"  class="btns" />
+		                </div>
+                    </form>
+                </div>
+            </td>
+            <td style="width:30%; vertical-align:top;">
+				<h4>Войти как пользователь:</h4>
+				<div class="br_10"></div>
+<script src="//ulogin.ru/js/ulogin.js"></script>
+<div id="uLogin" data-ulogin="display=panel;fields=first_name,last_name;optional=email,nickname,bdate,sex,phone,photo,photo_big,city,country;providers=google,vkontakte,facebook;redirect_uri=http%3A%2F%2Fmoy-gorod.in.ua"></div>
+ <?
+                    $s = file_get_contents('http://ulogin.ru/token.php?token=' . $_POST['token'] . '&host=' . $_SERVER['HTTP_HOST']);
+                    $user = json_decode($s, true);
+                    //$user['network'] - соц. сеть, через которую авторизовался пользователь
+                    //$user['identity'] - уникальная строка определяющая конкретного пользователя соц. сети
+                    //$user['first_name'] - имя пользователя
+                    //$user['last_name'] - фамилия пользователя
+if($s == TRUE){                
+$_SESSION['user'] = $user;                
+}
+SYS::varDump($_SESSION['user'],__FILE__,__LINE__,"USER_SOC"); 
+SYS::varDump($_POST,__FILE__,__LINE__,"POST");             
+?>                
+            </td>
+        </tr>
+    </table>
+    
+    <div class="br_10"></div>
+    
+    <table>
+		<tr>
+			<td style="width:50%; vertical-align:top;text-align:center;">
+                 <h2>Регистрация</h2>  
+            </td>
+            <td style="width:50%; vertical-align:top;text-align:center;">
+				<h2>Забыли пароль?</h2>
+            </td>
+        </tr>
+    </table>
+
+
+
+<script>
+$(function () {
+	//script for login_popups
+	$('a#link_login').click(function () {
+		$('div.form_login').fadeIn(500);
+		$("body").append("<div id='overlay'></div>");
+		$('#overlay').show().css({'filter' : 'alpha(opacity=80)'});
+		return false;				
+	});	
+	$('a.login_close').click(function () {
+		$(this).parent().fadeOut(100);
+		$('#overlay').remove('#overlay');
+		return false;
+	});
+
+/*
+$("#login_form").submit(function(event) {
+
+// отключение стандартной отправки формы 
+  event.preventDefault();
+if(Validator()==1){
+// собираем данные с элементов страницы: 
+  var $form = $( this ),
+      login_log = $form.find( 'input[name="login_log"]' ).val(),
+      login_pass = $form.find( 'input[name="login_pass"]' ).val(),
+
+          
+      url = $form.attr( 'action' )+'?display=ajax';
+  
+// отправляем данные методом POST 
+  var posting = $.post( url, { fl: login_log, fp: login_pass} );
+
+// результат помещаем в div 
+  posting.done(function( data ) {
+    $( "#login_form" ).html(data);
+  });
+}
+});
+*/
+});
+function Validator(){
+var validate = 0;
+
+if($("#login_log").val()==""){
+$("#login_log").focus();
+$("#login_log").attr("placeholder","<?=NOTE_FILL?> <?=NOTE_YOUR_NAME?>");
+validate = 0;
+}
+else if($("#login_pass").val().length < 6){
+//alert($("#login_pass").val().length);
+$("#login_pass").focus();
+$("#login_pass").attr("placeholder","<?=NOTE_FILL?> <?=NOTE_PHONE?>");
+validate = 0;
+}
+else{validate = 1;}
+//alert(validate);
+return validate;
+
+}
+</script>
+</div>
+

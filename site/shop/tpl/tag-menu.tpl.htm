@@ -1,0 +1,249 @@
+
+<style>
+
+#wrap_nav{
+  display:block;
+  list-style-type:none;
+  width:1020px; 
+  min-width:1020px; 
+  line-height:50px;
+  background:#50552f;
+  position:relative;
+  z-index:200;
+  
+}
+#wrap_nav .wrap_nav_block{
+  background:#50552f;
+  text-align:center;
+  z-index:inherit;
+  display:inline-block;
+}
+
+.wrap_sub-nav{
+  background:#fff;
+  position:absolute;
+  top:58px;
+  top:-9999px;
+  width:0;
+  height:0;
+  z-index:-1;
+  font-size:0;
+
+}
+.wrap_nav_block:hover .wrap_sub-nav{
+  top:58px;
+  left:0;
+  width:100%;
+  height:auto;
+  font-size:75%;
+  color:#000;
+  
+}
+
+#wrap_nav .wrap_nav_block > a{
+  color:#fafafa;
+  text-decoration:none;
+  font-size:100%;
+}  
+
+.block_subnav{
+    padding:10px;
+}
+.tag0{
+  padding:4px 25px;
+}
+.tag0:hover{
+  padding:4px 25px;
+  background-color:#555a32;
+}
+.tag1{
+    border-bottom:1px solid #000;
+}
+.tag2{
+    text-align:left;
+	border-left:1px solid #fff;
+	padding-left:5px;
+} 
+.tag2:hover{
+    background-color:#c9c9c9;
+	border-left:1px solid #50552f;
+	
+}
+</style>
+<?SYS::varDump($tag0_list,__FILE__,__LINE__,"Tag 0");?>
+<div align="center">
+<div id="wrap_nav"> 
+<?if($tag0_list!=NULL){
+foreach($tag0_list as $key0=>$val0){?>
+
+    <div class="wrap_nav_block"><a href=""><div class="tag0"><?=$val0['caption']?></div></a> 
+        <div class="wrap_sub-nav r20b"> 
+            <table width="100%"><tr valign="top">
+<?if($tag1_list!=NULL){
+foreach($tag1_list as $key1=>$val1){if($val1["hit"]==$key0){?>
+                <td width="" class="block_subnav" style="min-width:180px;"> 
+                    <h4 class="tag1"><?=$val1["caption"]?></h4>
+<?
+$connect_tag=explode(";",substr($val1['connect'], 1, -1));$i2=1;
+if($connect_tag[0]!=''){foreach($connect_tag as $key2=>$child_id){
+$val2=$tag2_list[$child_id];
+?>
+<?if($val2["show"] == "1"){?>
+<div class="tag2">
+    <a style="line-height:30px;<?=$GLOBALS['tag2']==$val2["seolink"]?'font-weight:bold;':''?>" href="/shop/<?=$val1["seolink"]?>/<?=$val2["seolink"]?>">
+        <?=$val2["caption"]?>
+	</a><br />
+</div>
+<?}?>
+<?}}?>
+ </td>
+<?}}}?>
+
+            </tr></table>
+        </div>
+    </div>
+<?}}?>
+
+</div>
+
+<!--
+Версия 2
+<div class="mainWrap">
+	
+    <a id="touch-menu" class="mobile-menu" href="#" >Каталог продукции</a>
+    
+    <nav>
+		<ul class="menu">
+<?if($tag1_list!=NULL){?>
+<?foreach($tag1_list as $key=>$val){?>
+               <li>
+                   <a id="shop_level1_<?=$val['id']?>" href="/shop/<?=$val['seolink']?>">
+                       <?=$val["caption"]?>
+                   </a>
+                   <ul class="sub-menu sub-menu_bg">
+<?
+$connect_tag=explode(";",substr($val['connect'], 1, -1));$i2=1;
+if($connect_tag[0]!=''){foreach($connect_tag as $key2=>$child_id){
+$val2=$tag2_list[$child_id];
+if($val2["caption"] !== NULL){
+?>
+                       <li>
+						   <a style="" href="/shop/<?=$val["seolink"]?>/<?=$val2["seolink"]?>"><?=$val2["caption"]?></a>
+					   </li>
+<?}?>
+<?}}?>               
+                    </ul>
+                </li>            
+<?}}?> 
+        </ul>
+    </nav>
+</div>
+-->
+<!--
+Версия 3
+<script>
+//$(document).ready(function(){
+    
+	function showTagZerroList(){
+      $('.tag_list').slideToggle(500);
+    }
+
+//});
+
+</script>
+<style>
+#butt_show_menu{
+    padding:5px;
+    text-align:center;
+    background-color:#d91219;
+    width:125px; height:100px;
+	cursor:pointer;
+	color:#fff;
+	font-weight:900;
+	font-size:125%;
+}
+
+.tag_list, .tag1{
+    display:none;
+    width:350px; height:auto;
+    position:absolute;
+    background-color:#fff;
+	border-bottom:5px solid #ccc;
+	
+}
+.wrap_tag0{
+    
+}
+.tag0{
+    text-align:left;
+	padding:5px;
+	border-left:2px solid #fff;
+	cursor:pointer;
+	height:50px;
+	line-height:50px;
+	vertical-align:center;
+	width:350px;
+}
+.tag0:hover{
+    background-color:#ccc;
+    color:#000;
+	border-left:2px solid #d91219;
+}
+.tag0_img{
+    height:45px;
+}
+.tag1{
+    border-bottom:1px solid #000;
+}
+.tag2{
+    text-align:left;
+	border-left:1px solid #fff;
+	padding-left:5px;
+} 
+.tag2:hover{
+    background-color:#c9c9c9;
+	border-left:1px solid #d91219;
+	
+}
+.tag0:hover .tag1 {
+    display: inline;
+}
+.tag1 {
+left:350px;
+top:0px;
+padding-left:15px;
+position:absolute;
+z-index:100;
+background-color:#f7f7f7;
+display: none;
+}
+
+</style>
+
+<div id="butt_show_menu" onclick="showTagZerroList();">Все<br />категории</div>
+
+<?
+if($tag0_list!=NULL){
+?>
+<div class="tag_list show_tag1">
+<?
+    foreach($tag0_list as $key0=>$val0){
+?>
+    <div class="tag0">
+	    <div><img class="tag0_img" src="/image/shop/tag/<?=$val0['id']?>/1.png"><?=$val0['caption']?></div>
+        <div class="tag1">
+<?
+        if($tag1_list!=NULL){
+            foreach($tag1_list as $key1=>$val1){
+			    if($val1["hit"]==$key0){
+?>
+            <div class="tag11"><?=$val1['caption']?></div>
+<?
+            }
+		}
+?>      </div>
+    </div>
+<?}}?>
+</div>
+<?}?>
+-->

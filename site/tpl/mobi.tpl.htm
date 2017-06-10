@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?=CHARSET?>" />
+<title><?=$meta["title"]?></title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/lib/jQuery/jquery-2.2.4.min.js"><\/script>')</script>
+
+<meta name='yandex-verification' content='44233cd67d39a9ed' />
+<meta name="yandex-verification" content="6d8f1c7420d0b43f" />
+
+<meta name="description" content="<?=$meta["description"]?>" />
+<meta name="keywords" content="<?=$meta["keywords"]?>" />
+
+<link media="all" href="/design/css/mobi/mobi-style.css" type="text/css" rel="stylesheet" />
+
+<script type='text/javascript'> 
+$(document).ready(function() { // Переключалка телефон/планшет
+
+    $(window).resize(function() {
+   
+        if($(window).width()<$(window).height() && $('.top_bar_search_v_hidden').is(':hidden')){  // телефон
+		    $('body').css({'font-size':'30px'});
+        
+            $('#wrap_bar_top_h').show(); 
+            $('#wrap_bar_top_v').hide();        
+            $('#page_content').css({'padding-top':'175px','padding-left':'0px'});
+			$('#menu').css({'top':'150px','left':'0px'});
+			$('.view_price').css({'float':'left'});
+			$('.buy').css({'float':'left','padding-left':'25px'});
+        
+            $('.wrap_item_look.item_look').css({'width':'95%'}); // shop::item-look
+			$('img.width_pct_100.r30.item_look').css({'width':'100%'}); // shop::item-look
+			$('.width_pct_100.r30.best_prop').css({'width':'95%'}); // main::best-prop
+			$('img.width_pct_100.r30.gall').css({'width':'100%'}); // Gallery::item-list
+			$('img.width_pct_100.r30').removeAttr("align");
+        }
+        else if($(window).width()>$(window).height() && $('.top_bar_logo_h_hidden').is(':hidden')){ // планшет
+            $('body').css({'font-size':'20px'});
+        
+            $('#wrap_bar_top_h').hide(); 
+            $('#wrap_bar_top_v').show();        
+            $('#page_content').css({'padding-top':'0px','padding-left':'100px'});
+			$('#menu').css({'top':'0px','left':'100px'});
+            $('.view_price').css({'float':''});
+			$('.buy').css({'float':''});
+		
+            $('.wrap_item_look.item_look').css({'width':'55%'}); // shop::item-look
+			$('img.width_pct_100.r30.item_look').css({'width':'100%'}); // shop::item-look
+			$('.width_pct_100.r30.best_prop').css({'width':'45%'}); // main::best-prop
+			$('img.width_pct_100.r30.gall').css({'width':'100%'}); // Gallery::item-list
+			$('img.width_pct_100.r30').attr("align","left"); 
+		} 
+    });
+
+// вызовем событие resize
+    $(window).resize();	
+
+    setInterval(function() {
+        $('#info').html($(window).width()+' X '+$(window).height());
+    }, 500);
+
+});
+</script>
+
+<script type="text/javascript" src="/design/js/debug.js"></script>
+
+<!-- mod_message -->
+<!--<link rel="stylesheet" href="/site/message/design/mobi/style.css"> -->
+<!-- /mod_message -->
+<!-- mod_user -->
+<link rel="stylesheet" href="/site/user/design/style.css">
+<script src="/site/user/design/login.js"></script>
+<!-- /mod_user -->
+
+
+<script>
+$(document).ready(function() { // Поиск, левое меню
+    function showSearchInput_h(){
+	    $('.top_bar_search_h, .top_bar_logo_h').hide();
+	    $('.top_bar_search_h_hidden, .top_bar_logo_h_hidden').show();
+	    $('.search_input_h').focus();
+	}
+	function showSearchInput_v(){
+	    $('.top_bar_search_v, .top_bar_logo_v').hide();
+	    $('.top_bar_search_v_hidden, .top_bar_logo_v_hidden').show();
+	    $('.search_input_v').focus();
+	  
+	    $('.top_bar_logo_v').fadeOut(5000, function() {
+            $(this).css('background-image','url("/design/img/mobi/logo_top_vert_<?=$_SESSION['lang']?>.png")').fadeIn(5000);
+        });
+	
+	}
+		
+	function searchSubmit_h(){
+	    var searchQuery = $('.search_input_h').val();
+	    $('#search_form_h').submit();
+	}
+	function searchSubmit_v(){
+	    var searchQuery = $('.search_input_v').val();
+	    $('#search_form_v').submit();
+	}
+		
+	$(".top_bar_search_h").on("click", showSearchInput_h);
+	$(".top_bar_search_v").on("click", showSearchInput_v);
+	$(".top_bar_search_h_hidden").on("click", searchSubmit_h);
+	$(".top_bar_search_v_hidden").on("click", searchSubmit_v);
+	$(".butt_menu").click(function(){  // Открываем меню
+        $('#menu').animate({
+        left: '-=0',
+		height: 'toggle'}, 550);
+	});
+	$("#shop_menu").click(function(){ // Открываем подменю 
+        $('.shop_submenu').animate({
+        display: 'block',
+		height: 'toggle'}, 550);
+    });
+	
+	
+});
+</script>
+<style>
+/* ************ header ***************** */
+#wrap_bar_top_h{
+    width:100%;
+    white-space: nowrap;
+    height:150px; 
+    position:fixed;
+    z-index:999;
+    
+}
+#wrap_bar_top_v{
+    width:100px;
+    white-space: nowrap; 
+    height:100%; 
+    position:fixed;
+    padding-left: 0px;
+    z-index:999;
+    display:none;
+}
+.top_bar_menu_h{
+    width:150px; height:150px;
+    cursor: pointer;
+}
+.top_bar_menu_v{
+    width:100px; height:100px;
+    cursor: pointer;
+}
+.top_bar_menu a{
+    display: block;
+    height: 100%;
+}
+
+.top_bar_logo_h{
+    width:100%; min-width:500px;
+    height: 150px; 
+    cursor: pointer;	
+}
+.top_bar_logo_h a{
+    display: block;
+    width:100%;height: 100%;
+}
+.top_bar_logo_h_hidden{
+	display:none;
+	min-width:200px;
+	height:150px;
+}
+.top_bar_logo_v{
+    width:100px;
+    height: 100px; 
+    cursor: pointer;	
+}
+.top_bar_logo_v a{
+    display: block;
+    width:100px;height: 100%;
+}
+.top_bar_logo_v_hidden{
+	display:none;
+	height:100px;
+}
+
+.top_bar_search_h{
+    cursor: pointer;	
+}
+.top_bar_search_h a{
+    display: block;
+    height: 100%;	
+}
+.top_bar_search_h_hidden{
+	display:none;
+}
+.top_bar_search_h_hidden a{
+    display: block;
+    height: 100%;	
+}
+.top_bar_search_v{
+    cursor: pointer;	
+}
+.top_bar_search_v a{
+    display: block;
+    height: 100%;	
+}
+.top_bar_search_v_hidden{
+	display:none;
+}
+.top_bar_search_v_hidden a{
+    display: block;
+    height: 100%;	
+}	
+
+.top_bar_cart{
+    width:150px; height:150px;	
+}
+.top_bar_cart a{
+    display: block;
+    height: 100%;	
+}
+
+.top_bar_logo_h_hidden input{
+  height: 50px;
+  border: 2px solid #FFC90E;
+  margin-bottom: 2px;
+  background: #ffffff !important;
+  font-size: 36px;
+}
+.top_bar_logo_v_hidden input{
+  height: 50px;
+  width:500px;
+  border: 2px solid #FFC90E;
+  margin-bottom: 2px;
+  margin-left:10px;
+  background: #ffffff !important;
+  font-size: 36px;
+}
+.img_ico_100{
+	width:100px;
+	height:100px;
+	padding:0px;margin:0;
+}
+.img_ico_150{
+	width:150px;
+	height:150px;
+	padding:0px;margin:0;
+}
+/* ************ /header ***************** */
+/* ************** CART ********** */
+.cart_count{
+    width:20%; 
+    position:absolute; 
+    bottom:65px; left: 57%;
+    transform: translateX(-55%);
+    background-color:#f86a0b;
+    padding:0.5em; 
+/*    opacity:0.9;   */
+    font-size:80%;
+    font-weight:900;
+    text-align:center;
+    color:#fff; 
+}
+/* ************** CART ********** */
+.inline{
+	display: inline-block;
+}
+/* ************** LEFT MENU ********** */
+#menu{
+   
+    position: fixed;
+    width: 750px;
+    height: 100%;
+    top: 0;
+	display:none;
+    text-align: left; 
+    border-top: 1px solid #fff; 
+	border-left: 1px solid #fff;
+	z-index: 99;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    
+}
+#menu a {
+  display: block;
+  color: #e9ddaf;
+  padding: 15px 0px 15px 0px;
+  text-decoration: none;
+  outline: 0;
+  font-size:200%;
+}
+#menu a:hover {
+  color: #fff;
+}
+
+.submenu {
+  /* Submenu Icon */
+}
+.submenu ul{
+    display:none;
+}
+.submenu > a {
+  position: relative;
+}
+.submenu > a::after {
+  content: '';
+  display: block;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  background: url("/design/img/mobi/arrow.svg") no-repeat;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transition: transform 0.2s;
+}
+
+
+/* ************** /LEFT MENU ********** */	
+</style>
+<style>
+.top_bar_logo_v{
+    background: url('/design/img/mobi/logo_top_vert_<?=$_SESSION['lang']?>.png') no-repeat center center;
+}
+.top_bar_logo_h{
+    background: url('/design/img/mobi/logo_top_hor_<?=$_SESSION['lang']?>.png') no-repeat center center;
+}
+#menu{
+    background: #50552f url(/design/img/mobi/logo_bg_<?=$_SESSION['lang']?>.png) no-repeat center center;
+}
+</style>
+</head>
+<body>
+<!-- <div id="info" style='position:fixed;z-index:1000000;top:0px;left:100px;background:white;color:black;padding:3px;font-size:24px;'>blablabla</div> -->
+
+<div id="body">
+<header>
+	<div id="wrap_bar_top_h" class="bg_green">
+		<table id="_horiz_shapka">
+			<tr>
+				<td class="top_bar_menu_h butt_menu"><img class="img_ico_150" src="/design/img/mobi/ico_pop_up_menu_150.png" /></td>
+			    <td class="top_bar_logo_h"><a href="/">&nbsp;</a></td>
+			        <td class="top_bar_logo_h_hidden">
+						<form action="/search/" method="post" id="search_form_h">
+							<input class="search_input_h r10" type="text" name="search_input" placeholder="<?=MANDATORY_SEARCH_DEVIZ?>">
+						</form>
+					</td>
+					<td class="top_bar_search_h_hidden"><a href="javascript:void(0)"><img class="img_ico_150" src="/design/img/mobi/ico_search_hidden.png" /></a></td>			            
+				<td class="top_bar_search_h"><img class="img_ico_150" src="/design/img/mobi/ico_search.png" /></td>
+				<td class="top_bar_cart_h"><img class="img_ico_150" src="/design/img/mobi/ico_cart.png" />
+					<?include SITE_PATH."/site/cart/js/cart.js";?>
+                    <ul class="user-menu list"><li id="cart"></li></ul>
+                </td>
+			</tr>
+		</table>
+	</div>
+	<div  id="wrap_bar_top_v" class="bg_green">	
+		<table id="_vert_shapka">
+			<tr>
+			    <td class="top_bar_logo_v"><a href="/">&nbsp;</a></td>
+			        <td class="top_bar_logo_v_hidden">
+						<form action="/search/" method="post" id="search_form_v">
+							<input class="search_input_v r10" type="text" name="search_input" placeholder="<?=MANDATORY_SEARCH_DEVIZ?>">
+						</form>
+				    </td>
+			</tr>
+			<tr>
+				<td class="top_bar_menu_v butt_menu"><img class="img_ico_100" src="/design/img/mobi/ico_pop_up_menu_100.png" /></td>
+			</tr>
+			<tr>
+				<td class="top_bar_cart_v"><img class="img_ico_100" src="/design/img/mobi/ico_cart.png" />
+				    <ul class="user-menu list"><li id="cart2"></li></ul>
+                </td>
+            </tr>
+            <tr>
+					<td class="top_bar_search_v_hidden"><a href="javascript:void(0)"><img class="img_ico_100" src="/design/img/mobi/ico_search_hidden.png" /></a></td>			            
+				<td class="top_bar_search_v"><img class="img_ico_100" src="/design/img/mobi/ico_search.png" /></td>
+			</tr>
+		</table>		
+	</div>
+</header>
+
+<div style="position:relative;padding-bottom:5px;">
+        
+    <nav id="menu">
+ <?=$shop_menu_mobi?>
+        <div class="br_10"></div>
+        <hr />
+        <div class="br_10"></div>
+        <div id="wrap_slogan">
+<?include SITE_PATH."/mandatory/slogan.php";?>		
+            <div class="slogan"><?=$slogan[$rand]?></div>
+        </div>
+    </nav>
+</div>
+
+    
+<?//=$shop_menu?>
+    
+        <div id="page_content"> 
+            <div style="margin:0px;padding-left:10px;">
+	            <?=$c_cont?>
+           </div>
+        </div>
+
+<div style="text-align:left;padding:5px;">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter38524950 = new Ya.Metrika({
+                    id:38524950,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/38524950" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-75587414-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</div>
+        
+</div>
+<?//include "site/message/tpl/mobi/form_feedback.tpl.htm";?>
+</body>
+
+</html>
