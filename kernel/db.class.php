@@ -72,14 +72,14 @@ class SafeMySQL
 	protected $emode;
 	protected $exname;
 	protected $defaults = array(
-		'host'      => 'localhost',
-		'user'      => 'root',
-		'pass'      => '',
-		'db'        => 'berloga_new',
+		'host'      => DB_HOST,
+		'user'      => DB_USER,
+		'pass'      => DB_PASS,
+		'db'        => DB_NAME,
 		'port'      => NULL,
 		'socket'    => NULL,
 		'pconnect'  => FALSE,
-		'charset'   => 'utf8',
+		'charset'   => DB_CHAR,
 		'errmode'   => 'exception', //or 'error'
 		'exception' => 'Exception', //Exception class name
 	);

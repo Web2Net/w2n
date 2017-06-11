@@ -19,99 +19,88 @@ define('SHOP_NAME', NOTE_SHOP);
 
 class Shop {	
 
-function siteShop() {
-/*
-foreach ($_REQUEST as $key=>$val){
-$str="$".$key."=\$val;";
-eval($str);}
-*/
-if(isset($_SERVER['REQUEST_URI'])){
-$seodata = explode("/",$_SERVER['REQUEST_URI']);
-$mod = $seodata[1];
-$tag1 = $seodata[2];
-$tag2 = $seodata[3];    
-$param = $seodata[4];
-}
+    function siteShop(){
 
+        if(isset($_SERVER['REQUEST_URI'])){
+            $seodata = explode("/",$_SERVER['REQUEST_URI']);
+            $mod = $seodata[1];
+            $tag1 = $seodata[2];
+            $tag2 = $seodata[3];    
+            $param = $seodata[4];
+        }
 
+        $tpl=new SiteModTpl;
 
-$tpl=new SiteModTpl;
+        if(INI::Life('site_shop_tag_list')>100){
+            $all_tag_list=Shop::tagListShowLevel();
 
-if(INI::Life('site_shop_tag_list')>100){
-$all_tag_list=Shop::tagListShowLevel();
+            INI::SetXXL($all_tag_list,'site_shop_tag_list');
+        }
+        
+        $all_tag_list=INI::Get('site_shop_tag_list');
 
-INI::SetXXL($all_tag_list,'site_shop_tag_list');
-}
-$all_tag_list=INI::Get('site_shop_tag_list');
+        $tpl->assign('all_tag_list',$all_tag_list);
 
-$tpl->assign('all_tag_list',$all_tag_list);
-
-$tag1_sdata=Shop::tagDataSeolink($tag1);
-$tpl->assign('tag1_sdata',$tag1_sdata);
+        $tag1_sdata=Shop::tagDataSeolink($tag1);
+        $tpl->assign('tag1_sdata',$tag1_sdata);
 //$tpl->assign('tag2_sdata',tagSeolinkData($tag2));
 
-if($tag1==""){
-$tag1_list=Shop::tagListShowLevel(1);
-$tpl->assign('tag1_list',$tag1_list);
-$c_cont["content"]=$tpl->get("tag1-list");
+        if($tag1==""){
+            $tag1_list=Shop::tagListShowLevel(1);
+            $tpl->assign('tag1_list',$tag1_list);
+            $c_cont["content"]=$tpl->get("tag1-list");
 
-$metatitle=SHOP_NAME;
-$c_cont["meta"]["title"]=SITE_NAME." ".RAZDELYALKA." ".$metatitle;
-$c_cont["meta"]["description"]=SITE_NAME_FULL;
-$c_cont["meta"]["keywords"]=$item_data["meta_k"];
-}
+            $metatitle=SHOP_NAME;
+            $c_cont["meta"]["title"]=SITE_NAME." ".RAZDELYALKA." ".$metatitle;
+            $c_cont["meta"]["description"]=SITE_NAME_FULL;
+            $c_cont["meta"]["keywords"]=$item_data["meta_k"];
+        }
+        else if($tag1!=""&&$tag2==""){
+            $tag1_data=Shop::tagDataSeolink($tag1);
+            $tag2_list=Shop::tagListShowConnect($tag1_data['id']);
 
-else if($tag1!=""&&$tag2==""){
-$tag1_data=Shop::tagDataSeolink($tag1);
-$tag2_list=Shop::tagListShowConnect($tag1_data['id']);
+            $tpl->assign('tag1_data',$tag1_data);
+            $tpl->assign('tag2_list',$tag2_list);
+            $c_cont["content"]=$tpl->get("tag2-list");
 
-$tpl->assign('tag1_data',$tag1_data);
-$tpl->assign('tag2_list',$tag2_list);
-$c_cont["content"]=$tpl->get("tag2-list");
+            $metatitle=$tag1_data["caption"];	
+            $c_cont["meta"]["title"]=SITE_NAME." ".RAZDELYALKA." ".$metatitle;
+            $c_cont["meta"]["description"]=$tag1_data["meta_d"];
+            $c_cont["meta"]["keywords"]=$item_data["meta_k"];
+        }    
+        else if($tag1!=""&&$tag2!=""&&$param==""){
+            $tag2_data=Shop::tagDataSeolink($tag2,$tag1);
+            $item_list=Shop::itemListShowFlagman($tag2_data['id']);
+ 
+            $tpl->assign('tag2_data',$tag2_data);
+            $tpl->assign('item_list',$item_list);
+ 	
+            $tpl->assign('item_list',$item_list);
+            $c_cont["content"]=$tpl->get("item-list");
+ 
+            $metatitle=$tag2_data["caption"];
+            $c_cont["meta"]["title"]=SITE_NAME." ".RAZDELYALKA." ".$metatitle;
+            $c_cont["meta"]["description"]=$tag2_data["meta_d"];
+            $c_cont["meta"]["keywords"]=$item_data["meta_k"];
+        }
+        else if($param!=""){
+            $wa=explode("-",$param);
+            $item_id=$wa[0];
 
-$metatitle=$tag1_data["caption"];	
-$c_cont["meta"]["title"]=SITE_NAME." ".RAZDELYALKA." ".$metatitle;
-$c_cont["meta"]["description"]=$tag1_data["meta_d"];
-$c_cont["meta"]["keywords"]=$item_data["meta_k"];
-}
-else if($tag1!=""&&$tag2!=""&&$param==""){
-$tag2_data=Shop::tagDataSeolink($tag2,$tag1);
-$item_list=Shop::itemListShowFlagman($tag2_data['id']);
+            $item_data=Shop::itemDataId($item_id);
+            $tpl->assign('item_data',$item_data);
 
-$tpl->assign('tag2_data',$tag2_data);
-//if($_SESSION['bro_width'] < '1070'){
-//    $tpl->assign('item_list_mobi',$item_list); 
-//}else{
-    $tpl->assign('item_list',$item_list);
-//}
+            $c_cont["content"]=$tpl->get("item-look");
 
-	
-$tpl->assign('item_list',$item_list);
-$c_cont["content"]=$tpl->get("item-list");
-
-$metatitle=$tag2_data["caption"];
-$c_cont["meta"]["title"]=SITE_NAME." ".RAZDELYALKA." ".$metatitle;
-$c_cont["meta"]["description"]=$tag2_data["meta_d"];
-$c_cont["meta"]["keywords"]=$item_data["meta_k"];
-}
-else if($param!=""){
-$wa=explode("-",$param);
-$item_id=$wa[0];
-
-$item_data=Shop::itemDataId($item_id);
-$tpl->assign('item_data',$item_data);
-
-$c_cont["content"]=$tpl->get("item-look");
-
-$metatitle=$item_data["caption"];
-$c_cont["meta"]["title"]=SITE_NAME." ".RAZDELYALKA." ".$metatitle;
-$c_cont["meta"]["description"]=$item_data["meta_d"];
-$c_cont["meta"]["keywords"]=$item_data["meta_k"];
+            $metatitle=$item_data["caption"];
+            $c_cont["meta"]["title"]=SITE_NAME." ".RAZDELYALKA." ".$metatitle;
+            $c_cont["meta"]["description"]=$item_data["meta_d"];
+            $c_cont["meta"]["keywords"]=$item_data["meta_k"];
 
 SYS::varDump($item_data,__FILE__,__LINE__,"item_data");
-}
-return $c_cont;
-}
+        }
+        return $c_cont;
+    }
 
 static function siteShopMenu(){
 
@@ -152,42 +141,40 @@ $shop_menu=$tpl->get("tag-menu");
 return $shop_menu;
 }
 
-static function tagListShowLevel($level=''){
+    static function tagListShowLevel($level=''){
 	
-if($level!=""){$levelz="`level`='".$level."'";}else{$levelz="1=1";}
-
-    $query = "SELECT * FROM ".SHOP_TAG_TABLE." 
-              LEFT JOIN ".SHOP_TAG_TABLE_LANG." ON ".SHOP_TAG_TABLE.".id=".SHOP_TAG_TABLE_LANG.".pid 
-              WHERE `show`='1' AND ".$levelz." ORDER BY `pos`";
-    $res = mysql_query($query);
-    Mysql::queryError($res,$query);
-    //$row = mysql_fetch_assoc($res);
-    
-		if (mysql_num_rows($res) > 0)
-		{
-			while ($result = mysql_fetch_assoc ($res))
-			{
-				
-	$result["caption"]=stripslashes($result["caption"]);
-	$result["desc_short"]=stripslashes($result["desc_short"]);
-	$result["desc_full"]=stripslashes($result["desc_full"]);
-	$result["meta_t"]=stripslashes($result["meta_t"]);
-	$result["meta_d"]=stripslashes($result["meta_d"]);
-	$result["meta_k"]=stripslashes($result["meta_k"]);
-	
-				$itog[] = $result;
-			}
-		}
-
-		
-    if($itog!=NULL){
-        foreach($itog as $key=>$val){
-            $arrcat[$val["id"]]=$val;
+        $db = new SafeMySQL();
+        
+        if($level!=""){
+            $levelz="`level`='".$level."'";
         }
-    }
-//SYS::varDump($arrcat,__FILE__,__LINE__,"Shop::tagListShowLevel");
-    return $arrcat;
-} 
+        else{
+            $levelz="1=1";
+        }
+
+        $query = "SELECT * FROM ".SHOP_TAG_TABLE." 
+                 LEFT JOIN ".SHOP_TAG_TABLE_LANG." ON ".SHOP_TAG_TABLE.".id=".SHOP_TAG_TABLE_LANG.".pid 
+                 WHERE `show`='1' AND ".$levelz." ORDER BY `pos`";
+        
+        if($result = $db->query($query)){
+            while($row = $db->fetch($result)){
+                $row["caption"]=stripslashes($row["caption"]);
+                $row["desc_short"]=stripslashes($row["desc_short"]);
+ 	        $row["desc_full"]=stripslashes($row["desc_full"]);
+ 	        $row["meta_t"]=stripslashes($row["meta_t"]);
+ 	        $row["meta_d"]=stripslashes($row["meta_d"]);
+ 	        $row["meta_k"]=stripslashes($row["meta_k"]);
+ 	 
+ 	        $itog[] = $row;
+            }
+        }       
+        if($itog!=NULL){
+            foreach($itog as $key=>$val){
+                $arrcat[$val["id"]]=$val;
+            }
+        }
+        return $arrcat;
+    } 
 
 
 static function tagAllListLevel($level=''){
@@ -357,40 +344,34 @@ $query = "SELECT * FROM ".SHOP_ITEM_TABLE."
     return $arrcat;
 }
 
+        static function itemListSpecial($spec_where){
+	    $db = new SafeMySQL();
+          
+            $query = "SELECT * FROM ".SHOP_ITEM_TABLE." 
+                     LEFT JOIN ".SHOP_ITEM_TABLE_LANG." ON ".SHOP_ITEM_TABLE.".id=".SHOP_ITEM_TABLE_LANG.".pid 
+                     WHERE ".$spec_where." ORDER BY `pos` DESC";
 
-static function itemListSpecial($spec_where){
-	
-$query = "SELECT * FROM ".SHOP_ITEM_TABLE." 
-              LEFT JOIN ".SHOP_ITEM_TABLE_LANG." ON ".SHOP_ITEM_TABLE.".id=".SHOP_ITEM_TABLE_LANG.".pid 
-              WHERE ".$spec_where." ORDER BY `pos` DESC";
-    $res = mysql_query($query);
-    Mysql::queryError($res,$query);
-  //  $row = mysql_fetch_array($res);
-		if (mysql_num_rows($res) > 0)
-		{
-			while ($result = mysql_fetch_assoc ($res))
-			{
-				
-	$result["caption"]=stripslashes($result["caption"]);
-	$result["desc_short"]=stripslashes($result["desc_short"]);
-	$result["desc_full"]=stripslashes($result["desc_full"]);
-	$result["meta_t"]=stripslashes($result["meta_t"]);
-	$result["meta_d"]=stripslashes($result["meta_d"]);
-	$result["meta_k"]=stripslashes($result["meta_k"]);
-	
-				$itog[] = $result;
-			}
-		}
-
+            if($result = $db->query($query)){
+                while($row = $db->fetch($result)){
+                    $row["caption"]=stripslashes($row["caption"]);
+                    $row["desc_short"]=stripslashes($row["desc_short"]);
+ 	            $row["desc_full"]=stripslashes($row["desc_full"]);
+ 	            $row["meta_t"]=stripslashes($row["meta_t"]);
+ 	            $row["meta_d"]=stripslashes($row["meta_d"]);
+ 	            $row["meta_k"]=stripslashes($row["meta_k"]);
+ 	 
+ 	            $itog[] = $row;
+                }
+            }       
 		
-    if($itog!=NULL){
-        foreach($itog as $key=>$val){
-            $arrcat[$val["id"]]=$val;
+            if($itog!=NULL){
+                foreach($itog as $key=>$val){
+                    $arrcat[$val["id"]]=$val;
+            }
         }
-    }
 //SYS::varDump($arrcat,__FILE__,__LINE__,"ARRCAT");
-    return $arrcat;
-}
+        return $arrcat;
+    }
 
 function itemDataId($id){
 
