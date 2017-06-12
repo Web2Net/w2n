@@ -19,14 +19,14 @@ define('SHOP_NAME', NOTE_SHOP);
 
 class Shop {	
 
-    function siteShop(){
+    static function siteShop(){
 
         if(isset($_SERVER['REQUEST_URI'])){
             $seodata = explode("/",$_SERVER['REQUEST_URI']);
-            $mod = $seodata[1];
-            $tag1 = $seodata[2];
-            $tag2 = $seodata[3];    
-            $param = $seodata[4];
+            if(isset($seodata[1])){$GLOBALS["mod"] = $mod = $seodata[1];}
+            if(isset($seodata[2])){$GLOBALS["tag1"] = $tag1 = $seodata[2];}
+            if(isset($seodata[3])){$GLOBALS["tag2"] = $tag2 = $seodata[3];}    
+            if(isset($seodata[4])){$GLOBALS["param"] = $param = $seodata[4];}
         }
 
         $tpl=new SiteModTpl;
@@ -68,7 +68,7 @@ class Shop {
             $c_cont["meta"]["description"]=$tag1_data["meta_d"];
             $c_cont["meta"]["keywords"]=$item_data["meta_k"];
         }    
-        else if($tag1!=""&&$tag2!=""&&$param==""){
+        else if($tag1!=""&&$tag2!=""&& (isset($param) && $param=="")){
             $tag2_data=Shop::tagDataSeolink($tag2,$tag1);
             $item_list=Shop::itemListShowFlagman($tag2_data['id']);
  
@@ -83,7 +83,7 @@ class Shop {
             $c_cont["meta"]["description"]=$tag2_data["meta_d"];
             $c_cont["meta"]["keywords"]=$item_data["meta_k"];
         }
-        else if($param!=""){
+        else if(isset($param) && $param!=""){
             $wa=explode("-",$param);
             $item_id=$wa[0];
 
@@ -99,7 +99,9 @@ class Shop {
 
 SYS::varDump($item_data,__FILE__,__LINE__,"item_data");
         }
-        return $c_cont;
+        if(isset($c_cont)){
+             return $c_cont;
+        }
     }
 
 static function siteShopMenu(){
@@ -143,7 +145,7 @@ return $shop_menu;
 
     static function tagListShowLevel($level=''){
 	
-        $db = new SafeMySQL();
+        
         
         if($level!=""){
             $levelz="`level`='".$level."'";
@@ -156,6 +158,7 @@ return $shop_menu;
                  LEFT JOIN ".SHOP_TAG_TABLE_LANG." ON ".SHOP_TAG_TABLE.".id=".SHOP_TAG_TABLE_LANG.".pid 
                  WHERE `show`='1' AND ".$levelz." ORDER BY `pos`";
         
+        $db = new SafeMySQL();
         if($result = $db->query($query)){
             while($row = $db->fetch($result)){
                 $row["caption"]=stripslashes($row["caption"]);
@@ -250,24 +253,29 @@ function tagListShowConnect($tag){
 
 }
 
-function tagDataSeolink($seolink){
+static function tagDataSeolink($seolink){
 
     $query = "SELECT * FROM ".SHOP_TAG_TABLE." 
               LEFT JOIN ".SHOP_TAG_TABLE_LANG." ON ".SHOP_TAG_TABLE.".id=".SHOP_TAG_TABLE_LANG.".pid 
               WHERE `seolink`='".$seolink."' LIMIT 1";
-    $res = mysql_query($query);
-    Mysql::queryError($res,$query);
-    $result = mysql_fetch_array($res); 
-				
-	$result["caption"]=stripslashes($result["caption"]);
-	$result["desc_short"]=stripslashes($result["desc_short"]);
-	$result["desc_full"]=stripslashes($result["desc_full"]);
-	$result["meta_t"]=stripslashes($result["meta_t"]);
-	$result["meta_d"]=stripslashes($result["meta_d"]);
-	$result["meta_k"]=stripslashes($result["meta_k"]);
-	
 
-    return $result;
+    
+    $db = new SafeMySQL();
+        if($result = $db->query($query)){
+           $row = $db->fetch($result);
+           
+           $row["caption"]=stripslashes($row["caption"]);
+           $row["desc_short"]=stripslashes($row["desc_short"]);
+ 	   $row["desc_full"]=stripslashes($row["desc_full"]);
+ 	   $row["meta_t"]=stripslashes($row["meta_t"]);
+ 	   $row["meta_d"]=stripslashes($row["meta_d"]);
+ 	   $row["meta_k"]=stripslashes($row["meta_k"]);
+ 	 
+ 	   
+        }       
+        return $row;
+var_dump($row);        
+        exit("STOPE");
 
 }
 

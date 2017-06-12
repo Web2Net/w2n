@@ -17,7 +17,7 @@ fclose($filewrite);
    
 }
 
-function SetXXL($arr,$name){
+static function SetXXL($arr,$name){
 $i = 0;$str = "<?php "."\r\n";
 $filewrite=fopen(getenv("DOCUMENT_ROOT")."/magic/ini/".$name.".ini","w+");
 if($arr!=NULL){foreach($arr as $keya=>$vala){
@@ -60,7 +60,7 @@ $pusto = array_pop($pere);
 return $arr;
 }
       
-function Life($name){	
+static function Life($name){	
 	$filename=getenv("DOCUMENT_ROOT")."/magic/ini/".$name.".ini";
 	$filetime=filemtime($filename);
 	$now=time();

@@ -15,22 +15,19 @@ define('GALLERY_NAME', GALLERY_SITE_MOD_NAME);
 
 class Gallery {	
 
-function siteGallery() {
+    function siteGallery() {
 
-foreach ($_REQUEST as $key=>$val){
-$str="$".$key."=\$val;";
-eval($str);}
+// foreach ($_REQUEST as $key=>$val){
+// $str="$".$key."=\$val;";
+// eval($str);}
 
-if(isset($_SERVER['REQUEST_URI'])){
-$seodata = explode("/",$_SERVER['REQUEST_URI']);
-$mod = $seodata[1];
-$tag1 = $seodata[2];
-$tag2 = $seodata[3];    
-$param = $seodata[4];
-$GLOBALS["mod"]=$mod;
-$GLOBALS["tag1"]=$tag1;
-$GLOBALS["tag2"]=$tag2;
-$GLOBALS["param"]=$param;
+        if(isset($_SERVER['REQUEST_URI'])){
+            $seodata = explode("/",$_SERVER['REQUEST_URI']);
+            if(isset($seodata[1])){$GLOBALS["mod"] = $mod = $seodata[1];}
+            if(isset($seodata[2])){$GLOBALS["tag1"] = $tag1 = $seodata[2];}
+            if(isset($seodata[3])){$GLOBALS["tag2"] = $tag2 = $seodata[3];}    
+            if(isset($seodata[4])){$GLOBALS["param"] = $param = $seodata[4];}
+
 }
 
 $tpl=new SiteModTpl;
@@ -67,7 +64,7 @@ $c_cont["meta"]["title"]= SITE_NAME." ".RAZDELYALKA." ".$metatitle; // в cfg.ph
 $c_cont["meta"]["description"]=SITE_NAME_FULL; // в cfg.php
 $c_cont["meta"]["keywords"]=META_K_DEFAULT; // в cfg.php
 }
-else if($tag1!=""&&$tag2!=""&&$param==""){
+else if((isset($tag1) && $tag1 != "") && (isset($tag2) && $tag2 != "") && (!isset($param) || $param == "")){
 if($tag2!="all"){
 $tag2_data=Gallery::tagDataSeolink($tag2,$tag1);
 $item_list=Gallery::itemListShow($tag2_data['id']);
@@ -121,55 +118,27 @@ return $c_cont;
         $query = "SELECT * FROM ".GALLERY_TAG_TABLE." 
                   LEFT JOIN ".GALLERY_TAG_TABLE_LANG." ON ".GALLERY_TAG_TABLE.".id=".GALLERY_TAG_TABLE_LANG.".pid 
                   WHERE `show`='1' AND ".$levelz." ORDER BY `pos` DESC";
-        $res = mysql_query($query);
-        Mysql::queryError($res,$query);
-        //$row = mysql_fetch_assoc($res);
-    
-		if (mysql_num_rows($res) > 0)
-		{
-			while ($result = mysql_fetch_assoc ($res))
-			{
-				
-    	$result["caption"]=stripslashes($result["caption"]);
-	    $result["desc_short"]=stripslashes($result["desc_short"]);
-	    $result["desc_full"]=stripslashes($result["desc_full"]);
-	    $result["meta_t"]=stripslashes($result["meta_t"]);
-	    $result["meta_d"]=stripslashes($result["meta_d"]);
-	    $result["meta_k"]=stripslashes($result["meta_k"]);
-	
-				$itog[] = $result;
-			}
-		}
-
-	    if($itog!=NULL){
+        
+        $db = new SafeMySQL();
+        if($result = $db->query($query)){
+            while($row = $db->fetch($result)){
+                $row["caption"]=stripslashes($row["caption"]);
+                $row["desc_short"]=stripslashes($row["desc_short"]);
+ 	        $row["desc_full"]=stripslashes($row["desc_full"]);
+ 	        $row["meta_t"]=stripslashes($row["meta_t"]);
+ 	        $row["meta_d"]=stripslashes($row["meta_d"]);
+ 	        $row["meta_k"]=stripslashes($row["meta_k"]);
+ 	 
+ 	        $itog[] = $row;
+            }
+        }       
+        if($itog!=NULL){
             foreach($itog as $key=>$val){
                 $arrcat[$val["id"]]=$val;
             }
         }
-SYS::varDump($arrcat,__FILE__,__LINE__,"GALL::tagListShowLevel");
         return $arrcat;
-/*
-$select="";
-$from=GALLERY_TAG_TABLE;
-$where["`show`"]=1;
-if($level!=""){
-$where["level"]=$level;
-}else{
-$where["1"]=1;
-}
-$sortby="pos DESC";
-
-$db = new mysql;
-$row = $db->selectSQL($select, $from, $where, $sortby);
-
-if($row!=NULL){foreach($row as $key=>$val){
-$arrcat[$val["id"]]=$val;
-}}
-
-return $arrcat;
-*/
-
-}
+    }
 
 function tagListShowConnect($tag){
 
@@ -259,36 +228,29 @@ return $row[0];
 
 function itemListShow($tag){
 
-    $query = "SELECT * FROM ".GALLERY_ITEM_TABLE." 
-              LEFT JOIN ".GALLERY_ITEM_TABLE_LANG." ON ".GALLERY_ITEM_TABLE.".id=".GALLERY_ITEM_TABLE_LANG.".pid 
-              WHERE `show`='1' ORDER BY `pos` DESC";
-    $res = mysql_query($query);
-    Mysql::queryError($res,$query);
-  //  $row = mysql_fetch_array($res);
-		if (mysql_num_rows($res) > 0)
-		{
-			while ($result = mysql_fetch_assoc ($res))
-			{
-				
-	$result["caption"]=stripslashes($result["caption"]);
-	$result["desc_short"]=stripslashes($result["desc_short"]);
-	$result["desc_full"]=stripslashes($result["desc_full"]);
-	$result["meta_t"]=stripslashes($result["meta_t"]);
-	$result["meta_d"]=stripslashes($result["meta_d"]);
-	$result["meta_k"]=stripslashes($result["meta_k"]);
-	
-				$itog[] = $result;
-			}
-		}
-
-		
-    if($itog!=NULL){
-        foreach($itog as $key=>$val){
-            $arrcat[$val["id"]]=$val;
+        $query = "SELECT * FROM ".GALLERY_ITEM_TABLE." 
+                  LEFT JOIN ".GALLERY_ITEM_TABLE_LANG." ON ".GALLERY_ITEM_TABLE.".id=".GALLERY_ITEM_TABLE_LANG.".pid 
+                  WHERE `show`='1' ORDER BY `pos` DESC";
+     
+        $db = new SafeMySQL();
+        if($result = $db->query($query)){
+            while($row = $db->fetch($result)){
+                $row["caption"]=stripslashes($row["caption"]);
+                $row["desc_short"]=stripslashes($row["desc_short"]);
+ 	        $row["desc_full"]=stripslashes($row["desc_full"]);
+ 	        $row["meta_t"]=stripslashes($row["meta_t"]);
+ 	        $row["meta_d"]=stripslashes($row["meta_d"]);
+ 	        $row["meta_k"]=stripslashes($row["meta_k"]);
+ 	 
+ 	        $itog[] = $row;
+            }
+        }       
+        if($itog!=NULL){
+            foreach($itog as $key=>$val){
+                $arrcat[$val["id"]]=$val;
+            }
         }
-    }
-SYS::varDump($arrcat,__FILE__,__LINE__,"GALL::itemListShow");
-    return $arrcat;
+        return $arrcat; 
 /*	
 $select="";
 $from=GALLERY_ITEM_TABLE;
@@ -310,53 +272,31 @@ return $arrcat;
 */
 }
 
-static function itemListSpecial($spec_where){ // Надо ИЗМЕНИТЬ выборку.. RAND() - слишком долго для большой таблицы))
+    static function itemListSpecial($spec_where){ // Надо ИЗМЕНИТЬ выборку.. RAND() - слишком долго для большой таблицы))
 
-    $query = "SELECT * FROM ".GALLERY_ITEM_TABLE." 
-              LEFT JOIN ".GALLERY_ITEM_TABLE_LANG." ON ".GALLERY_ITEM_TABLE.".id=".GALLERY_ITEM_TABLE_LANG.".pid 
-              WHERE ".$spec_where." AND `show`='1' ORDER BY RAND() DESC LIMIT 12";
-    $res = mysql_query($query);
-    Mysql::queryError($res,$query);
-    if (mysql_num_rows($res) > 0)
-		{
-			while ($result = mysql_fetch_assoc ($res))
-			{
-				
-	$result["caption"]=stripslashes($result["caption"]);
-	$result["desc_short"]=stripslashes($result["desc_short"]);
-	$result["desc_full"]=stripslashes($result["desc_full"]);
-	$result["meta_t"]=stripslashes($result["meta_t"]);
-	$result["meta_d"]=stripslashes($result["meta_d"]);
-	$result["meta_k"]=stripslashes($result["meta_k"]);
-	
-				$itog[] = $result;
-			}
-		}
-
-		
-    if($itog!=NULL){
-        foreach($itog as $key=>$val){
-            $arrcat[$val["id"]]=$val;
+        $query = "SELECT * FROM ".GALLERY_ITEM_TABLE." 
+                  LEFT JOIN ".GALLERY_ITEM_TABLE_LANG." ON ".GALLERY_ITEM_TABLE.".id=".GALLERY_ITEM_TABLE_LANG.".pid 
+                  WHERE ".$spec_where." AND `show`='1' ORDER BY RAND() DESC LIMIT 12";
+    
+        $db = new SafeMySQL();
+        if($result = $db->query($query)){
+            while($row = $db->fetch($result)){
+                $row["caption"]=stripslashes($row["caption"]);
+                $row["desc_short"]=stripslashes($row["desc_short"]);
+ 	        $row["desc_full"]=stripslashes($row["desc_full"]);
+ 	        $row["meta_t"]=stripslashes($row["meta_t"]);
+ 	        $row["meta_d"]=stripslashes($row["meta_d"]);
+ 	        $row["meta_k"]=stripslashes($row["meta_k"]);
+ 	 
+ 	        $itog[] = $row;
+            }
+        }       
+        if($itog!=NULL){
+            foreach($itog as $key=>$val){
+                $arrcat[$val["id"]]=$val;
+            }
         }
-    }
-SYS::varDump($arrcat,__FILE__,__LINE__,"GALL::itemListSpecial");
-    return $arrcat;
-/*	
-$select="";
-$from=GALLERY_ITEM_TABLE;
-//$where="connect LIKE '%;".$tag.";%' AND `show`='1'";
-$where=$spec_where;
-$sortby="pos DESC";
-
-$db = new mysql;
-$row = $db->origSelectSQL($select, $from, $where, $sortby,"0,9");
-
-if($row!=NULL){foreach($row as $key=>$val){
-$arrcat[$val["id"]]=$val;
-}}
-
-return $arrcat;
-*/
+        return $arrcat;
 }
 
 

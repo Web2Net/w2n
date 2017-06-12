@@ -3,11 +3,7 @@
 //if (!defined('SID')) { 
 session_start();
 //}
-/*
-echo $_SESSION['bro_width'];
-echo "<br />";
-echo BRO_WIDTH;
-*/
+
 include_once (SITE_PATH."/kernel/kernel.php");
 include_once (SITE_PATH."/kernel/auth.class.php");
 include_once (SITE_PATH."/kernel/email.class.php");
@@ -40,13 +36,8 @@ $_SESSION["display"]="mobi";
 if(isset($_GET["display"]) && $_GET["display"]=="full"){
 $_SESSION["display"]="full";
 }
-/*
-foreach ($_REQUEST as $key=>$val)
-{
-    $str="$".$key."=\$val;";
-    eval($str);
-}
-*/
+//echo $_SESSION["display"];
+
 $seolink=$_SERVER['REQUEST_URI'];
 
 if(isset($seolink))
@@ -117,82 +108,14 @@ if(isset($mod) && $mod=="search")
     $c_cont=Search::viewSearchModPage();
 }
 
+//echo $mod;
 
-/*
-
-
-if(isset($mod) && $mod=="ajax")
-{
-    if($param=="shoppingplus")
-    {
-        Shopping::shoppingPlus();
-    }
-    if($param=="shoppingminus")
-    {
-        Shopping::shoppingMinus();
-    }
-    if($param=="list-style"||$param=="grid-style")
-    {
-        $ds=explode("-",$param);
-        $_SESSION["liststyle"]=$ds[0];
-    }
-}
-
-//SYS::varDump($seolink,__FILE__,__LINE__,'seolink');
-
-else if(isset($mod) && $mod=="article")
-{
-    $c_cont=Article::viewArticleModPage();
-}
-else if(isset($mod) && $mod=="page")
-{
-    $c_cont=Page::viewPageModPage();
-}
-else if(isset($mod) && $mod=="items")
-{
-    $c_cont=Items::viewItemsModPage();
-}
-else if(isset($mod) && $mod=="search")
-{
-    $c_cont=Search::viewSearchModPage();
-}
-else if(isset($mod) && $mod=="feedback")
-{
-    $c_cont=Feedback::viewFeedbackModPage();
-}
-else
-{
-    //$c_cont=Block::mainPage();
-}
-*/
-/*
-if(isset($ext) && $ext == 'ajax')
-{
-	echo $c_cont;
-}
-else
-{
-*/
-
-//$main_menu=Menu::viewMenu();
-//$tpl = new SiteTpl;
-
-    //$main_menu=Menu::viewMenu();
-    
-/*  ------------- Потуги -------------- */    
-   //$main_menu=Shop::siteShop(); // Через БД
-//    $menu=INI::Get('site_main_menu'); // Через файл   
-//    $main_menu=$menu["main_menu"];
-   
-//SYS::varDump($main_menu,__FILE__,__LINE__,'main_menu');
-/*  -------------- /Потуги ------------- */  
 
     $tpl = new SiteTpl;
 
   $shop_menu=Shop::siteShopMenu();
   $shop_menu_mobi=Shop::siteShopMobiMenu();  
   
-  SYS::varDump($shop_menu,__FILE__,__LINE__,' shop_menu'); 
     
 $tpl->assign('shop_menu', $shop_menu);
 $tpl->assign('shop_menu_mobi', $shop_menu_mobi);
@@ -200,8 +123,8 @@ $tpl->assign('c_cont', $c_cont["content"]);
 $tpl->assign('meta', $c_cont["meta"]);
     
     
-    
-    
+   
+SYS::varDump($shop_menu,__FILE__,__LINE__,' shop_menu');    
 SYS::varDump($_REQUEST,__FILE__,__LINE__,'REQUEST'); 
 SYS::varDump($_SESSION,__FILE__,__LINE__,'SESSION'); 
 
@@ -232,18 +155,21 @@ else
 	header("Location: ".$linka[0]."");
 	}
 
-//var_dump($_SESSION);	
+	
 //	/Mobile_Detect //
-	if($_GET["display"]!="ajax"){
-		if($_SESSION["display"]=="mobi"){
-        $tpl->display('mobi');	
-        }else{
-        $tpl->display('index');	        
-        }	
-	}else{
-	    echo $c_cont["content"];
+	if(isset($_GET['display']) && $_GET["display"] != "ajax"){
+            if($_SESSION["display"] == "mobi"){
+                $tpl->display('mobi');	
+            }
+            else{
+                $tpl->display('index');	        
+            }	
+	}
+	else{
+	    $tpl->display('index');
+	    //echo $c_cont["content"]; // Аналогична $tpl->display('index');
+        }
     }
-}
     unset($main_menu);
     unset($tpl);
 //}

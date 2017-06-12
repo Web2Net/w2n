@@ -192,11 +192,11 @@ define('SEARCH_ART_TABLE_LANG','art_item_'.$_SESSION['lang']);
                   LEFT JOIN ".SEARCH_ITEM_TABLE." ON ".SEARCH_ITEM_TABLE.".id=".SEARCH_ITEM_TABLE_LANG.".pid 
                   WHERE `flagman`='1' AND `show`='1'";
 
-        $res = mysql_query($query);
-		mysql::queryError($res,$query);
-        while ($row = mysql_fetch_assoc($res))
-        {
-           $key_words[] = $row;
+        $db = new SafeMySQL();
+        if($result = $db->query($query)){
+            while($row = $db->fetch($result)){
+                $key_words[] = $row;
+            }
         }
 //SYS::varDump($key_words,__FILE__,__LINE__,"Live_Search");
         return $key_words;	

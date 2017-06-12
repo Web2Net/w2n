@@ -62,3 +62,43 @@
 ============
 [2017-06-10 16:53:34] Текст ошибки: Class 'mysql' not found | Файл: /opt/lampp/htdocs/w2n/site/lang/lang.class.php | Строка: 61
 ============
+[2017-06-11 09:28:53] Текст ошибки: Undefined offset: 1 | Файл: /opt/lampp/htdocs/w2n/site/shop/tpl/price_and_buttonBuy_list.php | Строка: 11
+============
+[2017-06-11 10:07:21] Текст ошибки: Undefined offset: 464 | Файл: /opt/lampp/htdocs/w2n/site/main/tpl/best-prop.tpl.htm | Строка: 106
+============
+[2017-06-11 10:07:27] Текст ошибки: Undefined offset: 464 | Файл: /opt/lampp/htdocs/w2n/site/main/tpl/best-prop.tpl.htm | Строка: 106
+============
+[2017-06-11 14:05:37] Текст ошибки: Non-static method Shop::siteShop() should not be called statically | Файл: /opt/lampp/htdocs/w2n/site/logic.php | Строка: 85
+============
+[2017-06-11 14:06:39] Текст ошибки: Non-static method Shop::siteShop() should not be called statically | Файл: /opt/lampp/htdocs/w2n/site/logic.php | Строка: 85
+============
+[2017-06-11 14:06:51] Текст ошибки: Non-static method INI::Life() should not be called statically | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 34
+============
+[2017-06-11 14:08:59] Текст ошибки: Non-static method INI::SetXXL() should not be called statically | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 37
+============
+[2017-06-11 14:09:21] Текст ошибки: Non-static method Shop::tagDataSeolink() should not be called statically | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 44
+============
+[2017-06-11 14:09:58] Текст ошибки: mysql_query(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 259
+============
+[2017-06-11 14:12:23] Текст ошибки: syntax error, unexpected ')' | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 263
+============
+[2017-06-11 14:12:39] Текст ошибки: Undefined variable: param | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 71
+============
+[2017-06-11 14:13:26] Текст ошибки: Undefined variable: param | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 71
+============
+[2017-06-11 14:13:27] Текст ошибки: Undefined variable: param | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 71
+============
+[2017-06-11 14:13:28] Текст ошибки: Undefined variable: param | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 71
+============
+[2017-06-11 14:14:37] Текст ошибки: Undefined variable: param | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 71
+============
+[2017-06-11 14:14:59] Текст ошибки: Undefined variable: param | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 71
+============
+[2017-06-11 14:15:56] Текст ошибки: Undefined variable: param | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 86
+============
+[2017-06-11 14:18:33] Текст ошибки: Undefined variable: c_cont | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 102
+============
+[2017-06-11 14:20:01] Текст ошибки: syntax error, unexpected 'return' (T_RETURN) | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 102
+============
+[2017-06-11 14:20:14] Текст ошибки: Undefined variable: c_cont | Файл: /opt/lampp/htdocs/w2n/site/shop/logic.shop.site.php | Строка: 102
+============
