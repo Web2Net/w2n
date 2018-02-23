@@ -51,7 +51,7 @@
     define('EXT_DUMP',  'sql');                           // Разширение для дампов БД
     
     define('PATH_DESIGN',        '/index_files');
-    define('PATH_SITE_DESIGN',       '/design');
+    define('PATH_SITE_DESIGN',       '/site/design');
     //define('PATH_DESIGN',       '/site/design/t_1');
     
     //define('PATH_MYADMIN',      SITE_URL_HTTPS.'/myadmin/');

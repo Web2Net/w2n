@@ -41,8 +41,8 @@
                     
                     <div class="logo-wrapper">
                         <h1 class="logo">
-                            <a rel="nofollow" href="<?=SITE_URL?>"><img src="<?=PATH_SITE_DESIGN?>/img/logo.png" alt="Circle Template">
-                            <span>Cheap. Available. Comfortable.</span></a>
+                            <a rel="nofollow" href="http://www.templatemo.com/preview/templatemo_410_circle"><img src="site/design/img/logo.png" alt="Circle Template">
+                            <span>Free HTML5 Template</span></a>
                         </h1>
                     </div> <!-- /.logo-wrapper -->
                     
@@ -113,7 +113,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="member-item">
                                     <div class="thumb">
-                                        <img src="design/img/team/member-1.jpg" alt="Tracy - Web Designer">
+                                        <img src="images/team/member-1.jpg" alt="Tracy - Web Designer">
                                     </div>
                                     <h4>Tracy</h4>
                                     <span>Web Designer</span>
@@ -122,7 +122,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="member-item">
                                     <div class="thumb">
-                                        <img src="<?=PATH_SITE_DESIGN?>/img/team/member-2.jpg" alt="Mary - Web Developer">
+                                        <img src="images/team/member-2.jpg" alt="Mary - Web Developer">
                                     </div>
                                     <h4>Mary</h4>
                                     <span>Web Developer</span>
@@ -131,7 +131,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="member-item">
                                     <div class="thumb">
-                                        <img src="<?=PATH_SITE_DESIGN?>/img/team/member-3.jpg" alt="Julia - Creative Director">
+                                        <img src="images/team/member-3.jpg" alt="Julia - Creative Director">
                                     </div>
                                     <h4>Julia</h4>
                                     <span>Creative Director</span>
@@ -186,72 +186,72 @@
                             
                             <div class="col-md-4 col-ms-6">
                                 <div class="g-item">
-                                    <img src="<?=PATH_SITE_DESIGN?>/img/gallery/g1.jpg" alt="">
-                                    <a data-rel="lightbox" class="overlay" href="<?=PATH_SITE_DESIGN?>/img/gallery/g1.jpg">
+                                    <img src="images/gallery/g1.jpg" alt="">
+                                    <a data-rel="lightbox" class="overlay" href="images/gallery/g1.jpg">
                                         <span>+</span>
                                     </a>
                                 </div> <!-- /.g-item -->
                             </div> <!-- /.col-md-4 -->
                             <div class="col-md-4 col-ms-6">
                                 <div class="g-item">
-                                    <img src="<?=PATH_SITE_DESIGN?>/img/gallery/g2.jpg" alt="">
-                                    <a data-rel="lightbox" class="overlay" href="<?=PATH_SITE_DESIGN?>/img/gallery/g2.jpg">
+                                    <img src="images/gallery/g2.jpg" alt="">
+                                    <a data-rel="lightbox" class="overlay" href="images/gallery/g2.jpg">
                                         <span>+</span>
                                     </a>
                                 </div> <!-- /.g-item -->
                             </div> <!-- /.col-md-4 -->
                             <div class="col-md-4 col-ms-6">
                                 <div class="g-item">
-                                    <img src="<?=PATH_SITE_DESIGN?>/img/gallery/g3.jpg" alt="">
-                                    <a data-rel="lightbox" class="overlay" href="<?=PATH_SITE_DESIGN?>/img/gallery/g3.jpg">
+                                    <img src="images/gallery/g3.jpg" alt="">
+                                    <a data-rel="lightbox" class="overlay" href="images/gallery/g3.jpg">
                                         <span>+</span>
                                     </a>
                                 </div> <!-- /.g-item -->
                             </div> <!-- /.col-md-4 -->
                             <div class="col-md-4 col-ms-6">
                                 <div class="g-item">
-                                    <img src="<?=PATH_SITE_DESIGN?>/img/gallery/g4.jpg" alt="">
-                                    <a data-rel="lightbox" class="overlay" href="<?=PATH_SITE_DESIGN?>/img/gallery/g4.jpg">
+                                    <img src="images/gallery/g4.jpg" alt="">
+                                    <a data-rel="lightbox" class="overlay" href="images/gallery/g4.jpg">
                                         <span>+</span>
                                     </a>
                                 </div> <!-- /.g-item -->
                             </div> <!-- /.col-md-4 -->
                             <div class="col-md-4 col-ms-6">
                                 <div class="g-item">
-                                    <img src="<?=PATH_SITE_DESIGN?>/img/gallery/g5.jpg" alt="">
-                                    <a data-rel="lightbox" class="overlay" href="<?=PATH_SITE_DESIGN?>/img/gallery/g5.jpg">
+                                    <img src="images/gallery/g5.jpg" alt="">
+                                    <a data-rel="lightbox" class="overlay" href="images/gallery/g5.jpg">
                                         <span>+</span>
                                     </a>
                                 </div> <!-- /.g-item -->
                             </div> <!-- /.col-md-4 -->
                             <div class="col-md-4 col-ms-6">
                                 <div class="g-item">
-                                    <img src="<?=PATH_SITE_DESIGN?>/img/gallery/g6.jpg" alt="">
-                                    <a data-rel="lightbox" class="overlay" href="<?=PATH_SITE_DESIGN?>/img/gallery/g6.jpg">
+                                    <img src="images/gallery/g6.jpg" alt="">
+                                    <a data-rel="lightbox" class="overlay" href="images/gallery/g6.jpg">
                                         <span>+</span>
                                     </a>
                                 </div> <!-- /.g-item -->
                             </div> <!-- /.col-md-4 -->
                             <div class="col-md-4 col-ms-6">
                                 <div class="g-item">
-                                    <img src="<?=PATH_SITE_DESIGN?>/img/gallery/g7.jpg" alt="">
-                                    <a data-rel="lightbox" class="overlay" href="<?=PATH_SITE_DESIGN?>/img/gallery/g7.jpg">
+                                    <img src="images/gallery/g7.jpg" alt="">
+                                    <a data-rel="lightbox" class="overlay" href="images/gallery/g7.jpg">
                                         <span>+</span>
                                     </a>
                                 </div> <!-- /.g-item -->
                             </div> <!-- /.col-md-4 -->
                             <div class="col-md-4 col-ms-6">
                                 <div class="g-item">
-                                    <img src="<?=PATH_SITE_DESIGN?>/img/gallery/g8.jpg" alt="">
-                                    <a data-rel="lightbox" class="overlay" href="<?=PATH_SITE_DESIGN?>/img/gallery/g8.jpg">
+                                    <img src="images/gallery/g8.jpg" alt="">
+                                    <a data-rel="lightbox" class="overlay" href="images/gallery/g8.jpg">
                                         <span>+</span>
                                     </a>
                                 </div> <!-- /.g-item -->
                             </div> <!-- /.col-md-4 -->
                             <div class="col-md-4 col-ms-6">
                                 <div class="g-item">
-                                    <img src="<?=PATH_SITE_DESIGN?>/img/gallery/g9.jpg" alt="">
-                                    <a data-rel="lightbox" class="overlay" href="<?=PATH_SITE_DESIGN?>/img/gallery/g9.jpg">
+                                    <img src="images/gallery/g9.jpg" alt="">
+                                    <a data-rel="lightbox" class="overlay" href="images/gallery/g9.jpg">
                                         <span>+</span>
                                     </a>
                                 </div> <!-- /.g-item -->
@@ -313,18 +313,18 @@
     <div class="container-fluid">   
         <div class="row">
             <div class="col-md-12 footer">
-                <p id="footer-text">Copyright &copy; 2018 <a href="#">Company Name</a>
+                <p id="footer-text">Copyright &copy; 2084 <a href="#">Company Name</a>
                  | Photos by <a rel="nofollow" href="http://unsplash.com">Unsplash</a></p>
             </div><!-- /.footer --> 
         </div>
     </div> <!-- /.container-fluid -->
 
-    <script src="<?=PATH_SITE_DESIGN?>/js/vendor/jquery-1.10.1.min.js"></script>
-    <script>window.jQuery || document.write('<script src="<?=PATH_SITE_DESIGN?>/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-    <script src="<?=PATH_SITE_DESIGN?>/js/jquery.easing-1.3.js"></script>
-    <script src="<?=PATH_SITE_DESIGN?>/js/bootstrap.js"></script>
-    <script src="<?=PATH_SITE_DESIGN?>/js/plugins.js"></script>
-    <script src="<?=PATH_SITE_DESIGN?>/js/main.js"></script>
+    <script src="js/vendor/jquery-1.10.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+    <script src="js/jquery.easing-1.3.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
     <script type="text/javascript">
             
 			jQuery(function ($) {
@@ -338,15 +338,15 @@
 
                     // Components                           
                     slide_links: 'blank', // Individual links for each slide (Options: false, 'num', 'name', 'blank')
-                    slides: [ // Slideshow <?=PATH_SITE_DESIGN?>/img
+                    slides: [ // Slideshow Images
                         {
-                            image: '<?=PATH_SITE_DESIGN?>/img/templatemo-slide-1.jpg'
+                            image: 'images/templatemo-slide-1.jpg'
                         }, {
-                            image: '<?=PATH_SITE_DESIGN?>/img/templatemo-slide-2.jpg'
+                            image: 'images/templatemo-slide-2.jpg'
                         }, {
-                            image: '<?=PATH_SITE_DESIGN?>/img/templatemo-slide-3.jpg'
+                            image: 'images/templatemo-slide-3.jpg'
                         }, {
-                            image: '<?=PATH_SITE_DESIGN?>/img/templatemo-slide-4.jpg'
+                            image: 'images/templatemo-slide-4.jpg'
                         }
                     ]
 
@@ -357,7 +357,7 @@
     
     	<!-- Google Map -->
         <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-        <script src="<?=PATH_SITE_DESIGN?>/js/vendor/jquery.gmap3.min.js"></script>
+        <script src="js/vendor/jquery.gmap3.min.js"></script>
         
         <!-- Google Map Init-->
         <script type="text/javascript">

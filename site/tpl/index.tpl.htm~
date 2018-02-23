@@ -113,7 +113,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="member-item">
                                     <div class="thumb">
-                                        <img src="design/img/team/member-1.jpg" alt="Tracy - Web Designer">
+                                        <img src="<?=PATH_SITE_DESIGN?>/img/team/member-1.jpg" alt="Tracy - Web Designer">
                                     </div>
                                     <h4>Tracy</h4>
                                     <span>Web Designer</span>
