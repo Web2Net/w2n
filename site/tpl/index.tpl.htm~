@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?=PATH_SITE_DESIGN?>/css/templatemo_misc.css">
     <link rel="stylesheet" href="<?=PATH_SITE_DESIGN?>/css/templatemo_style.css">
 
-    <script src="<?=PATH_SITE_DESIGN?>/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="<?=PATH_SITE_DESIGN?>/js/modernizr-2.6.2.min.js"></script>
 	<!-- templatemo 410 circle -->
 </head>
 <body>
@@ -113,7 +113,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="member-item">
                                     <div class="thumb">
-                                        <img src="<?=PATH_SITE_DESIGN?>/img/team/member-1.jpg" alt="Tracy - Web Designer">
+                                        <img src="design/img/team/member-1.jpg" alt="Tracy - Web Designer">
                                     </div>
                                     <h4>Tracy</h4>
                                     <span>Web Designer</span>
